@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AAF Hero: viewport preview</title>
+<style>
+  body { margin: 0; padding: 24px; background: #DCE2E7; font: 13px/1.4 system-ui, sans-serif; color: #263238; }
+  .row { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+  figure { margin: 0; }
+  figcaption { margin-bottom: 6px; font-weight: 600; }
+  iframe { border: 0; background: #fff; display: block; }
+</style>
+</head>
+<body>
+  <!-- Development harness: renders the hero at exact viewport widths. -->
+  <div class="row">
+    <figure><figcaption>360</figcaption><iframe src="index.html" width="360" height="1300" title="360px"></iframe></figure>
+    <figure><figcaption>390</figcaption><iframe src="index.html" width="390" height="1350" title="390px"></iframe></figure>
+    <figure><figcaption>430</figcaption><iframe src="index.html" width="430" height="1400" title="430px"></iframe></figure>
+    <figure><figcaption>768</figcaption><iframe src="index.html" width="768" height="1024" title="768px"></iframe></figure>
+  </div>
+</body>
+</html>

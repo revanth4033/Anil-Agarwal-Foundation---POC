@@ -1,0 +1,434 @@
+AAF WEBSITE PROJECT PROJECT CONTEXT AND VISUAL DESIGN BRIEF Version 1.1
+| 16 November 2026
+
+PURPOSE OF THIS DOCUMENT This document gives Claude Code the background
+and approved visual-design direction for the Anil Agarwal Foundation
+(AAF) homepage project. Read this before making design or implementation
+decisions.
+
+The task is to design and build the AAF HOMEPAGE ONLY. The homepage
+section structure, section order, content requirements and user journey
+have already been defined by the UX designer. Do not invent, remove,
+reorder or restructure homepage sections. The UX-approved wireframe will
+be provided separately and is the source of truth for homepage
+information architecture.
+
+The design and implementation focus is visual quality: a polished,
+premium, modern, human-centred UI that feels credible for a large
+foundation and engaging for the communities and people whose lives its
+work affects.
+
+1.  PROJECT BACKGROUND
+
+1.1 Parent organisation: Vedanta Limited Reference homepage:
+https://www.vedantalimited.com/eng/index.php
+
+Vedanta Limited describes itself as a leading global producer of metals,
+critical minerals and technology. Its operations span India and
+international markets. Its business and corporate website communicates
+industrial scale, business operations, leadership, sustainability,
+technology, investors and social impact.
+
+The parent website’s current navigation includes areas such as: - Who We
+Are - Our Businesses - ESG - Technology - Partners - Careers - Investor
+Relations - Social Impact - Media - Global Presence
+
+The current homepage presents Vedanta’s businesses and corporate
+positioning, and also has a Social Impact area that links to initiatives
+including Anil Agarwal Foundation, Nand Ghar, TACO, CSR at Businesses,
+Balco Medical, Vedanta Sports and Vedanta Foundation.
+
+Vedanta’s business identity and AAF’s social-impact identity are
+related, but they are not the same. Do not make the AAF website look
+like an industrial or investor-relations website.
+
+1.2 AAF reference page on the Vedanta website Reference page:
+https://www.vedantalimited.com/eng/social_impact_aaf.php
+
+The page describes Anil Agarwal Foundation as: “The umbrella entity for
+Vedanta’s social impact initiatives, aiming to create strong, inclusive
+& resilient communities in India.”
+
+Published vision: “Empowering communities, transforming lives, and
+facilitating nation-building through sustainable and inclusive growth.”
+
+Published mission: “Upholding the highest ethical standards while
+implementing projects that foster strong connections with grassroots
+communities.”
+
+The page states that AAF has initiated a plan to invest INR 5,000 crores
+over five years in social-impact projects, with focus areas including
+healthcare, nutrition, women and child development, animal welfare and
+grassroots sports.
+
+Important: these statements and figures are content from the existing
+reference page. Before using them as live homepage claims, confirm with
+the client that they remain approved and current. Do not silently
+update, reinterpret or invent figures.
+
+1.3 What AAF does AAF is presented as the umbrella entity for Vedanta’s
+social-impact initiatives. Its purpose is to support strong, inclusive
+and resilient communities in India through social-development programmes
+and initiatives.
+
+The existing AAF page includes impact categories such as: - Healthcare -
+Community infrastructure - Women empowerment - Sports and culture -
+Children’s well-being and education - Livelihoods - Environment
+
+The current page highlights projects and initiatives including: - Nand
+Ghar: described as AAF’s flagship social-impact project, focused on
+early childhood education, nutrition, access to healthcare and women’s
+skill development. The page states that 10,000+ Nand Ghars have been set
+up across 16 states. - The Animal Care Organization (TACO): an
+animal-welfare initiative focused on a sustainable ecosystem for animal
+well-being, including shelter, veterinary care, wildlife conservation
+and related pillars. - Other Vedanta social-impact programmes and
+initiatives may be referenced in the broader ecosystem. Do not assume
+that every programme on Vedanta’s Social Impact site is directly
+operated by AAF. Preserve the relationship and attribution used in
+approved source content.
+
+The new AAF website is a dedicated digital presence for the foundation.
+It should communicate the foundation’s purpose, work, credibility and
+human impact in its own visual voice while retaining a clear
+relationship with Vedanta.
+
+1.4 Founder context Anil Agarwal is the founder associated with Vedanta
+and the namesake of the foundation. The foundation’s story is connected
+to a philanthropic and social-development vision. Use only
+client-approved biography, quotes and claims on the website. Do not
+invent founder quotes or attribute general philanthropic statements to
+him without a verified source.
+
+2.  PROJECT SCOPE AND WORKING RULES
+
+IN SCOPE: - Design and build the homepage only. - Apply the approved UX
+designer’s homepage structure. - Develop a consistent visual system and
+implement it in the homepage. - Create polished responsive UI for the
+approved homepage sections. - Use real, approved content and credible
+imagery.
+
+OUT OF SCOPE UNLESS EXPLICITLY REQUESTED: - Redesigning the full website
+or inventing inner-page structures. - Changing the UX designer’s section
+order or information architecture. - Adding new sections just because
+they seem visually useful. - Rewriting approved copy or inventing impact
+claims. - Creating a new logo or replacing the AAF logo. - Treating
+proposed design tokens as official brand guidelines.
+
+The UX wireframe and client-approved content take precedence over any
+assumptions in this document. When the wireframe is supplied, follow it
+closely. Improve visual composition, not the underlying content
+structure or user journey.
+
+3.  BRAND ASSETS AND LOGO COLOURS
+
+Two logo assets were supplied in the design discussion: - Vedanta logo:
+blue and green wordmark with the tagline “transforming for good”. - Anil
+Agarwal Foundation logo: green AAF symbol with blue “ANIL AGARWAL
+FOUNDATION” wordmark.
+
+The AAF logo is the primary brand reference for this project. Do not
+simply copy the parent Vedanta website’s visual style or use Vedanta’s
+logo as the AAF logo.
+
+WORKING LOGO FILES (updated 16 November 2026): -
+assets/brand/aaf-logo.svg: AAF logo. Vector paths extracted unmodified
+from the cover of the official “AAF Social Impact Compendium 2023–2024”
+PDF published on vedantalimited.com. Approx. 125.68 × 51.06 (ratio
+approx. 2.46:1). - assets/brand/vedanta-logo.svg: Vedanta logo, the
+original header SVG from https://www.vedantalimited.com/img/vedanta-logo.svg.
+200 × 43 (ratio approx. 4.65:1).
+
+Both SVG files must be used exactly as supplied. Do not redraw, recolour,
+optimise, modify or replace them, and always preserve their aspect
+ratios. The white Vedanta logo variant is not part of the asset set yet;
+it will be decided when the footer is designed.
+
+WORKING AAF BRAND COLOURS (updated 16 November 2026): - AAF PRIMARY BLUE:
+#0664A8 (RGB 6, 100, 168) - AAF PRIMARY GREEN: #75C044 (RGB 117, 192,
+68)
+
+These replace the earlier approximate values (#2B63A4 and #86BC58), which
+were sampled from a compressed PNG and are now superseded. The new
+values are screen conversions of the print (CMYK) colours used in the
+official AAF Social Impact Compendium 2023–2024: - Blue: C93 M62.9 Y5.9
+K0.4 - Green: C58.6 M0 Y99.2 K0 They match Vedanta’s own RGB web banner
+of the AAF logo to within a few RGB units. They are not yet confirmed
+against an official AAF digital brand guideline.
+
+Vedanta logo colours (exact fills in the official Vedanta SVG): VEDANTA
+BLUE: #005298 (RGB 0, 82, 152) VEDANTA GREEN: #71B32F (RGB 113, 179, 47)
+
+See AAF_BRAND_FOUNDATION.md and assets/brand/brand-tokens.css for the
+working brand foundation and reusable tokens.
+
+4.  APPROVED VISUAL DIRECTION
+
+The agreed direction is a combination of:
+
+A. PREMIUM EDITORIAL - Refined typography and clear hierarchy. -
+Generous but intentional whitespace. - Strong editorial image
+compositions. - Elegant, considered layouts. - A mature, premium visual
+feel.
+
+B. MODERN IMPACT - Clear and engaging visual storytelling. - Structured
+grids and modular content layouts. - Meaningful impact statistics where
+supplied and approved. - Contemporary UI components. - Dynamic but
+controlled image and content compositions.
+
+The combined direction should feel: - Premium, but not luxurious or
+inaccessible. - Modern, but not trendy or decorative for its own sake. -
+Human, warm and inspiring. - Credible and institutional. - Structured,
+clean and easy to scan.
+
+Avoid a generic NGO template, an industrial corporate website aesthetic,
+an overly playful startup look, or an excessively decorative editorial
+magazine treatment.
+
+5.  COLOUR SYSTEM
+
+The selected colour balance is BALANCED.
+
+Use AAF blue and green as the primary brand colours. Use warm neutral
+backgrounds and restrained supporting colours to create a calm,
+sophisticated interface.
+
+Working primary colours (updated 16 November 2026): - AAF Primary
+Blue: #0664A8 - AAF Primary Green: #75C044
+
+Proposed supporting colours (design proposals, not official brand
+colours): - Warm Off-white: #F7F8F4 - White: #FFFFFF - Soft Sage:
+#EAF1E3 - Pale Blue: #E8EEF4 - Deep Navy: #183D5B - Charcoal: #263238 -
+Warm Neutral: #F0EFE9 - Soft Border: #DCE2E7
+
+Suggested usage: - Use white and warm off-white as the dominant page
+surfaces. - Use blue for primary brand anchors, links, selected headings
+and primary actions. - Use green as a complementary brand accent for
+selected highlights, small labels, visual markers and occasional calls
+to action. - Use navy and charcoal for readable text and deeper
+contrast. - Use pale blue and sage for occasional supporting surfaces,
+not every card or section. - Keep colour use restrained and
+consistent. - Do not create random gradients or introduce many unrelated
+colours. - Do not make every section a large blue or green block.
+
+An earlier visual exploration suggested an approximate balance of 70%
+light neutral surfaces, 15% blue, 10% green and 5% deep accents. This is
+only a visual starting point, not a strict measured rule. Adjust
+naturally to the actual wireframe and content.
+
+Accessibility: - Check text contrast, especially white text on the logo
+green. - Do not use the light green as small text on white. - Use
+sufficiently dark text for body copy. - Do not communicate status or
+meaning through colour alone.
+
+Measured contrast for the working colours (WCAG 2.x): - White on AAF
+Blue #0664A8: 6.18:1 (passes AA for all text). - AAF Blue on White /
+Off-white / Sage / Pale Blue / Warm Neutral: 5.29–6.18:1 (passes AA). -
+AAF Green #75C044 on White: 2.24:1. FAILS for text and is below the 3:1
+needed for essential UI graphics. Use green only for decorative accents,
+or with Deep Navy or Charcoal text on top of it. - Deep Navy on AAF
+Green: 5.05:1; Charcoal on AAF Green: 5.88:1 (pass AA). - Charcoal on
+White: 13.16:1; Deep Navy on White: 11.31:1.
+
+6.  TYPOGRAPHY
+
+APPROVED FONT PAIRING: - Lora: major editorial/display headlines. -
+Manrope: body text, navigation, labels, buttons, statistics and UI.
+
+The typography direction is RESTRAINED, not excessively expressive.
+
+Guidelines: - Use Lora selectively for key hero and section headlines. -
+Use Manrope for all interface and supporting text. - Keep headline line
+lengths controlled. - Avoid too many weights and sizes. - Use clear,
+comfortable line-height and readable paragraph widths. - Do not use Lora
+for every heading or body paragraph. - Load fonts reliably from the
+project’s chosen font source and provide sensible fallbacks.
+
+Initial desktop type scale to test (not final until applied to the
+wireframe): - H1: Lora, approximately 56px, regular. - H2: Lora,
+approximately 40px, regular. - H3: Manrope, approximately 24px,
+semibold. - Body: Manrope, approximately 16px, regular. - Small labels:
+Manrope, approximately 12–14px, semibold.
+
+Responsive sizes must scale appropriately on tablet and mobile. Avoid
+oversized headings that create awkward wrapping.
+
+7.  LAYOUT AND SPACING
+
+The agreed UI direction is spacious, structured and editorial.
+
+Initial desktop specifications: - Main content container: approximately
+1280px to 1320px, subject to viewport and wireframe. - Grid: 12-column
+desktop grid. - Section vertical spacing: approximately 100px to 120px
+as a starting point. - Card radius: approximately 12px to 16px. - Button
+radius: approximately 6px to 8px. - Borders: subtle 1px neutral
+borders. - Shadows: minimal and only when they improve separation.
+
+Guidelines: - Align content consistently to a shared container. - Use a
+deliberate spacing scale rather than arbitrary margins. - Maintain clear
+visual hierarchy between sections. - Avoid dense, text-heavy blocks. -
+Use asymmetry only when it improves storytelling and does not damage
+alignment. - Ensure the layout adapts cleanly to smaller screens. - Do
+not force every section into the same card grid. Use visual variety
+while retaining a consistent design system.
+
+8.  CARD AND COMPONENT STYLE
+
+The selected card direction is STRUCTURED.
+
+Preferred treatment: - Clear content hierarchy. - Consistent internal
+padding. - Subtle borders or quiet surface backgrounds. - Consistent
+corner radius. - Strong, well-cropped imagery where relevant. - Minimal
+or no heavy shadows. - Clear titles, concise descriptions and purposeful
+links. - Consistent hover and focus states.
+
+Useful card patterns may include: - Image-led initiative cards. -
+Structured content cards. - Impact/statistic cards. - Story or editorial
+cards.
+
+Do not use excessive floating cards, glassmorphism, heavy shadows, thick
+borders, unnecessary icon decoration or inconsistent radii.
+
+9.  BUTTONS AND INTERACTION STYLE
+
+Primary button: - AAF blue background. - White readable label. - Clear
+hover and focus state. - Modest corner radius. - Concise action label.
+
+Secondary button: - White or transparent background. - AAF blue border
+and text. - Consistent dimensions and interaction states.
+
+Text link: - AAF blue. - Clear hover/focus treatment. - Arrow icon only
+when it helps communicate navigation.
+
+Motion: - Use subtle transitions and purposeful micro-interactions. -
+Keep motion smooth and restrained. - Avoid excessive parallax, bouncing,
+constant animation or distracting effects. - Respect reduced-motion
+preferences. - Ensure keyboard focus states are visible.
+
+10. PHOTOGRAPHY AND IMAGE DIRECTION
+
+Photography is a major part of the AAF experience. It should communicate
+real people, real communities and meaningful outcomes.
+
+Preferred image qualities: - Authentic documentary-style photography. -
+Natural light and realistic skin tones. - Genuine expressions and candid
+moments. - Respectful representation of beneficiaries. - Realistic
+Indian community, rural and programme contexts where appropriate. -
+Warm, balanced colour grading. - High-resolution images with intentional
+crops. - Consistent visual quality across the homepage.
+
+Potential imagery themes, only where relevant to the approved
+wireframe: - Children learning and participating in early childhood
+development. - Women building skills and livelihoods. - Healthcare
+outreach and community health. - Rural communities and infrastructure. -
+Animal care and rehabilitation. - Grassroots sports and young
+athletes. - Environmental and livelihood initiatives.
+
+Avoid: - Generic corporate stock photos. - Artificially staged
+handshakes or boardroom imagery. - Images that look like unrelated stock
+campaigns. - Overly saturated or heavily filtered images. - Repeated use
+of the same photograph. - Images that misrepresent the actual programme
+or beneficiary group. - Decorative illustrations that replace meaningful
+photography without a clear reason.
+
+Image sourcing and integrity: - Prefer client-provided or official
+AAF/Vedanta programme imagery. - If using stock or generated imagery
+during development, treat it as a placeholder unless approved. - Do not
+present generated or stock imagery as documentary evidence of an actual
+AAF programme. - Do not invent image captions, locations, beneficiary
+identities or programme outcomes. - Use consistent aspect ratios and
+intentional object positioning. - Add meaningful alt text for
+informative images and empty alt text for purely decorative images.
+
+11. CONTENT AND FACTUAL ACCURACY
+
+The website must communicate AAF accurately and respectfully.
+
+Important rules: - Use the UX designer’s approved content and
+client-provided copy as the source of truth. - Do not invent impact
+statistics, beneficiaries, locations, programme counts, awards,
+testimonials or quotes. - Do not assume old website figures are
+current. - If a statistic has no approved source or reporting period,
+flag it for confirmation rather than publishing it. - Preserve the
+distinction between AAF and the broader Vedanta social-impact
+ecosystem. - Do not attribute every Vedanta CSR initiative to AAF unless
+the source explicitly does so. - Do not invent legal, governance or
+organisational relationships. - Do not fabricate founder quotes or
+biographical details. - Use placeholders clearly in development when
+content is not yet confirmed.
+
+12. TECHNICAL AND CLAUDE CODE WORKING INSTRUCTIONS
+
+This document describes design intent. It does not prescribe a
+technology stack. First inspect the existing project files and
+understand the current framework, dependencies, routes, assets and
+conventions before changing anything.
+
+Claude Code should: 1. Read this PROJECT_CONTEXT.md completely. 2.
+Inspect the existing project and report its current structure before
+implementation. 3. Wait for and inspect the UX-approved homepage
+wireframe and content. 4. Map the approved wireframe sections to visual
+components without changing section order or information architecture.
+5. Establish reusable design tokens for colours, typography, spacing,
+radii, borders and shadows. 6. Build reusable components where
+appropriate. 7. Implement responsive layouts for desktop, tablet and
+mobile. 8. Use the provided AAF logo asset. Do not redraw or alter it.
+9. Use the agreed Lora + Manrope typography pairing. 10. Keep components
+accessible, semantic and maintainable. 11. Verify layouts at common
+desktop and mobile viewport sizes. 12. Check image loading, overflow,
+typography wrapping, contrast, keyboard focus and reduced-motion
+behaviour. 13. Avoid unnecessary dependencies and avoid rewriting
+unrelated project files. 14. Do not make up missing content or imagery.
+Flag missing assets and content for the user. 15. Before making major
+deviations from the wireframe or this visual direction, ask for
+approval.
+
+Do not begin designing an alternative homepage structure. Do not create
+extra homepage sections. The next design input will be the UX-approved
+wireframe.
+
+13. CURRENT APPROVED DECISIONS
+
+Confirmed by the project owner: - Scope: homepage only. - UX structure:
+already created by the UX designer; do not redefine it. - Visual
+direction: combination of Premium Editorial and Modern Impact. - Colour
+source: AAF logo. - Working logo files: assets/brand/aaf-logo.svg and
+assets/brand/vedanta-logo.svg, used unmodified. - Working AAF colours:
+Primary Blue #0664A8 and Primary Green #75C044 (from the official AAF
+Social Impact Compendium 2023–2024). - Colour balance: balanced blue and
+green with warm neutral surfaces. - Typography: Lora + Manrope. - Typography treatment:
+restrained Lora headlines, Manrope for UI and body. - Card treatment:
+structured cards with subtle backgrounds/borders. - Overall feel:
+premium, modern, human, credible, clean and visually engaging.
+
+14. PROPOSED VALUES THAT STILL NEED VALIDATION
+
+These are working design suggestions, not official brand standards: -
+AAF Primary Blue and Green screen values (converted from print CMYK; to
+be confirmed against an official AAF digital brand guideline). - Final
+AAF logo master file (AI/EPS/SVG) and logo usage rules such as clear
+space, minimum size and approved variants. - Whether and how the white
+Vedanta logo variant is used (to be decided at footer design). -
+Supporting palette hex values. - Exact font sizes and line heights. -
+Container width and spacing scale. - Corner radii and shadow values. -
+Exact colour distribution. - Final image grading and crop rules.
+
+15. SOURCE REFERENCES
+
+Primary reference pages supplied by the project owner: Vedanta Limited
+homepage: https://www.vedantalimited.com/eng/index.php
+
+AAF page on Vedanta:
+https://www.vedantalimited.com/eng/social_impact_aaf.php
+
+Additional official reference pages consulted: Vedanta company overview:
+https://www.vedantalimited.com/eng/who-we-are-overview.php
+
+Vedanta social impact overview:
+https://www.vedantalimited.com/eng/social_impact_overview.php
+
+The live reference pages may change. Recheck them and obtain client
+confirmation before using current figures, claims or programme
+descriptions in production content.
+
+END OF PROJECT CONTEXT

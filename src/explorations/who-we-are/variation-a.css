@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Variation A: Editorial Statement
+   A two-column editorial page: a narrow label rail on the left, one
+   statement column on the right. The statement column starts on the hero's
+   panel/video seam (--rail), so the headline sits directly beneath the
+   bottom-left corner of the hero video.
+   Reading order: label → headline → purpose → (hairline) → description.
+   ========================================================================== */
+
+.wwa--a .wwa__grid {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+}
+
+/* Label rail: top aligned to the headline's first-line cap height */
+.wwa--a .wwa__label {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  margin-top: 1.05rem;
+}
+
+.wwa--a .wwa__statement {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.wwa--a .wwa__title {
+  max-width: 15ch;
+  font-size: 3.25rem;                   /* 52px: one step under the hero's 56px H1 */
+  line-height: 1.1;
+}
+
+.wwa--a .wwa__purpose {
+  max-width: 36ch;
+  margin-top: var(--space-6);
+  font-size: 1.375rem;                  /* 22px */
+  line-height: 1.45;
+}
+
+/* Lower row: a single hairline, then the organisational description.
+   The rule spans only the statement column so the label rail stays open. */
+.wwa--a .wwa__detail {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: var(--space-10);
+  padding-top: var(--space-7);
+  border-top: var(--border);
+}
+
+.wwa--a .wwa__body {
+  max-width: 58ch;
+  font-size: 1.125rem;                  /* 18px */
+  line-height: 1.65;
+}

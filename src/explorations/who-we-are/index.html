@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AAF Who We Are: compare variations (development harness)</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="../../../assets/brand/brand-tokens.css">
+  <style>
+    /* Development harness only: not part of either design. */
+    body { margin: 0; background: #e7e9e4; color: var(--text-heading); font-family: var(--font-primary); }
+    .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 16px 24px; background: var(--color-white); border-bottom: var(--border); position: sticky; top: 0; z-index: 1; }
+    .bar h1 { margin: 0; font-size: 15px; font-weight: 700; }
+    .bar p { margin: 0; font-size: 13px; color: var(--text-body); }
+    .modes { display: flex; gap: 4px; margin-left: auto; }
+    .modes button { font: 600 13px var(--font-primary); padding: 8px 14px; border: var(--border); border-radius: 8px; background: var(--color-white); color: var(--text-heading); cursor: pointer; }
+    .modes button[aria-pressed="true"] { background: var(--color-navy); border-color: var(--color-navy); color: var(--color-white); }
+    .modes button:focus-visible { outline: var(--focus-ring); outline-offset: 2px; }
+    .stage { display: grid; gap: 24px; padding: 24px; }
+    .stage[data-mode="both"] { grid-template-columns: 1fr 1fr; }
+    .stage[data-mode="a"] [data-variant="b"], .stage[data-mode="b"] [data-variant="a"] { display: none; }
+    .panel h2 { margin: 0 0 10px; font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .panel h2 a { margin-left: 8px; font-weight: 600; text-transform: none; letter-spacing: 0; color: var(--text-link); }
+    .viewport { position: relative; overflow: hidden; background: var(--color-white); box-shadow: 0 0 0 1px rgb(0 0 0 / .08); }
+    .viewport iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 1400px; border: 0; transform-origin: 0 0; }
+  </style>
+</head>
+<body>
+  <header class="bar">
+    <h1>Who We Are · design exploration</h1>
+    <p>Both rendered at a true 1440px width (scaled to fit), below the approved hero.</p>
+    <div class="modes" role="group" aria-label="View">
+      <button type="button" data-mode="both" aria-pressed="true">Side by side</button>
+      <button type="button" data-mode="a" aria-pressed="false">A only</button>
+      <button type="button" data-mode="b" aria-pressed="false">B only</button>
+    </div>
+  </header>
+
+  <main class="stage" data-mode="both">
+    <section class="panel" data-variant="a">
+      <h2>A · Editorial Statement <a href="variation-a.html#who-we-are">Open at full size</a></h2>
+      <div class="viewport"><iframe src="variation-a.html" title="Variation A: Editorial Statement" loading="eager"></iframe></div>
+    </section>
+    <section class="panel" data-variant="b">
+      <h2>B · Asymmetric Editorial Grid <a href="variation-b.html#who-we-are">Open at full size</a></h2>
+      <div class="viewport"><iframe src="variation-b.html" title="Variation B: Asymmetric Editorial Grid" loading="eager"></iframe></div>
+    </section>
+  </main>
+
+  <script>
+    // Scale each 1440px-wide frame to its column so the true desktop layout is visible.
+    (function () {
+      var stage = document.querySelector('.stage');
+      function fit() {
+        document.querySelectorAll('.viewport').forEach(function (v) {
+          var f = v.querySelector('iframe');
+          var s = v.clientWidth / 1440;
+          f.style.transform = 'scale(' + s + ')';
+          v.style.height = Math.round(1400 * s) + 'px';
+        });
+      }
+      document.querySelectorAll('.modes button').forEach(function (b) {
+        b.addEventListener('click', function () {
+          stage.dataset.mode = b.dataset.mode;
+          document.querySelectorAll('.modes button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+          fit();
+        });
+      });
+      window.addEventListener('resize', fit);
+      fit();
+    })();
+  </script>
+</body>
+</html>

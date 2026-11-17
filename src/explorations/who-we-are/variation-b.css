@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Variation B: Asymmetric Editorial Grid
+   A tall display headline block on the left; on the right, two smaller
+   texts that descend diagonally across the width, built on the hero
+   video's two vertical edges:
+     - purpose starts on the video's left seam (x = 570 at 1440)
+     - description steps down and ends on the video's right edge (x = 1360)
+   The section label sits on its own in the left page margin, set
+   vertically like a magazine running head, so the headline can start
+   exactly on the hero headline's line (x = 80).
+   Reading order in the DOM: label → headline → purpose → description.
+   ========================================================================== */
+
+.wwa--b .wwa__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+}
+
+/* Label: vertical, in the page margin, reading bottom-to-top, its top end
+   level with the top of the headline. */
+.wwa--b .wwa__label {
+  position: absolute;
+  top: 0.55rem;
+  left: calc(var(--space-7) * -1);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  flex-direction: row-reverse;          /* keeps the green dot at the top after rotation */
+}
+
+/* Headline: the dominant block, a tall stack in the left column */
+.wwa--b .wwa__title {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: start;
+  padding-right: var(--space-8);
+  font-size: 4.25rem;                   /* 68px: a display size for this section */
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+}
+
+/* Purpose: upper right, starting on the hero video's left seam, first line
+   level with the headline's first line */
+.wwa--b .wwa__purpose {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  max-width: 30ch;
+  padding-top: 0.9rem;
+  font-size: 1.375rem;                  /* 22px */
+  line-height: 1.45;
+}
+
+/* Description: lower right, pushed to the far edge (the hero video's right
+   edge) and down to the headline's last line, completing the diagonal. */
+.wwa--b .wwa__body {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: end;
+  justify-self: end;
+  max-width: 44ch;
+  margin-top: var(--space-10);
+  font-size: 1rem;                      /* 16px */
+  line-height: 1.7;
+}

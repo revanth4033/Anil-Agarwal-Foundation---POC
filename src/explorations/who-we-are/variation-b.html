@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AAF Who We Are: Variation B, Asymmetric Editorial Grid (design exploration)</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400&family=Manrope:wght@400;500;600;700&display=swap">
+
+  <!-- Shared tokens + approved hero (both unmodified, linked for context) -->
+  <link rel="stylesheet" href="../../../assets/brand/brand-tokens.css">
+  <link rel="stylesheet" href="../hero/hero.css">
+  <!-- This exploration -->
+  <link rel="stylesheet" href="who-we-are.css">
+  <link rel="stylesheet" href="variation-b.css">
+
+  <script src="../hero/hero.js" defer></script>
+</head>
+<body>
+  <!-- Header + hero: copied verbatim from src/explorations/hero/index.html for context.
+       Change the hero there, not here. -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ================================================================
+       Global header (solid, warm off-white)
+       Navigation content is fixed by the approved wireframe.
+       ================================================================ -->
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="#" aria-label="Anil Agarwal Foundation, home">
+        <img src="../../../assets/brand/aaf-logo.svg" alt="" width="128" height="52">
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main" data-nav>
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="#">About</a></li>
+          <li>
+            <!-- Dropdown contents are not yet defined (content map §1a), so this is a link with a disclosure glyph. -->
+            <a class="site-nav__link" href="#">Areas of Work <span class="site-nav__caret" aria-hidden="true">▾</span></a>
+          </li>
+          <li><a class="site-nav__link" href="#">Our Impact</a></li>
+          <li><a class="site-nav__link" href="#">Stories</a></li>
+          <li><a class="site-nav__link" href="#">Resources</a></li>
+          <li><a class="site-nav__link" href="#">Partnerships</a></li>
+        </ul>
+        <a class="btn btn--secondary site-nav__cta-mobile" href="#">Contact / Collaborate</a>
+      </nav>
+
+      <div class="site-header__actions">
+        <button class="icon-button" type="button" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.75"/>
+            <path d="M15.5 15.5 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <a class="btn btn--secondary site-header__cta" href="#">Contact / Collaborate</a>
+        <button class="icon-button site-header__menu" type="button"
+                aria-controls="site-nav" aria-expanded="false" data-menu-toggle>
+          <span class="visually-hidden" data-menu-label>Open menu</span>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+            <path class="menu-icon__open" d="M3 7h18M3 12h18M3 17h18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+            <path class="menu-icon__close" d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================================================================
+         Hero — Concept A "The Mat"
+         The footage is presented as a framed documentary print on the
+         warm off-white mat. The text panel is cut from the same mat and
+         overlaps the frame's lower-left edge. No overlays, no gradients.
+         ================================================================ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__stage">
+
+        <!-- Text panel (same surface as the mat) -->
+        <div class="hero__panel">
+          <h1 class="hero__title" id="hero-title">Giving every child a place to begin.</h1>
+          <p class="hero__lead">We work alongside communities across India — in childcare, animal welfare, sport, health, culture, education and livelihood — to give people the footing to build their own futures.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">Explore our work <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="#">Why we exist</a>
+          </div>
+        </div>
+
+        <!-- Framed documentary footage -->
+        <figure class="hero__media" data-hero-media>
+          <div class="hero__frame">
+            <!--
+              Nand Ghar film (source: https://www.youtube.com/watch?v=GrlYXisbpwQ), first 25.4 s,
+              trimmed before the on-screen statistic banner and end card. 1920×1012 H.264/AAC, faststart.
+              preload="none": nothing downloads until hero.js starts playback (skipped under reduced motion).
+            -->
+            <video class="hero__video" muted loop playsinline preload="none"
+                   width="1920" height="1012"
+                   poster="../../../assets/videos/nand-ghar-hero-poster.jpg"
+                   aria-label="Excerpt from the Nand Ghar film"
+                   data-hero-video>
+              <source src="../../../assets/videos/nand-ghar-hero.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- Film link, placed on the video (solid label, no overlay on the footage) -->
+          <figcaption class="hero__caption">
+            <a class="film-link" href="#">
+              <span class="film-link__dot" aria-hidden="true"></span>
+              Nand Ghar — watch the film <span class="film-link__arrow" aria-hidden="true">→</span>
+            </a>
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ================================================================
+         Who We Are — Variation B: Asymmetric Editorial Grid
+         ================================================================ -->
+    <section class="wwa wwa--b" id="who-we-are" aria-labelledby="wwa-title">
+      <div class="container wwa__grid">
+        <p class="wwa__label">Who we are</p>
+        <h2 class="wwa__title" id="wwa-title">A vision rooted in inclusive growth.</h2>
+        <p class="wwa__purpose">Our purpose: to help people and communities access opportunities for a better tomorrow.</p>
+        <p class="wwa__body">The Anil Agarwal Foundation is the philanthropic arm of the Vedanta Group. It has its own identity, its own leadership and its own mandate: to invest in people and communities, not in the interests of any business.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,190 @@
+/* ==========================================================================
+   Anil Agarwal Foundation: working brand tokens
+   Version 1.0 · 16 November 2026
+
+   Framework-independent CSS custom properties. Import this file before any
+   site stylesheet. See AAF_BRAND_FOUNDATION.md for usage rules.
+
+   STATUS LEGEND (used in comments below)
+   [WORKING]  Agreed working decision for this project.
+   [CONFIRM]  Working value that still needs client confirmation.
+   [PROPOSAL] Design proposal and starting point, to be tuned against the wireframe.
+
+   Fonts are NOT loaded here. Load Lora and Manrope separately; see the
+   "Font setup" section of AAF_BRAND_FOUNDATION.md.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. Colour: brand primitives
+     ------------------------------------------------------------------------ */
+
+  /* [CONFIRM] AAF primary colours: screen conversions of the print CMYK
+     values in the official AAF Social Impact Compendium 2023–2024.
+     Blue  = C93 M62.9 Y5.9 K0.4
+     Green = C58.6 M0 Y99.2 K0 */
+  --aaf-blue: #0664a8;
+  --aaf-green: #75c044;
+
+  /* [WORKING] Vedanta colours: exact fills of the official Vedanta SVG.
+     For parent-brand references only; never use them as AAF primaries. */
+  --vedanta-blue: #005298;
+  --vedanta-green: #71b32f;
+
+  /* ------------------------------------------------------------------------
+     2. Colour: supporting palette [PROPOSAL]
+     ------------------------------------------------------------------------ */
+  --color-white: #ffffff;
+  --color-offwhite: #f7f8f4;   /* Warm Off-white */
+  --color-warm-neutral: #f0efe9;
+  --color-sage: #eaf1e3;       /* Soft Sage */
+  --color-pale-blue: #e8eef4;
+  --color-navy: #183d5b;       /* Deep Navy */
+  --color-charcoal: #263238;
+  --color-border: #dce2e7;     /* Soft Border */
+
+  /* ------------------------------------------------------------------------
+     3. Colour: semantic roles [WORKING]
+     Every role maps onto the palette above; no extra colours are introduced.
+     Contrast ratios (WCAG 2.x) are noted where they matter.
+     ------------------------------------------------------------------------ */
+
+  /* Surfaces: neutrals dominate the page. */
+  --surface-page: var(--color-white);
+  --surface-subtle: var(--color-offwhite);
+  --surface-warm: var(--color-warm-neutral);
+  --surface-sage: var(--color-sage);           /* occasional use only */
+  --surface-blue: var(--color-pale-blue);      /* occasional use only */
+  --surface-inverse: var(--color-navy);
+
+  /* Text */
+  --text-body: var(--color-charcoal);          /* 13.16:1 on white */
+  --text-heading: var(--color-navy);           /* 11.31:1 on white */
+  --text-muted: var(--color-charcoal);         /* same as body: no muted grey is approved; differentiate with size/weight */
+  --text-on-brand: var(--color-white);         /* 6.18:1 on --aaf-blue */
+  --text-on-green: var(--color-navy);          /* 5.05:1 on --aaf-green; never white */
+  --text-on-inverse: var(--color-white);       /* 11.31:1 on navy */
+  --text-link: var(--aaf-blue);                /* 5.29–6.18:1 on every light surface */
+  --text-link-hover: var(--color-navy);
+
+  /* Brand accents */
+  --accent-primary: var(--aaf-blue);
+  --accent-secondary: var(--aaf-green);        /* 2.24:1 on white: decorative only, never text */
+
+  /* Borders and focus */
+  --border-color: var(--color-border);
+  --border-color-strong: var(--aaf-blue);
+  --focus-ring-color: var(--aaf-blue);
+
+  /* Interactive: buttons */
+  --button-primary-bg: var(--aaf-blue);
+  --button-primary-bg-hover: var(--color-navy);
+  --button-primary-text: var(--color-white);
+  --button-secondary-bg: transparent;
+  --button-secondary-bg-hover: var(--color-pale-blue);
+  --button-secondary-border: var(--aaf-blue);
+  --button-secondary-text: var(--aaf-blue);
+
+  /* ------------------------------------------------------------------------
+     4. Typography [WORKING]
+     Lora: hero and selected editorial headings only.
+     Manrope: everything else (nav, body, labels, buttons, stats, cards, UI).
+     ------------------------------------------------------------------------ */
+  --font-editorial: "Lora", Georgia, "Times New Roman", serif;
+  --font-primary: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* [PROPOSAL] Fluid type scale: mobile (360px) → desktop (1280px).
+     Desktop targets: H1 56, H2 40, H3 24, body 16, label 12–14. */
+  --font-size-h1: clamp(2.25rem, 1.75rem + 2.2vw, 3.5rem);      /* 36 → 56px, Lora 400 */
+  --font-size-h2: clamp(1.75rem, 1.45rem + 1.35vw, 2.5rem);     /* 28 → 40px, Lora 400 */
+  --font-size-h3: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);     /* 20 → 24px, Manrope 600 */
+  --font-size-h4: 1.125rem;                                     /* 18px, Manrope 600 */
+  --font-size-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);    /* 17 → 20px, Manrope 400 */
+  --font-size-body: 1rem;                                       /* 16px, Manrope 400 */
+  --font-size-small: 0.875rem;                                  /* 14px */
+  --font-size-label: 0.8125rem;                                 /* 13px, Manrope 600 */
+  --font-size-stat: clamp(2.25rem, 1.8rem + 2vw, 3.5rem);       /* impact figures, Manrope 600/700 */
+
+  --leading-tight: 1.15;   /* display headings */
+  --leading-snug: 1.3;     /* H3/H4, card titles */
+  --leading-body: 1.6;     /* paragraphs */
+
+  --tracking-heading: -0.01em;
+  --tracking-normal: 0;
+  --tracking-label: 0.06em;   /* uppercase small labels */
+
+  --measure-body: 68ch;       /* max readable paragraph width */
+  --measure-heading: 22ch;    /* keeps display headlines controlled */
+
+  /* ------------------------------------------------------------------------
+     5. Spacing [PROPOSAL]: 4px base, 8px rhythm
+     ------------------------------------------------------------------------ */
+  --space-1: 0.25rem;   /*   4px */
+  --space-2: 0.5rem;    /*   8px */
+  --space-3: 0.75rem;   /*  12px */
+  --space-4: 1rem;      /*  16px */
+  --space-5: 1.5rem;    /*  24px */
+  --space-6: 2rem;      /*  32px */
+  --space-7: 2.5rem;    /*  40px */
+  --space-8: 3rem;      /*  48px */
+  --space-9: 4rem;      /*  64px */
+  --space-10: 5rem;     /*  80px */
+  --space-11: 6rem;     /*  96px */
+  --space-12: 7.5rem;   /* 120px */
+
+  --section-space: clamp(4rem, 2.5rem + 6vw, 7.5rem);   /* 64 → 120px between sections */
+  --card-padding: clamp(1.25rem, 1rem + 1vw, 2rem);     /* 20 → 32px */
+
+  /* ------------------------------------------------------------------------
+     6. Layout [PROPOSAL]
+     ------------------------------------------------------------------------ */
+  --container-max: 1280px;
+  --container-wide: 1320px;
+  --container-gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);  /* 16 → 40px side padding */
+  --grid-columns: 12;
+  --grid-gap: clamp(1rem, 0.6rem + 1.6vw, 2rem);            /* 16 → 32px */
+
+  /* ------------------------------------------------------------------------
+     7. Borders, radius, shadow [PROPOSAL]
+     ------------------------------------------------------------------------ */
+  --border-width: 1px;
+  --border: var(--border-width) solid var(--border-color);
+
+  --radius-sm: 4px;        /* tags, small chips */
+  --radius-button: 8px;    /* brief: 6–8px */
+  --radius-card: 14px;     /* brief: 12–16px */
+  --radius-media: 14px;    /* images inside or as cards */
+  --radius-pill: 999px;
+
+  /* Minimal shadows: use only when separation genuinely needs it.
+     Tinted with Deep Navy (#183D5B) rather than pure black. */
+  --shadow-sm: 0 1px 2px rgb(24 61 91 / 0.06);
+  --shadow-md: 0 6px 20px rgb(24 61 91 / 0.08);
+
+  /* ------------------------------------------------------------------------
+     8. Focus and motion [WORKING]
+     ------------------------------------------------------------------------ */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 3px;
+  --focus-ring: var(--focus-ring-width) solid var(--focus-ring-color);
+
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Respect reduced-motion preferences: collapse durations globally. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

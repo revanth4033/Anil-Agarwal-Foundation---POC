@@ -1,0 +1,1199 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anil Agarwal Foundation (homepage, in development)</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Fonts: Lora 400 (editorial headlines) + Manrope 400 to 700 (UI and body), per AAF_BRAND_FOUNDATION.md §3.2 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400&family=Manrope:wght@400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="../assets/brand/brand-tokens.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ================================================================
+       Global header: a floating pill (sticky, centred, rounded)
+       Navigation content is fixed by the approved wireframe.
+       ================================================================ -->
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="#" aria-label="Anil Agarwal Foundation, home">
+        <img src="../assets/brand/aaf-logo.svg" alt="" width="128" height="52">
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main" data-nav>
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="#">About</a></li>
+          <li>
+            <!-- Dropdown contents are not yet defined (content map §1a), so this is a link with a disclosure glyph. -->
+            <a class="site-nav__link" href="#">Areas of Work <span class="site-nav__caret" aria-hidden="true">▾</span></a>
+          </li>
+          <li><a class="site-nav__link" href="#">Our Impact</a></li>
+          <li><a class="site-nav__link" href="#">Stories</a></li>
+          <li><a class="site-nav__link" href="#">Resources</a></li>
+          <li><a class="site-nav__link" href="#">Partnerships</a></li>
+        </ul>
+        <a class="btn btn--secondary site-nav__cta-mobile" href="#">Contact / Collaborate</a>
+      </nav>
+
+      <div class="site-header__actions">
+        <button class="icon-button" type="button" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.75"/>
+            <path d="M15.5 15.5 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <a class="btn btn--primary site-header__cta" href="#">Contact / Collaborate</a>
+        <button class="icon-button site-header__menu" type="button"
+                aria-controls="site-nav" aria-expanded="false" data-menu-toggle>
+          <span class="visually-hidden" data-menu-label>Open menu</span>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+            <path class="menu-icon__open" d="M3 7h18M3 12h18M3 17h18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+            <path class="menu-icon__close" d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================================================================
+         SECTION 1 · Hero: Concept A "The Mat"
+         The footage is presented as a framed documentary print on the
+         warm off-white mat. The text panel is cut from the same mat and
+         overlaps the frame's lower-left edge. No overlays, no gradients.
+         ================================================================ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__stage">
+
+        <!-- Text panel (same surface as the mat) -->
+        <div class="hero__panel">
+          <h1 class="hero__title" id="hero-title">Giving every child a place to begin.</h1>
+          <p class="hero__lead">We work alongside communities across India, in childcare, animal welfare, sport, health, culture, education and livelihood, to give people the footing to build their own futures.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">Explore our work <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="#">Why we exist</a>
+          </div>
+        </div>
+
+        <!-- Framed documentary footage -->
+        <figure class="hero__media" data-hero-media>
+          <div class="hero__frame">
+            <!--
+              Nand Ghar film (source: https://www.youtube.com/watch?v=GrlYXisbpwQ), first 25.4 s,
+              trimmed before the on-screen statistic banner and end card. 1920×1012 H.264/AAC, faststart.
+              preload="none": nothing downloads until hero.js starts playback (skipped under reduced motion).
+            -->
+            <video class="hero__video" muted loop playsinline preload="none"
+                   width="1920" height="1012"
+                   poster="../assets/videos/nand-ghar-hero-poster.jpg"
+                   aria-label="Excerpt from the Nand Ghar film"
+                   data-hero-video>
+              <source src="../assets/videos/nand-ghar-hero.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- Film link, placed on the video (solid label, no overlay on the footage) -->
+          <figcaption class="hero__caption">
+            <a class="film-link" href="#">
+              <span class="film-link__dot" aria-hidden="true"></span>
+              Nand Ghar: watch the film <span class="film-link__arrow" aria-hidden="true">→</span>
+            </a>
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 2 · Who we are
+         Film still on the left; eyebrow, headline, purpose and description
+         stacked on the right. The image matches the text column's height,
+         so both columns share a top and a bottom edge.
+         Image: still from the official Nand Ghar film (13.9 s), the same
+         source as the hero footage. Copy verbatim from the content map §2.
+         ================================================================ -->
+    <section class="wwa" id="who-we-are" aria-labelledby="wwa-title">
+      <div class="container wwa__grid">
+        <figure class="wwa__media">
+          <img src="../assets/images/who-we-are-film-still.jpg"
+               width="1800" height="948" loading="lazy" decoding="async"
+               alt="Two women, one elderly, sitting together and talking in a village courtyard. A still from the Nand Ghar film.">
+        </figure>
+
+        <div class="wwa__text">
+          <p class="eyebrow">Who we are</p>
+          <h2 class="wwa__title" id="wwa-title">A vision rooted in inclusive growth.</h2>
+          <p class="wwa__purpose">Our purpose: to help people and communities access opportunities for a better tomorrow.</p>
+          <p class="wwa__body">The Anil Agarwal Foundation is the philanthropic arm of the Vedanta Group. It has its own identity, its own leadership and its own mandate: to invest in people and communities, not in the interests of any business.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 3 · Anil Agarwal’s Giving Pledge: "The Power of Giving"
+         The pledge figure leads: a display "75%" with the headline and body
+         beside it, and a panoramic Nand Ghar image strip below.
+         Image is TEMPORARY (Nand Ghar film still); the brief is a mother and
+         child at an Anganwadi, early morning light.
+         Copy verbatim from the content map §3. ⚠ 2021, 2014 and 75% are
+         flagged for client verification.
+         ================================================================ -->
+
+    <section class="gp" id="giving-pledge" aria-labelledby="gp-title">
+      <div class="container gp-b__grid">
+        <p class="eyebrow gp-b__eyebrow">Anil Agarwal’s Giving Pledge</p>
+
+        <!-- Display figure: a visual restatement of the 75% already in the body copy,
+             hidden from assistive tech so it isn't announced twice. -->
+        <p class="gp-b__figure" aria-hidden="true">75<span class="gp-b__pct">%</span></p>
+
+        <div class="gp-b__text">
+          <h2 class="gp__title gp-b__title" id="gp-title">Anil Agarwal’s Giving Pledge commitment</h2>
+          <p class="gp__body gp-b__body">Anil Agarwal joined The Giving Pledge in 2021, reaffirming his 2014 commitment to devote 75% of his family’s wealth to charity. His philanthropic priorities focus on tackling poverty, improving children’s nutrition and education, and empowering women, particularly in India.</p>
+        </div>
+
+        <figure class="gp-b__media">
+          <img src="../assets/images/giving-pledge-temp-nand-ghar-dawn.jpg"
+               width="2000" height="842" loading="lazy" decoding="async"
+               alt="A Nand Ghar Anganwadi centre at dawn, with sunflowers painted on its boundary wall and mist over the fields beyond.">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 4 · Turning purpose into progress: "Widening circles"
+         Three nested planes that all grow from the same bottom-left corner.
+         01 Understand is the small Deep Navy core; 02 Collaborate is a wider
+         pale-blue plane; 03 Transform is the whole field, which also holds
+         the heading. Each step's text sits in the part of its plane the next
+         smaller plane leaves open, so the steps climb up and to the right as
+         the planes widen. A sunflower line motif (after the Nand Ghar
+         centre's painted wall) grows with the steps: buds on 01, half-open
+         flowers on 02, a full row in bloom on 03. Copy verbatim from the
+         content map §4.
+         ================================================================ -->
+    <section class="pp" id="purpose-into-progress" aria-labelledby="pp-title">
+      <div class="container">
+        <div class="pp__field">
+        <!-- Sunflower line motif, after the painted boundary wall of the Nand Ghar centre
+             (Giving Pledge image above). Decorative only. -->
+        <svg class="pp-sun-defs" aria-hidden="true" focusable="false" width="0" height="0">
+          <defs><symbol id="pp-sun-bud" viewBox="0 0 100 240"><path d="M50 30 C40 44 40 62 50 72 C60 62 60 44 50 30Z" vector-effect="non-scaling-stroke"/><path d="M50 72 C42 70 36 64 34 56" vector-effect="non-scaling-stroke"/><path d="M50 72 C58 70 64 64 66 56" vector-effect="non-scaling-stroke"/><path d="M50 72 C53 120 47 180 50 240" vector-effect="non-scaling-stroke"/><path d="M50 160 C40 148 24 145 14 149 C22 161 38 165 50 160Z" vector-effect="non-scaling-stroke"/><path d="M48 159 C36 153 26 151 18 150" vector-effect="non-scaling-stroke"/></symbol><symbol id="pp-sun-half" viewBox="0 0 100 200"><path d="M50 30.0 C44 24.0 46.4 18.0 50 14.0 C53.6 18.0 56 24.0 50 30.0Z" transform="rotate(0.0 50 40)" vector-effect="non-scaling-stroke"/><path d="M50 30.0 C44 24.0 46.4 18.0 50 14.0 C53.6 18.0 56 24.0 50 30.0Z" transform="rotate(40.0 50 40)" vector-effect="non-scaling-stroke"/><path d="M50 30.0 C44 24.0 46.4 18.0 50 14.0 C53.6 18.0 56 24.0 50 30.0Z" transform="rotate(80.0 50 40)" vector-effect="non-scaling-stroke"/><path d="M50 30.0 C44 24.0 46.4 18.0 50 14.0 C53.6 18.0 56 24.0 50 30.0Z" transform="rotate(120.0 50 40)" vector-effect="non-scaling-stroke"/><path d="M50 30.0 C44 24.0 46.4 18.0 50 14.0 C53.6 18.0 56 24.0 50 30.0Z" transform="rotate(160.0 50 40)" vector-effect="non-scaling-stroke"/><path d="M50 30.0 C44 24.0 46.4 18.0 50 14.0 C53.6 18.0 56 24.0 50 30.0Z" transform="rotate(200.0 50 40)" vector-effect="non-scaling-stroke"/><path d="M50 30.0 C44 24.0 46.4 18.0 50 14.0 C53.6 18.0 56 24.0 50 30.0Z" transform="rotate(240.0 50 40)" vector-effect="non-scaling-stroke"/><path d="M50 30.0 C44 24.0 46.4 18.0 50 14.0 C53.6 18.0 56 24.0 50 30.0Z" transform="rotate(280.0 50 40)" vector-effect="non-scaling-stroke"/><path d="M50 30.0 C44 24.0 46.4 18.0 50 14.0 C53.6 18.0 56 24.0 50 30.0Z" transform="rotate(320.0 50 40)" vector-effect="non-scaling-stroke"/><circle cx="50" cy="40" r="10" vector-effect="non-scaling-stroke"/><path d="M50 50 C53 90 47 140 50 200" vector-effect="non-scaling-stroke"/><path d="M50 118 C60 106 76 103 86 107 C78 119 62 123 50 118Z" vector-effect="non-scaling-stroke"/><path d="M52 117 C64 111 74 109 82 108" vector-effect="non-scaling-stroke"/></symbol><symbol id="pp-sun-bloom" viewBox="0 0 100 240"><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(0.0 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(25.7 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(51.4 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(77.1 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(102.9 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(128.6 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(154.3 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(180.0 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(205.7 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(231.4 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(257.1 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(282.9 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(308.6 50 48)" vector-effect="non-scaling-stroke"/><path d="M50 35.0 C43 24.5 45.8 14.0 50 10.0 C54.2 14.0 57 24.5 50 35.0Z" transform="rotate(334.3 50 48)" vector-effect="non-scaling-stroke"/><circle cx="50" cy="48" r="13" vector-effect="non-scaling-stroke"/><circle cx="50" cy="48" r="7" vector-effect="non-scaling-stroke"/><path d="M50 61 C53 110 46 170 50 240" vector-effect="non-scaling-stroke"/><path d="M50 132 C60 120 76 117 86 121 C78 133 62 137 50 132Z" vector-effect="non-scaling-stroke"/><path d="M52 131 C64 125 74 123 82 122" vector-effect="non-scaling-stroke"/><path d="M50 172 C40 160 24 157 14 161 C22 173 38 177 50 172Z" vector-effect="non-scaling-stroke"/><path d="M48 171 C36 165 26 163 18 162" vector-effect="non-scaling-stroke"/></symbol></defs>
+        </svg>
+          <svg class="pp-sun pp-sun--3" viewBox="0 0 420 270" aria-hidden="true" focusable="false"><use href="#pp-sun-bloom" x="0" y="50" width="92" height="220"/><use href="#pp-sun-bloom" x="74" y="18" width="105" height="252"/><use href="#pp-sun-bloom" x="160" y="62" width="87" height="208"/><use href="#pp-sun-bloom" x="238" y="26" width="102" height="244"/><use href="#pp-sun-bloom" x="324" y="48" width="92" height="222"/></svg>
+          <h2 class="pp__heading" id="pp-title">Turning purpose into progress.</h2>
+
+          <ol class="pp__steps" role="list">
+            <li class="pp__step pp__step--1">
+              <span class="pp__num">01</span>
+              <h3 class="pp__title">Understand</h3>
+              <p class="pp__desc">Identify community needs and challenges.</p>
+              <svg class="pp-sun pp-sun--1" viewBox="0 0 140 150" aria-hidden="true" focusable="false"><use href="#pp-sun-bud" x="18" y="24" width="52" height="126"/><use href="#pp-sun-bud" x="74" y="58" width="38" height="92"/></svg>
+            </li>
+            <li class="pp__step pp__step--2">
+              <div class="pp__copy">
+                <span class="pp__num">02</span>
+                <h3 class="pp__title">Collaborate</h3>
+                <p class="pp__desc">Work with communities, partners and institutions.</p>
+              </div>
+              <svg class="pp-sun pp-sun--2" viewBox="0 0 230 130" aria-hidden="true" focusable="false"><use href="#pp-sun-half" x="8" y="6" width="62" height="124"/><use href="#pp-sun-half" x="82" y="18" width="56" height="112"/><use href="#pp-sun-half" x="152" y="0" width="65" height="130"/></svg>
+            </li>
+            <li class="pp__step pp__step--3">
+              <span class="pp__num">03</span>
+              <h3 class="pp__title">Transform</h3>
+              <p class="pp__desc">Create sustainable and measurable change.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 5 · Our programmes / Areas of work
+         Two tiers, as in the wireframe.
+         Featured tier: Nand Ghar and TACO as large image-led cards. The
+         impact figure sits on a tab cut from the page into the photo's
+         corner (the hero's "mat" motif at card scale).
+         Second tier: Sports, Healthcare, Culture, Education and Livelihood
+         as an editorial index. The four rows share one image stage; the
+         row you point at (or tab into) shows its photograph.
+         Copy verbatim from the content map §5.
+         ⚠ All six "1 Lakh" figures are unconfirmed wireframe placeholders
+           (data-provisional="true"). Do not publish without a source.
+         ⚠ Images marked data-temp-image are temporary stock photos, not
+           AAF programme photography. Credits: assets/images/CREDITS.md
+         ⚠ Explore and View-all destinations are not defined (href="#").
+         ================================================================ -->
+    <section class="prog" id="programmes" aria-labelledby="prog-title">
+      <div class="container">
+        <header class="prog__head">
+          <div>
+            <p class="eyebrow">Our programmes</p>
+            <h2 class="prog__title" id="prog-title">Different areas. One purpose.</h2>
+          </div>
+          <a class="arrow-link prog__all" href="#">View all areas of work <span class="arrow-link__arrow" aria-hidden="true">→</span></a>
+        </header>
+
+        <!-- Featured tier -->
+        <div class="prog__featured">
+          <article class="pcard pcard--lead" aria-labelledby="prog-nand-ghar">
+            <!-- Image: Authentic: still from the official Nand Ghar film (18.3 s). -->
+            <figure class="pcard__media">
+              <div class="pcard__frame">
+                <img src="../assets/images/programmes/nand-ghar-film-still.jpg" width="1800" height="948" loading="lazy" decoding="async"
+                     alt="An anganwadi worker teaching a class of young children at a Nand Ghar centre.">
+              </div>
+              <!-- ⚠ "1 Lakh" is an unconfirmed wireframe placeholder, not verified impact data. -->
+              <p class="pcard__impact"><span class="pcard__figure" data-provisional="true">1 Lakh</span> <span class="pcard__impact-label">children reached</span></p>
+            </figure>
+            <div class="pcard__body">
+              <p class="pcard__category">Women and Child Development</p>
+              <h3 class="pcard__name" id="prog-nand-ghar">Nand Ghar</h3>
+              <p class="pcard__desc">Modern anganwadi centres that nurture young children and bring women into community life.</p>
+              <p class="pcard__goal"><strong>Goal:</strong> Strong foundations for every child, every day.</p>
+              <p class="pcard__foot">
+                <a class="arrow-link" id="prog-nand-ghar-link" href="#" aria-labelledby="prog-nand-ghar-link prog-nand-ghar">Explore <span class="arrow-link__arrow" aria-hidden="true">→</span></a>
+              </p>
+            </div>
+          </article>
+
+          <article class="pcard" aria-labelledby="prog-taco">
+            <!-- Image: TEMPORARY stock photo (Pexels 7469274, Mikhail Nilov). Not AAF/TACO photography. Brief: vet team treating a street dog. -->
+            <figure class="pcard__media">
+              <div class="pcard__frame">
+                <img src="../assets/images/programmes/temp-taco-pexels-7469274.jpg" width="1600" height="1067" loading="lazy" decoding="async" data-temp-image="pexels"
+                     alt="A veterinarian and two volunteers examining a dog on a clinic table.">
+              </div>
+              <!-- ⚠ "1 Lakh" is an unconfirmed wireframe placeholder, not verified impact data. -->
+              <p class="pcard__impact"><span class="pcard__figure" data-provisional="true">1 Lakh</span> <span class="pcard__impact-label">children reached</span></p>
+            </figure>
+            <div class="pcard__body">
+              <p class="pcard__category">Animal Welfare</p>
+              <h3 class="pcard__name" id="prog-taco">TACO</h3>
+              <p class="pcard__desc">Rescue, treatment and care for animals, with communities as partners.</p>
+              <p class="pcard__goal"><strong>Goal:</strong> A kinder shared environment for people and animals.</p>
+              <p class="pcard__foot">
+                <a class="arrow-link" id="prog-taco-link" href="#" aria-labelledby="prog-taco-link prog-taco">Explore <span class="arrow-link__arrow" aria-hidden="true">→</span></a>
+              <!-- ⚠ The wireframe shows "children reached" beside this figure and "animals treated"
+                   on its own beside the Explore link. Kept as supplied; flagged for the UX designer. -->
+              <span class="pcard__second-label">animals treated</span>
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Second tier: editorial index with a shared image stage -->
+        <div class="prog__index" data-prog-index>
+          <ul class="prog__rows" role="list">
+            <li class="prow is-active" data-prog-row>
+              <article class="prow__inner" aria-labelledby="prog-sports">
+                <!-- Image: TEMPORARY stock photo (Pexels 1375152, Yogendra Singh). Not AAF photography. Brief: kabaddi or football practice, dusty ground. -->
+                <figure class="prow__media">
+                  <img src="../assets/images/programmes/temp-sports-pexels-1375152.jpg" width="1600" height="1067" loading="lazy" decoding="async" data-temp-image="pexels"
+                       alt="A young footballer striking the ball during a training session, with a teammate in a bib behind him.">
+                </figure>
+                <div class="prow__main">
+                  <p class="pcard__category">Sports</p>
+                  <h3 class="prow__name" id="prog-sports">Sports programme</h3>
+                  <p class="prow__desc">Coaching and opportunity for young athletes who would otherwise go unseen.</p>
+                  <p class="pcard__goal"><strong>Goal:</strong> A fair route from local fields to national teams.</p>
+                </div>
+                <div class="prow__side">
+                  <!-- ⚠ "Atheletes" is spelled as in the wireframe; flagged for review, not corrected. -->
+                  <p class="prow__impact"><span class="prow__figure" data-provisional="true">1 Lakh</span> <span class="prow__impact-label">Atheletes supported</span></p>
+                  <a class="arrow-link" id="prog-sports-link" href="#" aria-labelledby="prog-sports-link prog-sports">Explore <span class="arrow-link__arrow" aria-hidden="true">→</span></a>
+                </div>
+              </article>
+            </li>
+            <li class="prow" data-prog-row>
+              <article class="prow__inner" aria-labelledby="prog-healthcare">
+                <!-- Image: TEMPORARY stock photo (Pexels 18870282, World Sikh Organization of Canada). Not AAF photography. Brief: health camp, nurse and patient. -->
+                <figure class="prow__media">
+                  <img src="../assets/images/programmes/temp-healthcare-pexels-18870282.jpg" width="1600" height="900" loading="lazy" decoding="async" data-temp-image="pexels"
+                       alt="A doctor listening to an older man’s chest with a stethoscope.">
+                </figure>
+                <div class="prow__main">
+                  <p class="pcard__category">Healthcare</p>
+                  <h3 class="prow__name" id="prog-healthcare">Healthcare programme</h3>
+                  <p class="prow__desc">Preventive and primary care taken to people who live far from a clinic.</p>
+                  <p class="pcard__goal"><strong>Goal:</strong> Dependable care within reach of every family.</p>
+                </div>
+                <div class="prow__side">
+                  <p class="prow__impact"><span class="prow__figure" data-provisional="true">1 Lakh</span> <span class="prow__impact-label">People reached</span></p>
+                  <a class="arrow-link" id="prog-healthcare-link" href="#" aria-labelledby="prog-healthcare-link prog-healthcare">Explore <span class="arrow-link__arrow" aria-hidden="true">→</span></a>
+                </div>
+              </article>
+            </li>
+            <li class="prow" data-prog-row>
+              <article class="prow__inner" aria-labelledby="prog-culture">
+                <!-- Image: TEMPORARY stock photo (Pexels 37798724, Anil Sharma). Not AAF photography. Brief: folk performers in colourful costume. -->
+                <figure class="prow__media">
+                  <img src="../assets/images/programmes/temp-culture-pexels-37798724.jpg" width="1600" height="1067" loading="lazy" decoding="async" data-temp-image="pexels"
+                       alt="Folk dancers in bright traditional dress performing in an open courtyard, with musicians seated behind them.">
+                </figure>
+                <div class="prow__main">
+                  <p class="pcard__category">Culture</p>
+                  <h3 class="prow__name" id="prog-culture">Culture programme</h3>
+                  <p class="prow__desc">Preserving and sharing living traditions, craft and performance.</p>
+                  <p class="pcard__goal"><strong>Goal:</strong> Heritage that stays alive in the hands of its keepers.</p>
+                </div>
+                <div class="prow__side">
+                  <p class="prow__impact"><span class="prow__figure" data-provisional="true">1 Lakh</span> <span class="prow__impact-label">Artists and audience</span></p>
+                  <a class="arrow-link" id="prog-culture-link" href="#" aria-labelledby="prog-culture-link prog-culture">Explore <span class="arrow-link__arrow" aria-hidden="true">→</span></a>
+                </div>
+              </article>
+            </li>
+            <li class="prow" data-prog-row>
+              <article class="prow__inner" aria-labelledby="prog-livelihood">
+                <!-- Image: TEMPORARY stock photo (Pexels 11359621, Mehmet Turgut Kirkgoz). Not AAF photography. Brief: skills class, women at sewing machines. -->
+                <figure class="prow__media">
+                  <img src="../assets/images/programmes/temp-livelihood-pexels-11359621.jpg" width="1600" height="1067" loading="lazy" decoding="async" data-temp-image="pexels"
+                       alt="Two women working at sewing machines in a small tailoring workshop.">
+                </figure>
+                <div class="prow__main">
+                  <p class="pcard__category">Education and Livelihood</p>
+                  <h3 class="prow__name" id="prog-livelihood">Education and Livelihood</h3>
+                  <p class="prow__desc">Learning and skills that open doors to steady work.</p>
+                  <p class="pcard__goal"><strong>Goal:</strong> Every learner leaves with a way to earn.</p>
+                </div>
+                <div class="prow__side">
+                  <p class="prow__impact"><span class="prow__figure" data-provisional="true">1 Lakh</span> <span class="prow__impact-label">Learners and earners</span></p>
+                  <a class="arrow-link" id="prog-livelihood-link" href="#" aria-labelledby="prog-livelihood-link prog-livelihood">Explore <span class="arrow-link__arrow" aria-hidden="true">→</span></a>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 6 · People behind every number
+         A Soft Sage band (the wireframe also sets this section on its own
+         colour band). Four audience tabs; one panel at a time: photograph
+         on the left, the group's story on the right, and the testimonial
+         on a white card that overlaps the photograph.
+         Copy verbatim from the content map §6. Placeholder sentences are the
+         wireframe's own wording, shown without their square brackets and
+         marked data-placeholder="true" so they can be found and replaced.
+         The attribution's leading dash is omitted (no em dashes on the page).
+         Tabs: main.js initTabs (arrow keys, Home, End).
+         ================================================================ -->
+    <section class="people" id="people" aria-labelledby="people-title">
+      <div class="container">
+        <p class="eyebrow">People · Who we want to impact</p>
+        <h2 class="people__title" id="people-title">The people behind every number are the reason we begin.</h2>
+
+        <div class="people__tabs" role="tablist" aria-labelledby="people-title" data-tabs>
+          <button class="people__tab" type="button" role="tab" id="people-tab-young-children" aria-controls="people-panel-young-children" aria-selected="true">Young children</button>
+          <button class="people__tab" type="button" role="tab" id="people-tab-women-and-mothers" aria-controls="people-panel-women-and-mothers" aria-selected="false" tabindex="-1">Women and mothers</button>
+          <button class="people__tab" type="button" role="tab" id="people-tab-young-people" aria-controls="people-panel-young-people" aria-selected="false" tabindex="-1">Young people</button>
+          <button class="people__tab" type="button" role="tab" id="people-tab-animals-and-carers" aria-controls="people-panel-animals-and-carers" aria-selected="false" tabindex="-1">Animals and their carers</button>
+        </div>
+
+        <!-- Panel: Young children (the only panel the wireframe supplies) -->
+        <div class="people__panel" role="tabpanel" id="people-panel-young-children" aria-labelledby="people-tab-young-children" tabindex="0">
+          <!-- Image: authentic still from the official Nand Ghar film (25.2 s). -->
+          <figure class="people__media">
+            <img src="../assets/images/people/young-children-film-still.jpg" width="1800" height="948" loading="lazy" decoding="async"
+                 alt="A young girl with braided hair smiling in a Nand Ghar classroom, with other children around her.">
+          </figure>
+          <div class="people__content">
+            <h3 class="people__name">Young children</h3>
+            <div class="people__facts">
+              <div>
+                <p class="people__label">The challenge</p>
+                <p class="people__text" data-placeholder="true">Short, plain statement of the challenge they face.</p>
+              </div>
+              <div>
+                <p class="people__label">The change we want</p>
+                <p class="people__text" data-placeholder="true">The change AAF wants to create in their lives.</p>
+              </div>
+            </div>
+            <!-- ⚠ DUMMY DATA for design review only. The wireframe shows "XX" for all three reach
+                 figures; 15, 120 and 2,500 are invented stand-ins, not AAF data. Replace before launch. -->
+            <ul class="people__reach" role="list">
+              <li><span class="people__reach-num" data-provisional="true" data-dummy="true">15</span> <span class="people__reach-label">States</span></li>
+              <li><span class="people__reach-num" data-provisional="true" data-dummy="true">120</span> <span class="people__reach-label">Districts</span></li>
+              <li><span class="people__reach-num" data-provisional="true" data-dummy="true">2,500</span> <span class="people__reach-label">Communities</span></li>
+            </ul>
+            <!-- ⚠ DUMMY TESTIMONIAL for design review only (data-dummy="true"). The wireframe supplies
+                 only “[A parent’s words.]” and “[Name], [Village, State]”. The quote, name and place
+                 below are invented stand-ins, not a real parent. Replace with an approved, consented
+                 testimonial before launch. -->
+            <figure class="people__quote">
+              <blockquote><p data-dummy="true">“My daughter wakes up asking to go to the Nand Ghar. She comes home singing what she learned that day.”</p></blockquote>
+              <figcaption data-dummy="true">Sunita Devi, Rampur, Rajasthan</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Panel: Women and mothers. ⚠ The wireframe names this tab but supplies no panel content.
+             Shown as a pending state; nothing is invented or copied from Young children. -->
+        <div class="people__panel people__panel--pending" role="tabpanel" id="people-panel-women-and-mothers" aria-labelledby="people-tab-women-and-mothers" tabindex="0" hidden>
+          <div class="people__media people__media--pending" data-pending="true">
+            <p data-placeholder="true">Photograph pending</p>
+          </div>
+          <div class="people__content">
+            <h3 class="people__name">Women and mothers</h3>
+            <div class="people__pending" data-pending="true">
+              <p class="people__label">Content pending</p>
+              <p class="people__text" data-placeholder="true">The challenge, the change we want, the reach figures, the testimonial and the photograph for this group have not been supplied yet.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Panel: Young people. ⚠ The wireframe names this tab but supplies no panel content.
+             Shown as a pending state; nothing is invented or copied from Young children. -->
+        <div class="people__panel people__panel--pending" role="tabpanel" id="people-panel-young-people" aria-labelledby="people-tab-young-people" tabindex="0" hidden>
+          <div class="people__media people__media--pending" data-pending="true">
+            <p data-placeholder="true">Photograph pending</p>
+          </div>
+          <div class="people__content">
+            <h3 class="people__name">Young people</h3>
+            <div class="people__pending" data-pending="true">
+              <p class="people__label">Content pending</p>
+              <p class="people__text" data-placeholder="true">The challenge, the change we want, the reach figures, the testimonial and the photograph for this group have not been supplied yet.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Panel: Animals and their carers. ⚠ The wireframe names this tab but supplies no panel content.
+             Shown as a pending state; nothing is invented or copied from Young children. -->
+        <div class="people__panel people__panel--pending" role="tabpanel" id="people-panel-animals-and-carers" aria-labelledby="people-tab-animals-and-carers" tabindex="0" hidden>
+          <div class="people__media people__media--pending" data-pending="true">
+            <p data-placeholder="true">Photograph pending</p>
+          </div>
+          <div class="people__content">
+            <h3 class="people__name">Animals and their carers</h3>
+            <div class="people__pending" data-pending="true">
+              <p class="people__label">Content pending</p>
+              <p class="people__text" data-placeholder="true">The challenge, the change we want, the reach figures, the testimonial and the photograph for this group have not been supplied yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 7 · Overall Impact.
+         "Stepped tiles". Four rows of soft brand-tinted tiles that widen as
+         they go down (each row steps out further to the left); the heading
+         sits in the open top-left corner. Box size follows the figure: the
+         rows run from the smallest figures to the largest, so the widest
+         box at the bottom holds the largest number.
+           1 warm       three small:  169,020 · 114,950 · 42,575
+           2 sage       two medium:   522,731 · 327,888
+           3 white      one large:    1,699,665
+           4 pale blue  one widest:   13,316,860
+         Each row opens with a Nand Ghar film still. Number on top, its line
+         below; the number size steps up with the box. Each tile also grows
+         the Nand Ghar sunflower line motif (Section 4) from its bottom edge,
+         scaled to the figure: half-open flowers in the medium tiles, blooms
+         in the large, a full wall in bloom for children (the small tiles
+         have no spare space and stay plain). Decorative only (aria-hidden); it reuses Section 4's
+         symbols.
+         Figures count up once when first in view (main.js initCountUp).
+         Content supplied by the project team (17 Nov 2026), matching the
+         "Impact Created" block on vedantalimited.com/eng/social_impact_aaf.php.
+         Ordered by size rather than in the supplied order.
+         ⚠ Children: supplied as 13,316,860; the Vedanta page shows
+           13,316,861. Confirm which is current, and the reporting period.
+         Photos are decorative here (alt=""): authentic Nand Ghar film stills
+         already used elsewhere on the page.
+         ================================================================ -->
+    <section class="impact" id="impact" aria-labelledby="impact-title">
+      <div class="container">
+        <div class="impact__rows">
+          <div class="irow irow--1 irow--warm">
+            <h2 class="impact__title" id="impact-title">Overall Impact.</h2>
+            <figure class="irow__photo" aria-hidden="true"><img src="../assets/images/who-we-are-film-still.jpg" alt="" loading="lazy" decoding="async" style="object-position: 72% 35%;"></figure>
+            <ul class="irow__stats" role="list">
+              <li class="istat istat--s">
+                <p class="istat__num"><span class="visually-hidden">169,020</span><span aria-hidden="true" data-count="169020">169,020</span></p>
+                <p class="istat__desc">People impacted through 13+ initiatives in sports and culture</p>
+              </li>
+              <li class="istat istat--s">
+                <p class="istat__num"><span class="visually-hidden">114,950</span><span aria-hidden="true" data-count="114950">114,950</span></p>
+                <p class="istat__desc">People impacted through 18 livelihood initiatives</p>
+              </li>
+              <li class="istat istat--s">
+                <p class="istat__num"><span class="visually-hidden">42,575</span><span aria-hidden="true" data-count="42575">42,575</span></p>
+                <p class="istat__desc">Women impacted through 7 women empowerment initiatives</p>
+              </li>
+            </ul>
+          </div>
+          <div class="irow irow--2 irow--sage">
+            <figure class="irow__photo" aria-hidden="true"><img src="../assets/images/giving-pledge-temp-nand-ghar-dawn.jpg" alt="" loading="lazy" decoding="async" style="object-position: 40% 60%;"></figure>
+            <ul class="irow__stats" role="list">
+              <li class="istat istat--m">
+                <p class="istat__num"><span class="visually-hidden">522,731</span><span aria-hidden="true" data-count="522731">522,731</span></p>
+                <p class="istat__desc">People impacted through 24 community infrastructure initiatives</p>
+                <svg class="istat__sun istat__sun--m" viewBox="0 0 112 124" width="112" height="124" aria-hidden="true" focusable="false"><use href="#pp-sun-half" x="0" y="10" width="56" height="114"/><use href="#pp-sun-half" x="30" y="0" width="62" height="124"/><use href="#pp-sun-half" x="64" y="22" width="48" height="102"/></svg>
+              </li>
+              <li class="istat istat--m">
+                <p class="istat__num"><span class="visually-hidden">327,888</span><span aria-hidden="true" data-count="327888">327,888</span></p>
+                <p class="istat__desc">People impacted through 4 environment initiatives</p>
+                <svg class="istat__sun istat__sun--m" viewBox="0 0 80 118" width="80" height="118" aria-hidden="true" focusable="false"><use href="#pp-sun-half" x="0" y="6" width="56" height="112"/><use href="#pp-sun-half" x="34" y="22" width="46" height="96"/></svg>
+              </li>
+            </ul>
+          </div>
+          <div class="irow irow--3 irow--white">
+            <figure class="irow__photo" aria-hidden="true"><img src="../assets/images/programmes/nand-ghar-film-still.jpg" alt="" loading="lazy" decoding="async" style="object-position: 22% 45%;"></figure>
+            <ul class="irow__stats" role="list">
+              <li class="istat istat--l">
+                <p class="istat__num"><span class="visually-hidden">1,699,665</span><span aria-hidden="true" data-count="1699665">1,699,665</span></p>
+                <p class="istat__desc">People impacted through 32 healthcare initiatives</p>
+                <svg class="istat__sun istat__sun--l" viewBox="0 0 300 150" width="300" height="150" aria-hidden="true" focusable="false"><use href="#pp-sun-bloom" x="0" y="22" width="54" height="128"/><use href="#pp-sun-bloom" x="58" y="0" width="62" height="150"/><use href="#pp-sun-bloom" x="124" y="30" width="50" height="120"/><use href="#pp-sun-bloom" x="178" y="8" width="58" height="142"/><use href="#pp-sun-bloom" x="240" y="26" width="54" height="124"/></svg>
+              </li>
+            </ul>
+          </div>
+          <div class="irow irow--4 irow--blue">
+            <figure class="irow__photo" aria-hidden="true"><img src="../assets/images/people/young-children-film-still.jpg" alt="" loading="lazy" decoding="async" style="object-position: 34% 40%;"></figure>
+            <ul class="irow__stats" role="list">
+              <li class="istat istat--xl">
+                <p class="istat__num"><span class="visually-hidden">13,316,860</span><span aria-hidden="true" data-count="13316860">13,316,860</span></p>
+                <p class="istat__desc">Children impacted through 31 initiatives for their well-being and education</p>
+                <svg class="istat__sun istat__sun--xl" viewBox="0 0 560 156" width="560" height="156" aria-hidden="true" focusable="false"><use href="#pp-sun-bloom" x="0" y="30" width="52" height="126"/><use href="#pp-sun-bloom" x="54" y="6" width="62" height="150"/><use href="#pp-sun-bloom" x="120" y="36" width="50" height="120"/><use href="#pp-sun-bloom" x="172" y="0" width="64" height="156"/><use href="#pp-sun-bloom" x="240" y="24" width="54" height="132"/><use href="#pp-sun-bloom" x="298" y="6" width="60" height="150"/><use href="#pp-sun-bloom" x="362" y="32" width="52" height="124"/><use href="#pp-sun-bloom" x="418" y="10" width="58" height="146"/><use href="#pp-sun-bloom" x="480" y="28" width="56" height="128"/></svg>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 8 · Stories of change
+         A front page: the featured story leads on the left, four supporting
+         stories run down the right as a scannable list. Choosing a programme
+         filter narrows the page to that programme's stories, each shown as
+         a wide split so one story still fills the row.
+         Copy verbatim from the content map §8. Placeholder titles, quotes
+         and names are the wireframe's own wording, shown without their square
+         brackets and marked data-placeholder="true". Em dashes are omitted, in line with the
+         rest of the page: the attribution has no leading dash and the
+         featured title uses a colon.
+         ⚠ No stories, names, quotes or places are invented.
+         ⚠ Supporting-story images are temporary stock (data-temp-image).
+           Credits: assets/images/CREDITS.md
+         ⚠ "All stories", "Read the full story" and the story links have no
+           destinations yet (href="#").
+         ⚠ The wireframe supplies no Culture programme story. Its filter
+           shows a pending state (text set in main.js initStoryFilters).
+         ================================================================ -->
+    <section class="stories" id="stories" aria-labelledby="stories-title" data-stories>
+      <div class="container">
+        <header class="stories__head">
+          <div>
+            <p class="eyebrow">Stories of change</p>
+            <h2 class="stories__title" id="stories-title">Told by the people who lived them.</h2>
+          </div>
+          <a class="arrow-link stories__all" href="#">All stories <span class="arrow-link__arrow" aria-hidden="true">→</span></a>
+        </header>
+
+        <div class="stories__filters" role="group" aria-label="Filter stories by programme">
+          <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-filter="nand-ghar" aria-pressed="false">Nand Ghar</button>
+          <button class="chip" type="button" data-filter="taco" aria-pressed="false">TACO</button>
+          <button class="chip" type="button" data-filter="sports" aria-pressed="false">Sports programme</button>
+          <button class="chip" type="button" data-filter="healthcare" aria-pressed="false">Healthcare programme</button>
+          <button class="chip" type="button" data-filter="culture" aria-pressed="false">Culture programme</button>
+          <button class="chip" type="button" data-filter="livelihood" aria-pressed="false">Education and Livelihood</button>
+        </div>
+        <p class="visually-hidden" role="status" aria-live="polite" data-stories-status></p>
+
+        <div class="stories__grid" data-stories-grid>
+          <!-- Featured story. Image: authentic still from the official Nand Ghar film (26.2 s). -->
+          <article class="story story--featured" data-story data-programme="nand-ghar" aria-labelledby="story-featured-title">
+            <figure class="story__media">
+              <img src="../assets/images/stories/featured-nand-ghar-film-still.jpg" width="2000" height="842" loading="lazy" decoding="async"
+                   alt="A young girl clapping along with her classmates at a Nand Ghar centre.">
+            </figure>
+            <div class="story__body">
+              <p class="story__meta"><span class="story__tag">Featured · Nand Ghar</span> <span class="story__format">Read · 6 min</span></p>
+              <h3 class="story__title" id="story-featured-title" data-placeholder="true">Featured story title: a specific moment, not a slogan</h3>
+              <blockquote class="story__quote"><p data-placeholder="true">“A direct quote from the beneficiary.”</p></blockquote>
+              <p class="story__attribution" data-placeholder="true">Name, Village, State</p>
+              <a class="arrow-link story__cta" id="story-featured-link" href="#">Read the full story <span class="arrow-link__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <ul class="stories__list" role="list" data-stories-list>
+            <li class="stories__item" data-story data-programme="taco">
+              <!-- Image: TEMPORARY stock photo (Pexels 15295292, Prashanth R). Not an AAF photograph and not the person quoted. -->
+              <article class="story" aria-labelledby="story-1-title">
+                <figure class="story__media">
+                  <img src="../assets/images/stories/temp-taco-pexels-15295292.jpg" width="1600" height="1063" loading="lazy" decoding="async" data-temp-image="pexels"
+                       alt="A man feeding a group of street dogs on a beach.">
+                  <span class="story__play" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" focusable="false"><path d="M4.5 2.75v10.5c0 .6.65.95 1.15.62l8-5.25a.75.75 0 0 0 0-1.24l-8-5.25c-.5-.33-1.15.02-1.15.62Z"/></svg></span>
+                </figure>
+                <div class="story__body">
+                  <p class="story__meta"><span class="story__tag">TACO</span> <span class="story__sep" aria-hidden="true">·</span> <span class="story__format">Watch · 4 min</span></p>
+                  <h3 class="story__title" id="story-1-title"><a class="story__link" href="#" data-placeholder="true">Story title</a></h3>
+                  <blockquote class="story__quote"><p data-placeholder="true">“Short community voice.”</p></blockquote>
+                </div>
+              </article>
+            </li>
+            <li class="stories__item" data-story data-programme="sports">
+              <!-- Image: TEMPORARY stock photo (Pexels 37803934, Sayantan Dhar). Not an AAF photograph and not the person quoted. -->
+              <article class="story" aria-labelledby="story-2-title">
+                <figure class="story__media">
+                  <img src="../assets/images/stories/temp-sports-pexels-37803934.jpg" width="1600" height="1079" loading="lazy" decoding="async" data-temp-image="pexels"
+                       alt="Three young women athletes holding training clubs beside a river, with a steel bridge behind them.">
+                </figure>
+                <div class="story__body">
+                  <p class="story__meta"><span class="story__tag">Sports programme</span> <span class="story__sep" aria-hidden="true">·</span> <span class="story__format">Read · 5 min</span></p>
+                  <h3 class="story__title" id="story-2-title"><a class="story__link" href="#" data-placeholder="true">Story title</a></h3>
+                  <blockquote class="story__quote"><p data-placeholder="true">“Short athlete voice.”</p></blockquote>
+                </div>
+              </article>
+            </li>
+            <li class="stories__item" data-story data-programme="livelihood">
+              <!-- Image: TEMPORARY stock photo (Pexels 3231358, Yogendra Singh). Not an AAF photograph and not the person quoted. -->
+              <article class="story" aria-labelledby="story-3-title">
+                <figure class="story__media">
+                  <img src="../assets/images/stories/temp-livelihood-pexels-3231358.jpg" width="1600" height="1067" loading="lazy" decoding="async" data-temp-image="pexels"
+                       alt="Young women in school uniform listening in a classroom.">
+                </figure>
+                <div class="story__body">
+                  <p class="story__meta"><span class="story__tag">Education and Livelihood</span> <span class="story__sep" aria-hidden="true">·</span> <span class="story__format">Read · 5 min</span></p>
+                  <h3 class="story__title" id="story-3-title"><a class="story__link" href="#" data-placeholder="true">Story title</a></h3>
+                  <blockquote class="story__quote"><p data-placeholder="true">“Short learner voice.”</p></blockquote>
+                </div>
+              </article>
+            </li>
+            <li class="stories__item" data-story data-programme="healthcare">
+              <!-- Image: TEMPORARY stock photo (Pexels 7179255, Mike Sangma). Not an AAF photograph and not the person quoted. -->
+              <article class="story" aria-labelledby="story-4-title">
+                <figure class="story__media">
+                  <img src="../assets/images/stories/temp-healthcare-pexels-7179255.jpg" width="1600" height="900" loading="lazy" decoding="async" data-temp-image="pexels"
+                       alt="A health worker examining a boy’s ear with an otoscope.">
+                  <span class="story__play" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" focusable="false"><path d="M4.5 2.75v10.5c0 .6.65.95 1.15.62l8-5.25a.75.75 0 0 0 0-1.24l-8-5.25c-.5-.33-1.15.02-1.15.62Z"/></svg></span>
+                </figure>
+                <div class="story__body">
+                  <p class="story__meta"><span class="story__tag">Healthcare programme</span> <span class="story__sep" aria-hidden="true">·</span> <span class="story__format">Watch · 3 min</span></p>
+                  <h3 class="story__title" id="story-4-title"><a class="story__link" href="#" data-placeholder="true">Story title</a></h3>
+                  <blockquote class="story__quote"><p data-placeholder="true">“Short patient voice.”</p></blockquote>
+                </div>
+              </article>
+            </li>
+          </ul>
+
+          <!-- Shown only when the chosen programme has no story (currently Culture programme). -->
+          <div class="stories__empty" data-stories-empty data-pending="true" hidden>
+            <p class="stories__empty-label">Story pending</p>
+            <p class="stories__empty-text" data-stories-empty-text data-placeholder="true">No Culture programme story has been supplied yet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 9 · Leadership that gives with intent
+         A magazine spread. The Chair leads: a tall portrait breaks out of
+         the top of a pale-blue panel that carries the quote at display
+         size. The Trustee and Head of Programmes follow as a pair of
+         smaller portrait-and-text profiles.
+         Eyebrow and heading verbatim from the content map §9. The roles
+         and their order (Chair, Trustee, Head of Programmes) are kept in
+         data-role.
+         Profiles 1 and 2 use real people, names, official designations and
+         photos from vedantalimited.com (sources noted on each profile).
+         Profile 3 is a fictional sample with a temporary stock portrait.
+         ⚠ DUMMY QUOTES AND MISSION LINES (data-dummy="true") on ALL THREE
+           profiles, including the two real people. These are not their
+           words. They must be replaced with client-approved text before
+           launch; the project rules forbid invented leadership quotes on
+           the live site.
+         ⚠ Designations are the official Vedanta titles; the AAF roles
+           (Chair, Trustee) are kept in data-role and need client
+           confirmation. Credits: assets/images/CREDITS.md
+         ================================================================ -->
+    <section class="lead" id="leadership" aria-labelledby="lead-title">
+      <div class="container">
+        <p class="eyebrow">Who leads us</p>
+        <h2 class="lead__title" id="lead-title">Leadership that gives with intent.</h2>
+
+        <div class="lead__feature">
+          <!-- Profile 1: Chair. REAL person. Name and designation: vedantalimited.com/eng/who-we-are-leadership.php.
+               Photo: vedantalimited.com/eng/who-we-are-founders-journey.php (founder-img.jpg).
+               ⚠ Quote and mission line are DUMMY text, not his words. -->
+          <article class="leader leader--chair" data-role="Chair" aria-labelledby="leader-1-name">
+            <figure class="leader__portrait">
+              <img src="../assets/images/leadership/vedanta-anil-agarwal-founders-journey.jpg" width="1160" height="657" loading="lazy" decoding="async" data-source="vedantalimited.com"
+                   alt="Anil Agarwal, smiling, seated outdoors in a garden.">
+            </figure>
+            <div class="leader__body">
+              <blockquote class="leader__quote"><p data-dummy="true">“Lasting change begins when we invest in people’s potential and give communities the opportunity to shape their own future.”</p></blockquote>
+              <h3 class="leader__name" id="leader-1-name">Anil Agarwal</h3>
+              <p class="leader__designation">Non-Executive Chairman, Vedanta Limited</p>
+              <p class="leader__mission" data-dummy="true">Guiding AAF’s long-term vision towards inclusive growth and meaningful opportunities for communities.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="lead__pair">
+          <!-- Profile 2: Trustee. REAL person. Name, designation and photo: vedantalimited.com/eng/social_impact_taco.php,
+               where she is presented with TACO, AAF's animal welfare programme. Her AAF title is not stated there,
+               so the official Vedanta designation is shown. ⚠ Quote and mission line are DUMMY text, not her words. -->
+          <article class="leader leader--trustee" data-role="Trustee" aria-labelledby="leader-2-name">
+            <figure class="leader__portrait">
+              <img src="../assets/images/leadership/vedanta-priya-agarwal-hebbar-taco.jpg" width="481" height="502" loading="lazy" decoding="async" data-source="vedantalimited.com"
+                   alt="Portrait of Priya Agarwal Hebbar.">
+            </figure>
+            <div class="leader__body">
+              <blockquote class="leader__quote"><p data-dummy="true">“Giving is not just about resources. It is about creating opportunities that continue to make a difference across generations.”</p></blockquote>
+              <h3 class="leader__name" id="leader-2-name">Priya Agarwal Hebbar</h3>
+              <p class="leader__designation">Non-Executive Director, Vedanta Limited</p>
+              <p class="leader__mission" data-dummy="true">Supporting responsible philanthropy, thoughtful governance and a lasting commitment to community development.</p>
+            </div>
+          </article>
+
+          <!-- Profile 3: Head of Programmes. SAMPLE profile; portrait is a TEMPORARY stock photo (Pexels 40071214, Ravinder Ravi), not an AAF leader. -->
+          <article class="leader leader--programmes" data-role="Head of Programmes" data-dummy="true" aria-labelledby="leader-3-name">
+            <figure class="leader__portrait">
+              <img src="../assets/images/leadership/temp-head-of-programmes-pexels-40071214.jpg" width="1200" height="1799" loading="lazy" decoding="async" data-temp-image="pexels"
+                   alt="Portrait for the sample profile of Kavita Nair, Head of Programmes.">
+            </figure>
+            <div class="leader__body">
+              <blockquote class="leader__quote"><p data-dummy="true">“Real progress happens when programmes are shaped around the people and communities they are meant to serve.”</p></blockquote>
+              <h3 class="leader__name" id="leader-3-name" data-dummy="true">Kavita Nair</h3>
+              <p class="leader__designation" data-dummy="true">Head of Programmes</p>
+              <p class="leader__mission" data-dummy="true">Connecting AAF’s mission with meaningful programmes, community participation and measurable outcomes.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 10 · Reports and resources
+         A shelf of publication covers instead of a download table. The
+         annual report is the large cover; the other six sit beside it in
+         two rows. Surfaces say what a thing is: brand solids for reports,
+         Soft Sage for the case study, white "paper" for research and
+         policy, Charcoal with a play marker for the film. Document covers
+         have a folded corner. Choosing a type shows that one cover as a
+         full-width banner.
+         Eyebrow, heading, description, type labels and actions verbatim
+         from the content map §10 (the description's em dash is a comma, in
+         line with the rest of the page).
+         ⚠ SAMPLE CONTENT (data-dummy="true"): all seven titles and dates are
+           fictional, supplied by the project team for visual design only.
+           They are not real AAF publications or release dates.
+         ⚠ No files or film exist yet. Every action is href="#" with
+           data-pending-link (main.js stops it from navigating).
+         Filter: main.js initResourceFilters.
+         ================================================================ -->
+    <section class="res" id="resources" aria-labelledby="res-title" data-resources>
+      <div class="container">
+        <header class="res__head">
+          <div>
+            <p class="eyebrow">Reports and resources</p>
+            <h2 class="res__title" id="res-title">Open books, open doors.</h2>
+          </div>
+          <p class="res__intro">Annual and impact reports, case studies, research, policies and films, available to anyone who wants to look closely.</p>
+        </header>
+
+        <div class="res__filters" role="group" aria-label="Filter resources by type">
+          <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-filter="annual-report" aria-pressed="false">Annual report</button>
+          <button class="chip" type="button" data-filter="impact-report" aria-pressed="false">Impact report</button>
+          <button class="chip" type="button" data-filter="case-study" aria-pressed="false">Case study</button>
+          <button class="chip" type="button" data-filter="research" aria-pressed="false">Research</button>
+          <button class="chip" type="button" data-filter="programme-report" aria-pressed="false">Programme report</button>
+          <button class="chip" type="button" data-filter="policy" aria-pressed="false">Policy</button>
+          <button class="chip" type="button" data-filter="film" aria-pressed="false">Film</button>
+        </div>
+        <p class="visually-hidden" role="status" aria-live="polite" data-resources-status></p>
+
+        <ul class="res__shelf" role="list" data-resources-grid>
+            <li class="res__item res__item--lead" data-resource data-type="annual-report">
+              <article class="rcover rcover--navy" aria-labelledby="res-1-title">
+                <svg class="rcover__motif" viewBox="0 0 220 260" aria-hidden="true" focusable="false"><use href="#pp-sun-bloom" x="0" y="40" width="92" height="220"/><use href="#pp-sun-bloom" x="72" y="0" width="108" height="260"/><use href="#pp-sun-bloom" x="150" y="70" width="70" height="190"/></svg>
+                <p class="rcover__type">Annual report</p>
+                <h3 class="rcover__title" id="res-1-title" data-dummy="true">AAF Annual Report 2025-26</h3>
+                <p class="rcover__foot">
+                  <time class="rcover__date" datetime="2026-11" data-dummy="true">November 2026</time>
+                  <a class="rcover__action" id="res-1-action" href="#" data-pending-link aria-labelledby="res-1-action res-1-title">PDF <span aria-hidden="true">↓</span></a>
+                </p>
+              </article>
+            </li>
+            <li class="res__item" data-resource data-type="impact-report">
+              <article class="rcover rcover--blue" aria-labelledby="res-2-title">
+                <p class="rcover__type">Impact report</p>
+                <h3 class="rcover__title" id="res-2-title" data-dummy="true">Measuring Change: AAF Impact Report 2025</h3>
+                <p class="rcover__foot">
+                  <time class="rcover__date" datetime="2026-10" data-dummy="true">October 2026</time>
+                  <a class="rcover__action" id="res-2-action" href="#" data-pending-link aria-labelledby="res-2-action res-2-title">PDF <span aria-hidden="true">↓</span></a>
+                </p>
+              </article>
+            </li>
+            <li class="res__item" data-resource data-type="case-study">
+              <article class="rcover rcover--sage" aria-labelledby="res-3-title">
+                <p class="rcover__type">Case study</p>
+                <h3 class="rcover__title" id="res-3-title" data-dummy="true">Nand Ghar: Building Stronger Foundations for Children</h3>
+                <p class="rcover__foot">
+                  <time class="rcover__date" datetime="2026-09" data-dummy="true">September 2026</time>
+                  <a class="rcover__action" id="res-3-action" href="#" data-pending-link aria-labelledby="res-3-action res-3-title">PDF <span aria-hidden="true">↓</span></a>
+                </p>
+              </article>
+            </li>
+            <li class="res__item" data-resource data-type="research">
+              <article class="rcover rcover--paper" aria-labelledby="res-4-title">
+                <p class="rcover__type">Research</p>
+                <h3 class="rcover__title" id="res-4-title" data-dummy="true">Understanding Community Needs Across India</h3>
+                <p class="rcover__foot">
+                  <time class="rcover__date" datetime="2026-08" data-dummy="true">August 2026</time>
+                  <a class="rcover__action" id="res-4-action" href="#" data-pending-link aria-labelledby="res-4-action res-4-title">PDF <span aria-hidden="true">↓</span></a>
+                </p>
+              </article>
+            </li>
+            <li class="res__item" data-resource data-type="programme-report">
+              <article class="rcover rcover--pale" aria-labelledby="res-5-title">
+                <p class="rcover__type">Programme report</p>
+                <h3 class="rcover__title" id="res-5-title" data-dummy="true">Women and Child Development: Programme Review</h3>
+                <p class="rcover__foot">
+                  <time class="rcover__date" datetime="2026-07" data-dummy="true">July 2026</time>
+                  <a class="rcover__action" id="res-5-action" href="#" data-pending-link aria-labelledby="res-5-action res-5-title">PDF <span aria-hidden="true">↓</span></a>
+                </p>
+              </article>
+            </li>
+            <li class="res__item" data-resource data-type="policy">
+              <article class="rcover rcover--paper" aria-labelledby="res-6-title">
+                <p class="rcover__type">Policy</p>
+                <h3 class="rcover__title" id="res-6-title" data-dummy="true">Governance and Responsible Philanthropy Framework</h3>
+                <p class="rcover__foot">
+                  <time class="rcover__date" datetime="2026-06" data-dummy="true">June 2026</time>
+                  <a class="rcover__action" id="res-6-action" href="#" data-pending-link aria-labelledby="res-6-action res-6-title">PDF <span aria-hidden="true">↓</span></a>
+                </p>
+              </article>
+            </li>
+            <li class="res__item" data-resource data-type="film">
+              <article class="rcover rcover--film" aria-labelledby="res-7-title">
+                <span class="rcover__play" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" focusable="false"><path d="M4.5 2.75v10.5c0 .6.65.95 1.15.62l8-5.25a.75.75 0 0 0 0-1.24l-8-5.25c-.5-.33-1.15.02-1.15.62Z"/></svg></span>
+                <p class="rcover__type">Film</p>
+                <h3 class="rcover__title" id="res-7-title" data-dummy="true">Stories of Change: AAF in Communities</h3>
+                <p class="rcover__foot">
+                  <time class="rcover__date" datetime="2026-05" data-dummy="true">May 2026</time>
+                  <a class="rcover__action" id="res-7-action" href="#" data-pending-link aria-labelledby="res-7-action res-7-title">Watch <span aria-hidden="true">↓</span></a>
+                </p>
+              </article>
+            </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 11 · Films and videos
+         A screening room: a full-bleed Charcoal band. An expanding reel:
+         the open film is wide and tall, the other two are collapsed panels.
+         Nand Ghar is open by default; hovering or tabbing into a film opens
+         it (CSS :has(), no JavaScript). Each still carries a
+         play button and a timecode chip; tag and title sit below.
+         Heading verbatim from the content map §11 (no eyebrow, no
+         view-all link in the wireframe).
+         ⚠ SAMPLE TITLES (data-dummy="true"): fictional, supplied by the
+           project team. Durations are the wireframe's.
+         ⚠ No film files or hosting URLs exist. Pressing play shows a short
+           "not available yet" note; nothing pretends to play. To connect a
+           film, set data-video-src on its <article> (main.js initFilms).
+         ================================================================ -->
+    <section class="films" id="films" aria-labelledby="films-title">
+      <div class="container">
+        <h2 class="films__title" id="films-title">Films and videos</h2>
+        <ol class="films__reel" role="list">
+          <!-- Film 1. Image: Authentic: frame from the official Nand Ghar film (8.5 s). It stands in for the still of THIS film, which has not been supplied.
+               ⚠ SAMPLE TITLE (data-dummy). Duration from the wireframe.
+               No film file or URL yet: set data-video-src to a video file to make it play. -->
+          <li class="film film--lead">
+            <article aria-labelledby="film-1-title" data-film data-video-src="">
+              <figure class="film__still">
+                <img src="../assets/images/films/film-nand-ghar-still.jpg" width="2000" height="1054" loading="lazy" decoding="async"
+                     alt="A girl performing on a low stool in a village courtyard while women and children watch. A frame from the Nand Ghar film.">
+                <button class="film__play" type="button" id="film-1-play" aria-labelledby="film-1-play film-1-title" data-film-play>
+                  <span class="film__play-disc"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4.5 2.75v10.5c0 .6.65.95 1.15.62l8-5.25a.75.75 0 0 0 0-1.24l-8-5.25c-.5-.33-1.15.02-1.15.62Z"/></svg></span>
+                  <span class="visually-hidden">Play film:</span>
+                </button>
+                <time class="film__time" datetime="PT4M20S">4:20</time>
+                <span class="film__status" role="status" data-film-status></span>
+              </figure>
+              <p class="film__tag">Nand Ghar</p>
+              <h3 class="film__title" id="film-1-title" data-dummy="true">A Place to Learn, A Future to Grow</h3>
+            </article>
+          </li>
+          <!-- Film 2. Image: TEMPORARY stock photo (Pexels 40552374, Kamran shah Films). Not an AAF film still.
+               ⚠ SAMPLE TITLE (data-dummy). Duration from the wireframe.
+               No film file or URL yet: set data-video-src to a video file to make it play. -->
+          <li class="film film--taco">
+            <article aria-labelledby="film-2-title" data-film data-video-src="">
+              <figure class="film__still">
+                <img src="../assets/images/films/temp-film-taco-pexels-40552374.jpg" width="1800" height="2700" loading="lazy" decoding="async" data-temp-image="pexels"
+                     alt="A young boy crouching to stroke a stray puppy, with another dog standing beside him.">
+                <button class="film__play" type="button" id="film-2-play" aria-labelledby="film-2-play film-2-title" data-film-play>
+                  <span class="film__play-disc"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4.5 2.75v10.5c0 .6.65.95 1.15.62l8-5.25a.75.75 0 0 0 0-1.24l-8-5.25c-.5-.33-1.15.02-1.15.62Z"/></svg></span>
+                  <span class="visually-hidden">Play film:</span>
+                </button>
+                <time class="film__time" datetime="PT3M5S">3:05</time>
+                <span class="film__status" role="status" data-film-status></span>
+              </figure>
+              <p class="film__tag">TACO</p>
+              <h3 class="film__title" id="film-2-title" data-dummy="true">Compassion in Action</h3>
+            </article>
+          </li>
+          <!-- Film 3. Image: TEMPORARY stock photo (Pexels 37803935, Sayantan Dhar). Not an AAF film still.
+               ⚠ SAMPLE TITLE (data-dummy). Duration from the wireframe.
+               No film file or URL yet: set data-video-src to a video file to make it play. -->
+          <li class="film film--sports">
+            <article aria-labelledby="film-3-title" data-film data-video-src="">
+              <figure class="film__still">
+                <img src="../assets/images/films/temp-film-sports-pexels-37803935.jpg" width="1800" height="1200" loading="lazy" decoding="async" data-temp-image="pexels"
+                     alt="Two young women athletes holding traditional wooden training clubs.">
+                <button class="film__play" type="button" id="film-3-play" aria-labelledby="film-3-play film-3-title" data-film-play>
+                  <span class="film__play-disc"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4.5 2.75v10.5c0 .6.65.95 1.15.62l8-5.25a.75.75 0 0 0 0-1.24l-8-5.25c-.5-.33-1.15.02-1.15.62Z"/></svg></span>
+                  <span class="visually-hidden">Play film:</span>
+                </button>
+                <time class="film__time" datetime="PT5M40S">5:40</time>
+                <span class="film__status" role="status" data-film-status></span>
+              </figure>
+              <p class="film__tag">Sports programme</p>
+              <h3 class="film__title" id="film-3-title" data-dummy="true">Beyond the Playing Field</h3>
+            </article>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 12 · News and press
+         A magazine opener: the featured update's photograph runs wide on
+         the right, and a white text panel overlaps its left edge. Below,
+         four dated items in a two-column dateline (rows aligned), each led
+         by a large day numeral. A small marker separates the four news types
+         (Press release, Event, Media coverage, Announcement).
+         Eyebrow and heading verbatim from the content map §12. No section
+         CTA, filter or links, as in the wireframe.
+         ⚠ SAMPLE CONTENT (data-dummy="true"): every date, headline and the
+           featured summary is fictional, supplied by the project team.
+           None of these were published. "The Indian Express" is a real
+           paper: the sample does not claim it ran this story; replace it.
+         ⚠ The media-coverage publication sits on its own line instead of
+           after an em dash (no em dashes on the page).
+         ⚠ Featured image is a temporary stock photo (data-temp-image).
+         ================================================================ -->
+    <section class="news" id="news" aria-labelledby="news-title">
+      <div class="container">
+        <p class="eyebrow">News and press</p>
+        <h2 class="news__title" id="news-title">Latest from the Foundation.</h2>
+
+        <article class="nfeature" aria-labelledby="news-featured-title">
+          <!-- Image: TEMPORARY stock photo (Pexels 20356942, EqualStock IN). Not an AAF event. -->
+          <figure class="nfeature__media">
+            <img src="../assets/images/news/temp-news-featured-pexels-20356942.jpg" width="1800" height="1200" loading="lazy" decoding="async" data-temp-image="pexels"
+                 alt="Village women seated in a circle in an open courtyard, meeting with two facilitators.">
+          </figure>
+          <div class="nfeature__panel">
+            <p class="nfeature__meta"><span class="ntype ntype--press">Press release</span> <time datetime="2026-11-17" data-dummy="true">17 November 2026</time></p>
+            <h3 class="nfeature__title" id="news-featured-title" data-dummy="true">Anil Agarwal Foundation Expands Its Community Development Initiatives Across India</h3>
+            <p class="nfeature__summary" data-dummy="true">The Foundation continues to strengthen its commitment to community development through programmes focused on education, healthcare, women and child development, and sustainable livelihoods.</p>
+          </div>
+        </article>
+
+        <ol class="news__list" role="list">
+            <li class="nitem" data-type="press">
+              <article>
+                <p class="nitem__date"><time datetime="2026-11-12" data-dummy="true"><span class="nitem__day">12</span> <span class="nitem__month">Nov 2026</span></time></p>
+                <p class="ntype ntype--press">Press release</p>
+                <h3 class="nitem__head" data-dummy="true">Anil Agarwal Foundation Strengthens Its Commitment to Early Childhood Development</h3>
+              </article>
+            </li>
+            <li class="nitem" data-type="event">
+              <article>
+                <p class="nitem__date"><time datetime="2026-11-08" data-dummy="true"><span class="nitem__day">08</span> <span class="nitem__month">Nov 2026</span></time></p>
+                <p class="ntype ntype--event">Event</p>
+                <h3 class="nitem__head" data-dummy="true">Community Partners Come Together to Celebrate Progress and Shared Purpose</h3>
+              </article>
+            </li>
+            <li class="nitem" data-type="media">
+              <article>
+                <p class="nitem__date"><time datetime="2026-11-04" data-dummy="true"><span class="nitem__day">04</span> <span class="nitem__month">Nov 2026</span></time></p>
+                <p class="ntype ntype--media">Media coverage</p>
+                <h3 class="nitem__head" data-dummy="true">How Community-Led Initiatives Are Creating Opportunities Across India</h3>
+                <p class="nitem__pub" data-dummy="true">The Indian Express</p>
+              </article>
+            </li>
+            <li class="nitem" data-type="announce">
+              <article>
+                <p class="nitem__date"><time datetime="2026-10-28" data-dummy="true"><span class="nitem__day">28</span> <span class="nitem__month">Oct 2026</span></time></p>
+                <p class="ntype ntype--announce">Announcement</p>
+                <h3 class="nitem__head" data-dummy="true">Foundation Announces New Priorities for Community Development Programmes</h3>
+              </article>
+            </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 13 · Collaboration
+         Shared circles: the five partner types are five overlapping
+         circles arranged in a ring. Where they overlap the colour deepens,
+         darkest at the centre where all five meet: "a shared effort
+         reaches further than any single one". The invitation, a large
+         Partner with us button and the contact line sit on the left.
+         The categories are information, not links.
+         Copy verbatim from the content map §13.
+         ⚠ Partner with us has no destination yet (href="#",
+           data-pending-link; main.js stops it from navigating).
+         ⚠ Contact details are SAMPLE placeholders (data-dummy="true"),
+           not real AAF contacts, and are deliberately not links.
+         ================================================================ -->
+    <section class="collab" id="collaboration" aria-labelledby="collab-title">
+      <div class="container collab__grid">
+        <div class="collab__intro">
+          <p class="eyebrow">Collaboration</p>
+          <h2 class="collab__title" id="collab-title">Bring your strength to the work.</h2>
+          <p class="collab__body">We partner where a shared effort reaches further than any single one. Tell us what you can offer and what you hope to change.</p>
+          <a class="btn btn--primary collab__cta" href="#" data-pending-link>Partner with us <span aria-hidden="true">→</span></a>
+          <p class="collab__contact" data-dummy="true">partnerships@example.org <span aria-hidden="true">·</span> +91 00000 00000</p>
+        </div>
+
+        <ol class="collab__circles" role="list" aria-label="Who we partner with">
+            <li class="partner partner--1">
+              <div class="partner__text">
+                <span class="partner__num" aria-hidden="true">01</span>
+                <h3 class="partner__name">Government organisations</h3>
+                <p class="partner__desc">Scale proven models through public systems and shared infrastructure.</p>
+              </div>
+            </li>
+            <li class="partner partner--2">
+              <div class="partner__text">
+                <span class="partner__num" aria-hidden="true">02</span>
+                <h3 class="partner__name">NGOs</h3>
+                <p class="partner__desc">Pair local knowledge with funding, tools and a wider platform.</p>
+              </div>
+            </li>
+            <li class="partner partner--3">
+              <div class="partner__text">
+                <span class="partner__num" aria-hidden="true">03</span>
+                <h3 class="partner__name">Philanthropic organisations</h3>
+                <p class="partner__desc">Co-fund programmes and share what is learned.</p>
+              </div>
+            </li>
+            <li class="partner partner--4">
+              <div class="partner__text">
+                <span class="partner__num" aria-hidden="true">04</span>
+                <h3 class="partner__name">Corporates</h3>
+                <p class="partner__desc">Contribute expertise, volunteers and resources to community programmes.</p>
+              </div>
+            </li>
+            <li class="partner partner--5">
+              <div class="partner__text">
+                <span class="partner__num" aria-hidden="true">05</span>
+                <h3 class="partner__name">Academic institutions</h3>
+                <p class="partner__desc">Research and evaluate what works, and train the next field leaders.</p>
+              </div>
+            </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       FOOTER · "The closing page"
+       A pale-blue sheet with rounded top corners rises out of the page:
+       light, so both original full-colour logos sit on it unmodified. The
+       strapline is set large as the page's closing line, with contact and
+       social on the right; the navigation sits below in four columns. The five Collaboration circles return as a faint
+       outline emblem, "shared effort" carried into the sign-off. A thin
+       Deep Navy strip holds copyright and legal links.
+       Content from the project team's footer brief (it supersedes the
+       content map's §14 link groups).
+       Links: groups that have a matching section on this page point to it
+       (#who-we-are, #programmes, …); everything else is href="#" with
+       data-pending-link until real URLs exist.
+       ⚠ Contact details are SAMPLE placeholders (data-dummy="true"), not
+         AAF's real contacts, and are deliberately plain text.
+       ⚠ Social profile URLs are not supplied (data-pending-link).
+       ⚠ Copyright year: update the <span data-year> (one place).
+       ==================================================================== -->
+  <footer class="site-footer" id="footer">
+    <div class="footer__sheet">
+      <svg class="footer__emblem" viewBox="0 0 700 640" aria-hidden="true" focusable="false"><circle cx="350.0" cy="185.0" r="175"/><circle cx="478.4" cy="278.3" r="175"/><circle cx="429.4" cy="429.2" r="175"/><circle cx="270.6" cy="429.2" r="175"/><circle cx="221.6" cy="278.3" r="175"/><circle class="footer__emblem-dot" cx="350" cy="320" r="7"/></svg>
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <a class="footer__logo" href="#main" aria-label="Anil Agarwal Foundation, back to top">
+            <img src="../assets/brand/aaf-logo.svg" alt="" width="168" height="68">
+          </a>
+          <p class="footer__name">Anil Agarwal Foundation</p>
+          <p class="footer__statement">Investing in people and communities across India, with openness about what works.</p>
+        </div>
+
+        <aside class="footer__contact" id="footer-contact" aria-labelledby="footer-contact-title">
+          <h2 class="footer__label" id="footer-contact-title">Contact</h2>
+          <address class="footer__address">
+            <span class="footer__address-line" data-dummy="true">[Registered address]</span>
+            <span class="footer__address-line" data-dummy="true">contact@example.org</span>
+            <span class="footer__address-line" data-dummy="true">+91 00000 00000</span>
+          </address>
+          <ul class="footer__social" role="list" aria-label="Social media">
+              <li><a class="footer__social-link" href="#" data-pending-link aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><rect x="3.6" y="9" width="3.3" height="11.4" rx=".6"/><circle cx="5.25" cy="5.3" r="1.95"/><path d="M9.6 9h3.1v1.6c.6-1 1.8-1.95 3.7-1.95 2.7 0 4 1.75 4 4.75v7H17.2v-6.3c0-1.6-.6-2.5-1.95-2.5-1.45 0-2.25 1-2.25 2.5v6.3H9.6z"/></svg></a></li>
+              <li><a class="footer__social-link" href="#" data-pending-link aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="3.9" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.1" cy="6.9" r="1.15"/></svg></a></li>
+              <li><a class="footer__social-link" href="#" data-pending-link aria-label="YouTube"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M21.4 7.6c-.2-.9-.9-1.6-1.8-1.8C18 5.4 12 5.4 12 5.4s-6 0-7.6.4c-.9.2-1.6.9-1.8 1.8C2.2 9.2 2.2 12 2.2 12s0 2.8.4 4.4c.2.9.9 1.6 1.8 1.8 1.6.4 7.6.4 7.6.4s6 0 7.6-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-4.4.4-4.4s0-2.8-.4-4.4zM10 15.1V8.9l5.2 3.1z"/></svg></a></li>
+              <li><a class="footer__social-link" href="#" data-pending-link aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M13.6 21v-7.6h2.6l.4-3.1h-3V8.4c0-.9.3-1.5 1.6-1.5h1.6V4.2c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H8v3.1h2.6V21z"/></svg></a></li>
+          </ul>
+        </aside>
+
+        <nav class="footer__nav" aria-label="Footer">
+            <div class="footer__group">
+              <h2 class="footer__label" id="footer-nav-1">About</h2>
+              <ul class="footer__links" role="list" aria-labelledby="footer-nav-1">
+                <li><a class="footer__link" href="#who-we-are">Who we are</a></li><li><a class="footer__link" href="#giving-pledge">Anil Agarwal’s Giving Pledge</a></li><li><a class="footer__link" href="#purpose-into-progress">Our approach</a></li><li><a class="footer__link" href="#" data-pending-link>Our footprint</a></li>
+              </ul>
+            </div>
+            <div class="footer__group">
+              <h2 class="footer__label" id="footer-nav-2">Areas of Work</h2>
+              <ul class="footer__links" role="list" aria-labelledby="footer-nav-2">
+                <li><a class="footer__link" href="#programmes">Women and Child Development</a></li><li><a class="footer__link" href="#programmes">Animal Welfare</a></li><li><a class="footer__link" href="#programmes">Sports</a></li><li><a class="footer__link" href="#programmes">Healthcare</a></li><li><a class="footer__link" href="#programmes">Culture</a></li><li><a class="footer__link" href="#programmes">Education and Livelihood</a></li>
+              </ul>
+            </div>
+            <div class="footer__group">
+              <h2 class="footer__label" id="footer-nav-3">Resources</h2>
+              <ul class="footer__links" role="list" aria-labelledby="footer-nav-3">
+                <li><a class="footer__link" href="#stories">Stories</a></li><li><a class="footer__link" href="#resources">Reports and resources</a></li><li><a class="footer__link" href="#films">Films and videos</a></li><li><a class="footer__link" href="#news">News and press</a></li>
+              </ul>
+            </div>
+            <div class="footer__group">
+              <h2 class="footer__label" id="footer-nav-4">Get Involved</h2>
+              <ul class="footer__links" role="list" aria-labelledby="footer-nav-4">
+                <li><a class="footer__link" href="#collaboration">Partner with us</a></li><li><a class="footer__link" href="#footer-contact">Contact us</a></li>
+              </ul>
+            </div>
+        </nav>
+
+        <p class="footer__assoc">
+          <span>In association with Vedanta Group</span>
+          <img src="../assets/brand/vedanta-logo.svg" alt="" width="200" height="43">
+        </p>
+      </div>
+    </div>
+
+    <div class="footer__strip">
+      <div class="container footer__strip-inner">
+        <p class="footer__copy">© <span data-year>2026</span> Anil Agarwal Foundation. All rights reserved.</p>
+        <ul class="footer__legal" role="list" aria-label="Legal">
+            <li><a class="footer__legal-link" href="#" data-pending-link>Privacy Policy</a></li>
+            <li><a class="footer__legal-link" href="#" data-pending-link>Terms of Use</a></li>
+            <li><a class="footer__legal-link" href="#" data-pending-link>Accessibility</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

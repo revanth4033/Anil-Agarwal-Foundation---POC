@@ -1,0 +1,3275 @@
+/* ==========================================================================
+   AAF Homepage: shared styles for every section
+   Depends on: assets/brand/brand-tokens.css (loaded first, not modified)
+   Sections are appended in page order; each has its own numbered block.
+
+   Structure
+   1. Page-level tokens
+   2. Base
+   3. Utilities (container, visually-hidden, skip link)
+   4. Buttons and links
+   5. Header and navigation
+   6. Hero: shared
+   7. Hero: film link (on the video)
+   8. Hero: layout (mobile-first → tablet → desktop overlap)
+   9. Hero: motion
+   10. Section 2: Who we are
+   ========================================================================== */
+
+/* 1. Page-level tokens ------------------------------------------------- */
+:root {
+  --header-h: 64px;
+  --mat: var(--surface-subtle);        /* Warm Off-white #F7F8F4: header + hero mat + text panel */
+  --frame-radius: 14px;                /* within brand range 12–16px */
+  --frame-ratio: 4 / 5;                /* mobile default; art-direct the crop */
+
+  /* One size for every section headline (H2). The hero H1 (56px) stays the
+     page's largest heading. 32 → 44px. */
+  --section-title-size: clamp(2rem, 1.5rem + 1.4vw, 2.75rem);
+}
+
+/* 2. Base ---------------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--mat);
+  color: var(--text-body);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+video,
+svg { display: block; max-width: 100%; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: 2px;
+}
+
+/* 3. Utilities ----------------------------------------------------------- */
+.container {
+  width: min(var(--container-max), 100% - 2 * var(--container-gutter));
+  margin-inline: auto;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-white);
+  color: var(--text-link);
+  font-weight: var(--font-weight-semibold);
+  border: var(--border);
+  border-radius: var(--radius-button);
+}
+.skip-link:focus { top: var(--space-3); }
+
+/* 4. Buttons and links --------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  min-height: 48px;
+  padding: 0 var(--space-5);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-button);
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;               /* 15px */
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+
+.btn--primary {
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+.btn--primary:hover { background: var(--button-primary-bg-hover); }
+
+.btn--primary span[aria-hidden] {
+  display: inline-block;
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+.btn--primary:hover span[aria-hidden] { transform: translateX(3px); }
+
+.btn--secondary {
+  background: var(--button-secondary-bg);
+  border-color: var(--button-secondary-border);
+  color: var(--button-secondary-text);
+}
+.btn--secondary:hover { background: var(--button-secondary-bg-hover); }
+
+.text-link {
+  color: var(--text-link);
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.9375rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  transition: color var(--duration-fast) var(--ease-standard),
+              text-decoration-thickness var(--duration-fast) var(--ease-standard);
+}
+.text-link:hover {
+  color: var(--text-link-hover);
+  text-decoration-thickness: 2px;
+}
+
+.icon-button {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-button);
+  background: transparent;
+  color: var(--text-heading);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+.icon-button:hover { background: var(--surface-blue); }
+
+/* 5. Header and navigation ---------------------------------------------- */
+.site-header {
+  /* Floating pill: the header area itself is transparent and stays in view
+     (sticky) with a gap above; only the pill inside is solid. */
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding-top: var(--space-4);          /* the gap above the pill */
+  pointer-events: none;                 /* the transparent gap never blocks clicks */
+}
+
+.site-header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--header-h);
+  padding-inline: var(--space-5) var(--space-3);
+  border: 1px solid rgb(24 61 91 / 0.08);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.92);
+  box-shadow: 0 6px 24px rgb(24 61 91 / 0.07);
+  pointer-events: auto;
+}
+@supports (backdrop-filter: blur(1px)) {
+  .site-header__inner {
+    background: rgb(255 255 255 / 0.9);
+    backdrop-filter: blur(14px) saturate(1.2);
+  }
+}
+
+/* In-page links land below the floating header */
+main section[id] { scroll-margin-top: 7rem; }
+
+/* Header CTA: a filled pill */
+.site-header__cta {
+  border-radius: var(--radius-pill);
+  padding-inline: var(--space-6);
+}
+
+.site-header__logo {
+  flex: none;
+  display: block;
+  margin-right: auto;
+}
+.site-header__logo img {
+  width: 112px;                         /* proportional; logo SVG untouched */
+  height: auto;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.site-header__cta { display: none; }    /* shown ≥ 600px */
+
+/* Collapsed navigation panel (< 1100px): a rounded card under the pill */
+.site-nav {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  right: 0;
+  display: none;
+  padding: var(--space-3) var(--space-6) var(--space-6);
+  border: 1px solid rgb(24 61 91 / 0.08);
+  border-radius: 24px;
+  background: var(--color-white);
+  box-shadow: 0 10px 30px rgb(24 61 91 / 0.1);
+}
+.site-nav.is-open { display: block; }
+
+.site-nav__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  min-height: 48px;
+  color: var(--text-heading);
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  border-bottom: var(--border);
+}
+
+.site-nav__caret {
+  font-size: 0.75em;
+  color: var(--text-body);
+}
+
+.site-nav__cta-mobile {
+  width: 100%;
+  margin-top: var(--space-5);
+}
+
+.menu-icon__close { display: none; }
+[aria-expanded="true"] .menu-icon__open { display: none; }
+[aria-expanded="true"] .menu-icon__close { display: inline; }
+
+@media (min-width: 600px) {
+  .site-header__cta { display: inline-flex; min-height: 44px; }
+  .site-nav__cta-mobile { display: none; }
+}
+
+@media (min-width: 1100px) {
+  :root { --header-h: 76px; }
+
+  .site-header__logo img { width: 120px; }
+  .site-header__inner { padding-inline: var(--space-7) var(--space-3); }
+
+  .site-header__inner { gap: var(--space-6); }
+
+  .site-header__menu { display: none; }
+
+  .site-nav {
+    position: static;
+    display: block;
+    margin-inline: auto;                /* links centred in the pill */
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .site-header__logo { margin-right: 0; }
+
+  .site-nav__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .site-nav__link {
+    position: relative;
+    min-height: 44px;
+    border: 0;
+    font-size: 0.9375rem;               /* 15px */
+    color: var(--text-body);
+    transition: color var(--duration-fast) var(--ease-standard);
+  }
+
+  .site-nav__link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration-base) var(--ease-standard);
+  }
+
+  .site-nav__link:hover { color: var(--text-link); }
+  .site-nav__link:hover::after { transform: scaleX(1); }
+}
+
+/* 6. Hero: shared -------------------------------------------------------- */
+.hero {
+  background: var(--mat);
+  padding-block: var(--space-6) var(--space-9);
+}
+
+.hero__stage { position: relative; }
+
+.hero__panel { position: relative; }
+
+.hero__title {
+  margin: 0;
+  max-width: 14ch;
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-h1);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-heading);
+  color: var(--text-heading);
+  text-wrap: balance;
+}
+
+.hero__lead {
+  margin: var(--space-5) 0 0;
+  max-width: 46ch;
+  font-size: clamp(0.9375rem, 0.88rem + 0.3vw, 1.125rem);  /* 15 → 18px */
+  line-height: var(--leading-body);
+  color: var(--text-body);
+  text-wrap: pretty;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+  margin-top: var(--space-6);
+}
+
+.hero__media {
+  position: relative;
+  margin: 0;
+}
+
+.hero__frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--frame-ratio);
+  border-radius: var(--frame-radius);
+  background: var(--surface-sage);     /* shows only while media loads */
+}
+
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 50%;            /* bias subject right, away from the text panel */
+}
+
+/* 7. Hero: film link, placed on the video ------------------------------- */
+/* Sits inside the frame's lower-right corner (the lower-left is under the text panel).
+   A solid mat-coloured label keeps it legible on any shot without darkening the footage. */
+.hero__caption {
+  position: absolute;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  z-index: 1;
+}
+
+.film-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-5) 0 var(--space-4);
+  background: var(--mat);
+  border-radius: var(--radius-pill);
+  color: var(--text-link);
+  font-size: 0.875rem;                 /* 14px */
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+.film-link:hover { color: var(--text-link-hover); background: var(--color-white); text-decoration: underline; text-underline-offset: 4px; }
+
+.film-link__dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-secondary);  /* AAF Green: decorative marker only */
+}
+
+.film-link__arrow {
+  display: inline-block;
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+.film-link:hover .film-link__arrow { transform: translateX(4px); }
+
+/* Over footage the shared blue ring can vanish on dark shots: a mat-coloured outer ring
+   (visible on dark frames) plus an inner blue ring (visible on light frames). */
+.film-link:focus-visible {
+  outline: 2px solid var(--mat);
+  outline-offset: 3px;
+  box-shadow: inset 0 0 0 2px var(--text-link);
+}
+
+/* 8. Hero: layout ------------------------------------------------------- */
+
+/* Mobile (default, < 600px): headline → copy → CTAs → video → film link + controls */
+@media (max-width: 599.98px) {
+  :root { --container-gutter: 20px; }
+
+  .hero { padding-block: var(--space-7) var(--space-8); }
+
+  .hero__title { font-size: clamp(2.25rem, 1.6rem + 2.8vw, 2.5rem); }   /* 36 → 40px */
+
+  .hero__actions .btn { width: 100%; }
+  .hero__actions .text-link { margin-inline: auto; }
+
+  .hero__media { margin-top: var(--space-7); }
+
+  .hero__caption { right: var(--space-3); bottom: var(--space-3); }
+}
+
+/* Tablet (600–959px): same order, wider landscape crop, caption on one line */
+@media (min-width: 600px) and (max-width: 959.98px) {
+  :root { --frame-ratio: 3 / 2; }
+
+  .hero { padding-block: var(--space-8) var(--space-9); }
+
+  .hero__title { max-width: 16ch; }
+
+  .hero__media { margin-top: var(--space-8); }
+}
+
+/* Desktop (≥ 960px): the overlap composition */
+@media (min-width: 960px) {
+  .hero {
+    --panel-w: clamp(430px, 34vw, 500px);   /* text panel width */
+    --overlap: clamp(80px, 7vw, 100px);     /* panel cuts into the frame by this much */
+    --frame-h: clamp(440px, 36vw, 520px);   /* minimum video height */
+    --notch-min: 48px;                      /* panel never starts closer than this to the frame top */
+    --panel-pad: clamp(40px, 3vw, 44px);
+    --r: var(--frame-radius);
+
+    padding-block: var(--space-7) var(--space-9);
+  }
+
+  .hero__stage {
+    display: grid;
+    grid-template-columns:
+      [panel-start] calc(var(--panel-w) - var(--overlap))
+      [frame-start] var(--overlap)
+      [panel-end] 1fr
+      [frame-end];
+    grid-template-rows: var(--notch-min) auto;
+  }
+
+  /* Bottom-aligned composition: the panel (ending on the CTAs) and the video share one
+     bottom edge. The frame is at least --frame-h tall; if the panel's content is taller
+     (narrower desktops), the frame grows with it, so the two always end on the same line. */
+  .hero__media {
+    grid-column: frame-start / frame-end;
+    grid-row: 1 / 3;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero__frame {
+    flex: 1;
+    aspect-ratio: auto;
+    min-height: var(--frame-h);
+  }
+
+  /* Nand Ghar film is 1.90:1; the desktop frame (~876×510 at 1440) is 1.72:1, so ~9% of the
+     width is cropped. The film is composed centrally and its left-side subjects (elders, family
+     scene) sit near the panel notch, so crop evenly rather than biasing right. */
+  .hero__video { object-position: 50% 50%; }
+
+  .hero__caption { right: var(--space-6); bottom: var(--space-6); }
+
+  /* Text panel: cut from the mat, overlapping the frame's lower-left edge */
+  .hero__panel {
+    z-index: 2;
+    grid-column: panel-start / panel-end;
+    grid-row: 2 / 3;
+    align-self: end;
+    padding: var(--panel-pad) var(--panel-pad) 0 0;
+    background: var(--mat);
+    border-top-right-radius: var(--r);   /* concave corner inside the frame */
+  }
+
+  /* Rounded "outer" corners where the mat meets the frame edges.
+     Hard-edged masks in the mat colour, not a decorative gradient. */
+  .hero__panel::before,
+  .hero__panel::after {
+    content: "";
+    position: absolute;
+    width: var(--r);
+    height: var(--r);
+    background: radial-gradient(circle at 100% 0, transparent calc(var(--r) - 0.5px), var(--mat) var(--r));
+    pointer-events: none;
+  }
+  /* Where the frame's left edge meets the panel's top edge */
+  .hero__panel::before {
+    top: calc(var(--r) * -1);
+    left: calc(var(--panel-w) - var(--overlap));
+  }
+  /* Where the frame's bottom edge meets the panel's right edge */
+  .hero__panel::after {
+    bottom: 0;
+    left: 100%;
+  }
+
+  .hero__title { max-width: none; }
+
+  .hero__lead { max-width: 44ch; }
+
+}
+
+/* 9. Hero: motion ------------------------------------------------------- */
+@keyframes frame-in {
+  from { opacity: 0; transform: scale(1.02); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__frame { animation: frame-in var(--duration-slow) var(--ease-out) both; }
+
+  .hero__title,
+  .hero__lead,
+  .hero__actions,
+  .hero__caption { animation: rise-in 500ms var(--ease-out) both; }
+
+  .hero__title   { animation-delay: 80ms; }
+  .hero__lead    { animation-delay: 160ms; }
+  .hero__actions { animation-delay: 240ms; }
+  .hero__caption { animation-delay: 320ms; }
+}
+
+/* 10. Section 2: Who we are --------------------------------------------- */
+/* Composition (desktop, 1440):
+     [ film still, 7 parts ]  [ eyebrow / headline / purpose / description, 5 parts ]
+   The hero is text-left / media-right; this section flips to media-left /
+   text-right, so the page alternates rather than repeats. The image stretches
+   to the text column's height: both columns share one top and one bottom edge,
+   the same bottom-alignment rule as the hero. */
+
+.wwa {
+  /* Hero ends with 64px bottom padding; 96px here gives ~160px of clear space. */
+  padding-block: var(--space-11) var(--space-12);
+}
+
+.wwa__grid {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.wwa__media {
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;                  /* stacked layouts; desktop takes the text column's height */
+  border-radius: var(--frame-radius);   /* same corner as the hero frame */
+  background: var(--surface-sage);      /* while the image loads */
+}
+.wwa__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 35%;             /* keeps both faces in frame */
+}
+
+/* Eyebrow: the film-link motif (green dot + AAF Blue Manrope), directly above
+   the headline. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  color: var(--text-link);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-label);
+  line-height: 1;
+  text-transform: uppercase;            /* visual only; the source text is unchanged */
+}
+.eyebrow::before {
+  content: "";
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-secondary); /* AAF Green: decorative marker only */
+}
+
+.wwa__title {
+  margin: var(--space-5) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--section-title-size); /* shared section headline size (44px at 1440) */
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.wwa__purpose {
+  margin: var(--space-7) 0 0;
+  color: var(--text-heading);
+  font-size: clamp(1.25rem, 1.1rem + 0.4vw, 1.375rem);  /* 20 → 22px */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.wwa__body {
+  margin: var(--space-7) 0 0;
+  color: var(--text-body);
+  font-size: 1.0625rem;                 /* 17px */
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+@media (min-width: 960px) {
+  .wwa__grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    column-gap: var(--space-10);
+    align-items: stretch;
+  }
+
+  .wwa__media {
+    aspect-ratio: auto;
+    min-height: 340px;                  /* the text column normally sets the height */
+  }
+}
+
+/* 11. Section 3: Anil Agarwal's Giving Pledge ("The Power of Giving") ---- */
+.gp {
+  /* Who We Are ends with 120px; 40px here keeps ~160px between sections,
+     the same rhythm as hero → Who We Are. */
+  padding-block: var(--space-7) var(--space-12);
+}
+
+.gp__title {
+  margin: 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.gp__body {
+  margin: 0;
+  color: var(--text-body);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+/* The pledge figure is the hero of the section. Top band: a display "75%"
+   on the left, with the headline and body set beside it. Bottom band: the
+   Nand Ghar centre at dawn as a wide panoramic strip, used nowhere else on
+   the page. */
+.gp-b__grid {
+  display: grid;
+  gap: var(--space-6) var(--space-10);
+}
+
+.gp-b__figure {
+  margin: 0;
+  color: var(--aaf-blue);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: clamp(9rem, 4rem + 14vw, 16.5rem);   /* → 264px at 1440 */
+  line-height: 0.78;
+  letter-spacing: -0.04em;
+  font-variant-numeric: lining-nums;
+}
+.gp-b__pct {
+  margin-left: 0.04em;
+  color: var(--text-heading);
+  font-size: 0.42em;
+  vertical-align: 0.95em;              /* hangs from the top of the numerals */
+  letter-spacing: 0;
+}
+
+.gp-b__title {
+  font-size: var(--section-title-size); /* shared section headline size (44px at 1440) */
+}
+
+.gp-b__body {
+  margin-top: var(--space-6);
+  max-width: 58ch;
+  font-size: 1.0625rem;                 /* 17px */
+}
+
+.gp-b__media {
+  position: relative;
+  margin: var(--space-6) 0 0;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--frame-radius);
+  background: var(--surface-sage);
+}
+.gp-b__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 62%;             /* the centre and its sunflower wall */
+}
+
+@media (min-width: 960px) {
+  .gp-b__grid {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "eyebrow eyebrow"
+      "figure  text"
+      "media   media";
+    align-items: end;                   /* text block ends on the figure's baseline */
+  }
+  .gp-b__eyebrow { grid-area: eyebrow; }
+  .gp-b__figure  { grid-area: figure; }
+  .gp-b__text    { grid-area: text; padding-bottom: 0.2rem; }
+  .gp-b__media {
+    grid-area: media;
+    aspect-ratio: auto;
+    height: 380px;                      /* panoramic strip, ~3.4 : 1 */
+    margin-top: var(--space-9);
+  }
+}
+
+/* 12. Section 4: Turning purpose into progress ("Widening circles") ----- */
+/* Three nested planes share one bottom-left corner and widen step by step:
+     01 Understand   Deep Navy core           (smallest, on top)
+     02 Collaborate  pale-blue plane          (wider)
+     03 Transform    the white field itself   (widest; also holds the heading)
+   Each step's text sits in the part of its plane that the next smaller plane
+   leaves open, so the reading path climbs from bottom-left to top-right as
+   the planes grow. Corners match the hero frame (--frame-radius). */
+
+.pp {
+  /* Giving Pledge ends with 120px; 40px here keeps the ~160px section rhythm. */
+  padding-block: var(--space-7) var(--space-12);
+
+  /* Plane geometry (desktop). Widths are fractions of the field. */
+  --pp-h: 540px;                 /* field (03) height                  */
+  --pp-w2: 67.2%;                /* 02 width  (≈ 860px at 1440)        */
+  --pp-h2: 380px;                /* 02 height                          */
+  --pp-w1: 34.4%;                /* 01 width  (≈ 440px at 1440)        */
+  --pp-h1: 250px;                /* 01 height                          */
+  --pp-pad: var(--space-8);      /* 48px inner padding                 */
+}
+
+.pp__field {
+  position: relative;
+  border: var(--border);
+  border-radius: var(--frame-radius);
+  background: var(--color-white);
+}
+
+.pp__heading {
+  margin: 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--section-title-size); /* shared section headline size (44px at 1440) */
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.pp__steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pp__num {
+  display: block;
+  color: var(--aaf-blue);
+  font-family: var(--font-editorial);
+  font-size: 3.5rem;                    /* 56px */
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.pp__title {
+  margin: var(--space-4) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-primary);
+  font-size: 1.5rem;                    /* 24px */
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+.pp__desc {
+  margin: var(--space-2) 0 0;
+  max-width: 30ch;
+  color: var(--text-body);
+  font-size: 1.0625rem;                 /* 17px */
+  line-height: 1.6;
+}
+
+/* 01: the Deep Navy core. AAF Green number on navy (≈ 5:1). */
+.pp__step--1 {
+  background: var(--color-navy);
+  border-radius: var(--frame-radius);
+}
+.pp__step--1 .pp__num   { color: var(--accent-secondary); }
+
+/* The numbers grow with their planes: 56 → 80 → 112px */
+.pp__step--2 .pp__num { font-size: 5rem; }
+.pp__step--3 .pp__num { font-size: 7rem; letter-spacing: -0.03em; }
+.pp__step--1 .pp__title { color: var(--color-white); }
+.pp__step--1 .pp__desc  { color: rgb(255 255 255 / 0.84); }
+
+/* 02: the pale-blue plane */
+.pp__step--2 {
+  background: var(--color-pale-blue);
+  border-radius: var(--frame-radius);
+}
+
+/* Stacked (below 960px, not yet designed): planes simply follow each other. */
+.pp__heading { padding: var(--pp-pad) var(--pp-pad) 0; }
+.pp__steps { display: grid; gap: var(--space-4); padding: var(--pp-pad); }
+.pp__step--1,
+.pp__step--2 .pp__copy,
+.pp__step--3 { padding: var(--space-6); }
+
+@media (min-width: 960px) {
+  .pp__field { height: var(--pp-h); }
+
+  .pp__heading {
+    position: absolute;
+    top: var(--pp-pad);
+    left: var(--pp-pad);
+    width: calc(var(--pp-w2) - 2 * var(--pp-pad));
+    padding: 0;
+  }
+
+  .pp__steps { display: block; padding: 0; }
+
+  .pp__step--1,
+  .pp__step--2 {
+    position: absolute;
+    left: -1px;                         /* sit on the field's own border */
+    bottom: -1px;
+  }
+
+  /* 02: wider plane; its text sits top-right, clear of 01 */
+  .pp__step--2 {
+    z-index: 1;
+    width: calc(var(--pp-w2) + 1px);
+    height: calc(var(--pp-h2) + 1px);
+  }
+  .pp__step--2 .pp__copy {
+    position: absolute;
+    top: var(--pp-pad);
+    left: calc(var(--pp-w1) / 0.672 + var(--pp-pad));   /* 01's width, expressed inside 02 (34.4 / 67.2) */
+    right: var(--pp-pad);
+    padding: 0;
+  }
+
+  /* 01: the core, on top of 02, text inside */
+  .pp__step--1 {
+    z-index: 2;
+    width: calc(var(--pp-w1) + 1px);
+    height: calc(var(--pp-h1) + 1px);
+    padding: var(--space-7) var(--pp-pad);
+  }
+
+  /* 03: the field itself; text top-right, clear of 02 */
+  .pp__step--3 {
+    position: absolute;
+    top: var(--pp-pad);
+    left: calc(var(--pp-w2) + var(--pp-pad));
+    right: var(--pp-pad);
+    padding: 0;
+  }
+}
+
+/* 12a. Sunflower wall motif ------------------------------------------------ */
+/* Fine line sunflowers, after the painted boundary wall of the Nand Ghar
+   centre. They rise from the bottom edge of each plane, in that plane's
+   own colour at low contrast, and develop with the steps:
+   01 buds → 02 half-open → 03 a full row in bloom. Text always sits on
+   clear ground; the motif only fills open space. Desktop only for now. */
+.pp-sun-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.pp-sun {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+@media (min-width: 960px) {
+  .pp-sun { display: block; }
+
+  /* 01: two buds, faint white on navy */
+  .pp-sun--1 {
+    right: var(--space-6);
+    width: 140px;
+    height: 150px;
+    color: rgb(255 255 255 / 0.26);
+  }
+
+  /* 02: three half-open flowers, AAF Blue on pale blue */
+  .pp-sun--2 {
+    right: var(--space-7);
+    width: 230px;
+    height: 130px;
+    color: rgb(6 100 168 / 0.34);
+  }
+
+  /* 03: the full wall, AAF Blue on white */
+  .pp-sun--3 {
+    right: var(--space-5);
+    width: min(380px, calc(100% - var(--pp-w2) - var(--space-7)));   /* stays clear of plane 02 */
+    height: auto;
+    aspect-ratio: 420 / 270;
+    color: rgb(6 100 168 / 0.26);
+  }
+}
+
+/* 13. Section 5: Our programmes / Areas of work --------------------------- */
+/* Two tiers.
+   Featured (Nand Ghar, TACO): large image-led cards, 7 : 5. The impact
+   figure sits on a tab cut from the page into the photo's lower-right
+   corner: the hero's "mat" cut, at card scale.
+   Second tier (Sports, Healthcare, Culture, Education and Livelihood): an
+   editorial index. Four rows share one tall image stage on the left; the
+   active row (hover, tap or keyboard focus) shows its photograph. */
+
+.prog {
+  /* Section 4 ends with 120px; 40px here keeps the ~160px section rhythm. */
+  padding-block: var(--space-7) var(--space-12);
+}
+
+.prog__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-5) var(--space-8);
+}
+
+.prog__title {
+  margin: var(--space-5) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--section-title-size);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.prog__all { margin-bottom: 0.4rem; }
+
+/* Arrow link: used for "Explore" and "View all areas of work" */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-link);
+  font-size: 0.9375rem;                 /* 15px */
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+.arrow-link:hover {
+  color: var(--text-link-hover);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+.arrow-link__arrow {
+  display: inline-block;
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+.arrow-link:hover .arrow-link__arrow { transform: translateX(4px); }
+
+/* Shared card text ------------------------------------------------------- */
+.pcard__category {
+  margin: 0;
+  color: var(--text-link);
+  font-size: 0.75rem;                   /* 12px */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;            /* visual only */
+}
+
+.pcard__goal {
+  margin: var(--space-3) 0 0;
+  color: var(--text-body);
+  font-size: 0.9375rem;                 /* 15px */
+  line-height: 1.55;
+}
+.pcard__goal strong {
+  color: var(--text-heading);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Featured tier ------------------------------------------------------------ */
+.prog__featured {
+  display: grid;
+  gap: var(--space-8);
+  margin-top: var(--space-9);
+}
+
+.pcard__media {
+  --r: var(--frame-radius);
+  position: relative;
+  margin: 0;
+  aspect-ratio: 3 / 2;
+}
+/* The photo is clipped by its own frame, so the impact tab can sit on the
+   corner without being clipped itself. */
+.pcard__frame {
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--r);
+  background: var(--surface-sage);      /* while the image loads */
+}
+.pcard__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-out);
+}
+.pcard:hover .pcard__media img { transform: scale(1.03); }
+.pcard--lead .pcard__media img { object-position: 28% 50%; }   /* keeps the anganwadi worker in frame */
+
+/* Impact tab: cut from the page (mat colour) into the photo's lower-right
+   corner. The two pseudo-elements round the photo's edges where they meet
+   the tab; hard-edged masks in the mat colour, not decorative gradients. */
+.pcard__impact {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0;
+  padding: var(--space-4) 0 0 var(--space-6);
+  background: var(--mat);
+  border-top-left-radius: var(--r);
+}
+.pcard__impact::before,
+.pcard__impact::after {
+  content: "";
+  position: absolute;
+  width: var(--r);
+  height: var(--r);
+  background: radial-gradient(circle at 0 0, transparent calc(var(--r) - 0.5px), var(--mat) var(--r));
+  pointer-events: none;
+}
+.pcard__impact::before { right: 0; top: calc(var(--r) * -1); }
+.pcard__impact::after  { left: calc(var(--r) * -1); bottom: 0; }
+
+.pcard__figure,
+.prow__figure {
+  color: var(--aaf-blue);
+  font-family: var(--font-editorial);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums;
+  white-space: nowrap;
+}
+.pcard__figure { font-size: 2.75rem; }  /* 44px */
+
+.pcard__impact-label,
+.prow__impact-label,
+.pcard__second-label {
+  color: var(--text-heading);
+  font-size: var(--font-size-label);    /* 13px */
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+}
+.pcard__impact-label { margin-top: var(--space-2); }
+
+.pcard__body { margin-top: var(--space-5); }
+
+.pcard__name {
+  margin: var(--space-3) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: 2.125rem;                  /* 34px */
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.pcard__desc {
+  margin: var(--space-3) 0 0;
+  max-width: 48ch;
+  color: var(--text-body);
+  font-size: 1.0625rem;                 /* 17px */
+  line-height: 1.6;
+}
+
+.pcard__foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin: var(--space-5) 0 0;
+}
+
+/* Second tier: editorial index --------------------------------------------- */
+.prog__index {
+  position: relative;
+  margin-top: var(--space-10);
+}
+
+.prog__rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prow { border-top: var(--border); }
+.prow:last-child { border-bottom: var(--border); }
+
+.prow__inner {
+  position: static;
+  display: grid;
+  gap: var(--space-5);
+  padding-block: var(--space-6);
+}
+
+.prow__media {
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--frame-radius);
+  background: var(--surface-sage);
+}
+.prow__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prow__name {
+  margin: var(--space-2) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: 1.75rem;                   /* 28px */
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  transition: color var(--duration-base) var(--ease-standard);
+}
+
+.prow__desc {
+  margin: var(--space-2) 0 0;
+  max-width: 44ch;
+  color: var(--text-body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.prow__impact {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.prow__figure { font-size: 2.25rem; }   /* 36px */
+.prow__impact-label { margin-top: var(--space-1); }
+
+@media (min-width: 960px) {
+  .prog__featured {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    column-gap: var(--space-7);
+    align-items: start;
+  }
+  .pcard__media {
+    aspect-ratio: auto;
+    height: 420px;
+  }
+
+  /* Index: image stage in the left 5 columns, rows in the right 7. */
+  .prog__index {
+    --stage-gap: var(--space-9);
+    --stage-w: calc((100% - var(--stage-gap)) * 5 / 12);
+    padding-left: calc(var(--stage-w) + var(--stage-gap));
+  }
+
+  .prow__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: var(--space-7);
+    padding-block: var(--space-5);
+    padding-left: 0;
+    transition: padding-left var(--duration-base) var(--ease-standard);
+  }
+
+  /* Each row's photo is laid over the shared stage; only the active one shows. */
+  .prow__media {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--stage-w);
+    aspect-ratio: auto;
+    opacity: 0;
+    transition: opacity 450ms var(--ease-standard);
+  }
+  .prow.is-active .prow__media { opacity: 1; }
+  /* Without JavaScript: hover or keyboard focus still reveals the row's photo. */
+  .prow:hover .prow__media,
+  .prow:focus-within .prow__media { opacity: 1; z-index: 1; }
+
+  .prow__main { position: relative; }
+  /* Active marker: a short AAF Green bar; the row steps in to meet it. */
+  .prow__main::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--space-5) * -1);
+    top: 0.2rem;
+    bottom: 0.2rem;
+    width: 3px;
+    border-radius: 2px;
+    background: var(--accent-secondary);
+    transform: scaleY(0);
+    transform-origin: 50% 0;
+    transition: transform var(--duration-base) var(--ease-standard);
+  }
+  .prow.is-active .prow__inner { padding-left: var(--space-5); }
+  .prow.is-active .prow__main::before { transform: scaleY(1); }
+  .prow.is-active .prow__name { color: var(--aaf-blue); }
+
+  .prow__side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-5);
+    min-width: 11rem;
+    text-align: right;
+  }
+  .prow__impact { align-items: flex-end; }
+
+  /* Portrait crops of landscape photos: keep each subject in frame. */
+  .prow:nth-child(1) .prow__media img { object-position: 40% 50%; }
+  .prow:nth-child(2) .prow__media img { object-position: 50% 50%; }
+  .prow:nth-child(3) .prow__media img { object-position: 36% 50%; }
+  .prow:nth-child(4) .prow__media img { object-position: 86% 50%; }
+}
+
+/* 14. Section 6: People behind every number ------------------------------- */
+/* A Soft Sage band. Tabs run along a hairline; each panel pairs a tall
+   photograph with the group's story. The testimonial sits on a white card
+   that overlaps the photograph, so the words stay attached to the people.
+   Reach figures are deliberately modest: the people lead, numbers support. */
+
+.people {
+  --people-line: rgb(24 61 91 / 0.18);  /* Deep Navy hairline on sage */
+  padding-block: var(--space-11) var(--space-12);
+  background: var(--surface-sage);
+}
+
+.people__title {
+  margin: var(--space-5) 0 0;
+  max-width: 46rem;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--section-title-size);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* Tabs */
+.people__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-8);
+  margin-top: var(--space-8);
+  border-bottom: 1px solid var(--people-line);
+}
+
+.people__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0 0 -1px;
+  padding: var(--space-4) 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--text-link);
+  font-family: var(--font-primary);
+  font-size: 1.0625rem;                 /* 17px */
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard);
+}
+/* Marker: open AAF Blue ring; solid AAF Green on the selected tab */
+.people__tab::before {
+  content: "";
+  flex: none;
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  border: 2px solid currentColor;
+  border-radius: var(--radius-pill);
+  transition: background-color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard);
+}
+.people__tab:hover { color: var(--text-link-hover); }
+.people__tab[aria-selected="true"] {
+  border-bottom-color: var(--color-navy);
+  color: var(--text-heading);
+}
+.people__tab[aria-selected="true"]::before {
+  border-color: var(--accent-secondary);
+  background: var(--accent-secondary);
+}
+
+/* Panels */
+.people__panel {
+  display: grid;
+  gap: var(--space-7);
+  margin-top: var(--space-8);
+}
+.people__panel[hidden] { display: none; }
+.people__panel:focus-visible { outline-offset: var(--space-3); }
+
+.people__media {
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--frame-radius);
+  background: rgb(255 255 255 / 0.5);
+}
+.people__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 34% 50%;             /* the girl sits left of centre in the frame */
+}
+
+.people__content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.people__name {
+  margin: 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: 2.25rem;                   /* 36px */
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.people__facts {
+  display: grid;
+  gap: var(--space-6) var(--space-8);
+  margin-top: var(--space-6);
+}
+
+.people__label {
+  margin: 0;
+  color: var(--text-link);
+  font-size: 0.75rem;                   /* 12px */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;            /* visual only */
+}
+
+.people__text {
+  margin: var(--space-2) 0 0;
+  max-width: 34ch;
+  color: var(--text-heading);
+  font-size: 1.125rem;                  /* 18px */
+  line-height: 1.55;
+}
+
+/* Reach: supporting information, set small and on one line */
+.people__reach {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-9);
+  margin: var(--space-7) 0 0;
+  padding: var(--space-5) 0 0;
+  border-top: 1px solid var(--people-line);
+  list-style: none;
+}
+.people__reach li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+.people__reach-num {
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-size: 2rem;                      /* 32px */
+  line-height: 1;
+  font-variant-numeric: lining-nums;
+}
+.people__reach-label {
+  color: var(--text-body);
+  font-size: 0.9375rem;                 /* 15px */
+  font-weight: var(--font-weight-medium);
+}
+
+/* Testimonial card */
+.people__quote {
+  position: relative;
+  z-index: 1;
+  margin: var(--space-8) 0 0;
+  padding: var(--space-6) var(--space-7);
+  border-radius: var(--frame-radius);
+  background: var(--color-white);
+}
+.people__quote blockquote { margin: 0; }
+.people__quote blockquote p {
+  margin: 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-size: 1.625rem;                  /* 26px */
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+.people__quote figcaption {
+  margin-top: var(--space-3);
+  color: var(--text-body);
+  font-size: 0.9375rem;                 /* 15px */
+  font-weight: var(--font-weight-medium);
+}
+
+/* Pending state (tabs whose content the wireframe does not supply) */
+.people__media--pending {
+  display: grid;
+  place-items: center;
+  border: 1.5px dashed rgb(24 61 91 / 0.35);
+  background: rgb(255 255 255 / 0.35);
+  color: var(--text-heading);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-medium);
+}
+.people__media--pending p { margin: 0; }
+
+.people__pending {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--people-line);
+}
+.people__pending .people__text { max-width: 46ch; }
+
+@media (min-width: 960px) {
+  .people__panel {
+    --people-gap: var(--space-9);
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--people-gap);
+    align-items: stretch;
+  }
+  .people__media {
+    aspect-ratio: auto;
+    min-height: 500px;
+  }
+  .people__content { padding-top: var(--space-2); }
+  .people__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* The card reaches back across the gutter and over the photograph's corner. */
+  .people__quote {
+    margin-top: auto;
+    margin-bottom: var(--space-7);
+    margin-left: calc(-1 * (var(--people-gap) + 7rem));
+  }
+  .people__reach { margin-bottom: var(--space-8); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes people-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .people__panel:not([hidden]) .people__media   { animation: people-in 450ms var(--ease-out) both; }
+  .people__panel:not([hidden]) .people__content { animation: people-in 450ms var(--ease-out) 80ms both; }
+}
+
+/* 15. Section 7: Overall Impact. ("Stepped tiles") ----------------------- */
+/* Four rows of light brand-tinted tiles widen as they go down; the heading
+   sits in the open top-left corner. Box size follows the figure: small
+   figures share the narrow top row, the largest fills the widest bottom
+   row. Each row opens with a photograph. Number on top, its line below;
+   the number size steps up with the box. Flat colour, no borders. */
+
+.impact {
+  /* Follows the full-bleed People band, so it sets its own top space. */
+  padding-block: var(--space-11) var(--space-12);
+}
+
+.impact__title {
+  margin: 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--section-title-size);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.impact__rows {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.irow {
+  --tile: var(--color-pale-blue);
+  --ink: var(--text-heading);
+  display: grid;
+  gap: var(--space-3);
+}
+.irow--sage  { --tile: var(--color-sage); }
+.irow--warm  { --tile: var(--color-warm-neutral); }
+.irow--white { --tile: var(--color-white); }
+
+.irow__photo {
+  position: relative;
+  margin: 0;
+  min-height: 9rem;
+  overflow: hidden;
+  border-radius: var(--frame-radius);
+  background: var(--tile);
+}
+/* The image fills whatever height the row's tiles give the photo, and
+   adds no height of its own. */
+.irow__photo img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-out);
+}
+.irow:hover .irow__photo img { transform: scale(1.04); }
+
+.irow__stats {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Tiles hug their content with equal padding on every side; within a row
+   the content is centred, so shorter tiles keep equal space above and
+   below. */
+.istat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border-radius: var(--frame-radius);
+  background: var(--tile);
+  color: var(--ink);
+}
+
+.istat__desc {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 0.9375rem;                 /* 15px */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.istat__num {
+  margin: 0;
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: 2.25rem;                   /* 36px: small */
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-variant-numeric: lining-nums proportional-nums;
+  white-space: nowrap;
+}
+.istat--m  .istat__num { font-size: 2.75rem; }  /* 44px */
+.istat--l  .istat__num { font-size: 3.25rem; }  /* 52px */
+.istat--xl .istat__num { font-size: 4rem; }     /* 64px: the largest figure */
+.istat--s  .istat__desc { font-size: 0.875rem; } /* 14px in the narrow boxes */
+
+/* Sunflower motif, scaled to the figure (symbols from Section 4). Fine
+   line drawings in the tile's own ink at low contrast, standing on the
+   tile's bottom edge at the right; they never sit under the text. */
+.istat__sun { display: none; }
+
+@media (min-width: 960px) {
+  /* Rows step out to the left by --step each; all end on the right edge. */
+  .impact__rows { --step: 7.5rem; --photo: 12.5rem; }   /* 120px, 200px */
+
+  /* Each row is as tall as its fullest tile; the photo and the other
+     tiles stretch to match. */
+  .irow {
+    grid-template-columns: var(--photo) minmax(0, 1fr);
+    align-items: stretch;
+  }
+  .irow--1 { margin-left: calc(var(--step) * 3); }
+  .irow--2 { margin-left: calc(var(--step) * 2); }
+  .irow--3 { margin-left: calc(var(--step) * 1); }
+  .irow--4 { margin-left: 0; }
+
+  /* Row 1 carries the heading in the open corner to its left */
+  .irow--1 {
+    position: relative;
+  }
+  .irow--1 .impact__title {
+    position: absolute;
+    right: calc(100% + var(--space-6));
+    top: 0;
+    width: calc(var(--step) * 3 - var(--space-6));
+  }
+
+
+  /* Tiles in a row share its width equally; the row widths do the sizing:
+     row 1 three small, row 2 two medium, row 3 one large, row 4 the widest. */
+  .irow__stats {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+  }
+  .irow__stats { align-items: stretch; }
+
+  .istat { position: relative; overflow: hidden; }
+  .istat__sun {
+    display: block;
+    position: absolute;
+    right: var(--space-6);
+    bottom: 0;
+    fill: none;
+    stroke: rgb(24 61 91 / 0.14);       /* subtle: texture, not illustration */
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+  }
+  .irow--blue .istat__sun { stroke: rgb(6 100 168 / 0.16); }
+  /* Keep each description clear of its flowers */
+  .istat:has(.istat__sun--m) .istat__desc { max-width: calc(100% - 7rem); }
+}
+
+/* 16. Section 8: Stories of change ---------------------------------------- */
+/* A front page. All: the featured story leads on the left (7 parts) and four
+   supporting stories run down the right (5 parts) as a list. Filtered: only
+   that programme's stories remain, each as a wide split (image 7, text 5),
+   so one story still fills the row. */
+
+.stories {
+  /* Section 7 ends with 120px; 40px here keeps the ~160px section rhythm. */
+  padding-block: var(--space-7) var(--space-12);
+}
+
+.stories__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-5) var(--space-8);
+}
+
+.stories__title {
+  margin: var(--space-5) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--section-title-size);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.stories__all { margin-bottom: 0.4rem; }
+
+/* Filter chips (single select; state is aria-pressed) */
+.stories__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+.chip {
+  padding: 0.625rem 1.125rem;
+  border: 1px solid rgb(24 61 91 / 0.28);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-heading);
+  font-family: var(--font-primary);
+  font-size: 0.875rem;                  /* 14px */
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard);
+}
+.chip:hover { border-color: var(--color-navy); }
+.chip[aria-pressed="true"] {
+  border-color: var(--color-navy);
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+/* Grid */
+.stories__grid {
+  display: grid;
+  gap: var(--space-8);
+  margin-top: var(--space-7);
+}
+
+/* Hidden states. The second selector outranks the filtered layout rule
+   (.stories.is-filtered .story { display: grid }) further down. */
+.stories [data-story][hidden],
+.stories.is-filtered [data-story][hidden],
+.stories__list[hidden],
+.stories__empty[hidden] { display: none; }
+
+.stories__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.stories__item { border-top: var(--border); }
+.stories__item:last-child { border-bottom: var(--border); }
+
+/* Story: shared -------------------------------------------------------------- */
+.story { position: relative; }
+
+.story__media {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--frame-radius);
+  background: var(--surface-sage);
+}
+.story__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-out);
+}
+.story:hover .story__media img { transform: scale(1.04); }
+
+/* "Watch" marker: says the story is a film. Solid mat disc, no overlay. */
+.story__play {
+  position: absolute;
+  left: var(--space-2);
+  bottom: var(--space-2);
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-pill);
+  background: var(--mat);
+  color: var(--text-heading);
+}
+.story__play svg { fill: currentColor; margin-left: 1px; }
+
+.story__meta {
+  margin: 0;
+  color: var(--text-link);
+  font-size: 0.75rem;                   /* 12px */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;            /* visual only */
+}
+
+.story__title {
+  margin: var(--space-2) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: 1.5rem;                    /* 24px */
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* The title link covers the whole supporting story, so the row is one target. */
+.story__link {
+  color: inherit;
+  text-decoration: none;
+}
+.story__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.story:hover .story__link {
+  color: var(--aaf-blue);
+}
+.story__link:focus-visible { outline: none; }
+.story__link:focus-visible::after {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.story__quote { margin: var(--space-2) 0 0; }
+.story__quote p {
+  margin: 0;
+  color: var(--text-body);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Supporting story: compact row (thumbnail + text) --------------------------- */
+.stories__item .story {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  column-gap: var(--space-5);
+  align-items: center;
+  padding-block: var(--space-5);
+}
+.stories__item .story__media {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 12px;
+}
+
+/* Featured story -------------------------------------------------------------- */
+.story--featured .story__media { aspect-ratio: 16 / 10; }
+.story--featured .story__media img { object-position: 22% 40%; }   /* keeps the girl and her hands in frame */
+
+.story--featured .story__body { margin-top: var(--space-5); }
+
+.story--featured .story__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+/* The tag is a solid mat pill on the photograph, like the hero's film link. */
+.story--featured .story__tag {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.5rem 0.875rem;
+  border-radius: var(--radius-pill);
+  background: var(--mat);
+}
+.story--featured .story__tag::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-secondary);
+}
+
+.story--featured .story__title {
+  margin-top: var(--space-3);
+  max-width: 24ch;
+  font-size: 2.125rem;                  /* 34px */
+  line-height: 1.15;
+}
+
+.story--featured .story__quote { margin-top: var(--space-4); }
+.story--featured .story__quote p,
+.stories.is-filtered .story__quote p {
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-size: 1.375rem;                  /* 22px */
+  line-height: 1.4;
+}
+
+.story__attribution {
+  margin: var(--space-2) 0 0;
+  color: var(--text-body);
+  font-size: 0.9375rem;                 /* 15px */
+  font-weight: var(--font-weight-medium);
+}
+
+.story__cta { margin-top: var(--space-5); }
+
+/* Pending state: a programme with no story supplied ---------------------------- */
+.stories__empty {
+  display: grid;
+  place-content: center;
+  gap: var(--space-2);
+  min-height: 20rem;
+  padding: var(--space-7);
+  border: 1.5px dashed rgb(24 61 91 / 0.35);
+  border-radius: var(--frame-radius);
+  text-align: center;
+}
+.stories__empty p { margin: 0; }
+.stories__empty-label {
+  color: var(--text-link);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.stories__empty-text {
+  color: var(--text-heading);
+  font-size: 1.125rem;
+}
+
+@media (min-width: 960px) {
+  .stories__grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    column-gap: var(--space-9);
+    align-items: start;
+  }
+  .story--featured .story__media {
+    aspect-ratio: auto;
+    height: 440px;
+  }
+  .stories__empty { grid-column: 1 / -1; }
+
+  /* Filtered: one column; every visible story becomes a wide split. */
+  .stories.is-filtered .stories__grid { grid-template-columns: minmax(0, 1fr); }
+  .stories.is-filtered .stories__list { display: grid; gap: var(--space-8); }
+  .stories.is-filtered .stories__item { border: 0; }
+
+  .stories.is-filtered .story {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    column-gap: var(--space-9);
+    align-items: center;
+    padding-block: 0;
+  }
+  .stories.is-filtered .story__media {
+    width: auto;
+    height: 440px;
+    border-radius: var(--frame-radius);
+  }
+  .stories.is-filtered .story__body { margin-top: 0; }
+  .stories.is-filtered .story__title {
+    margin-top: var(--space-3);
+    font-size: 2.125rem;
+    line-height: 1.15;
+  }
+  .stories.is-filtered .story__quote { margin-top: var(--space-4); }
+  .stories.is-filtered .story__play {
+    left: var(--space-4);
+    bottom: var(--space-4);
+    width: 44px;
+    height: 44px;
+  }
+  .stories.is-filtered .story__play svg { width: 16px; height: 16px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes story-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .stories__grid.is-entering [data-story]:not([hidden]),
+  .stories__grid.is-entering .stories__empty:not([hidden]) {
+    animation: story-in 400ms var(--ease-out) both;
+  }
+}
+
+/* 17. Section 9: Leadership that gives with intent ------------------------ */
+/* A magazine spread. The Chair's tall portrait breaks out of the top of a
+   pale-blue panel that carries the quote at display size; the portrait and
+   the panel share one bottom edge. The Trustee and Head of Programmes
+   follow as a pair of smaller portrait-and-text profiles, text bottom-
+   aligned to each portrait. No cards, rules or icons. */
+
+.lead {
+  /* Section 8 ends with 120px; 40px here keeps the ~160px section rhythm. */
+  padding-block: var(--space-7) var(--space-12);
+}
+
+.lead__title {
+  margin: var(--space-5) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--section-title-size);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.lead__feature { margin-top: var(--space-8); }
+.lead__pair {
+  display: grid;
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.leader {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.leader__portrait {
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--frame-radius);
+  background: var(--surface-sage);      /* while the image loads */
+}
+.leader__portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 15%;
+}
+/* Per-portrait crops. Re-tune whenever a portrait is replaced. */
+.leader--chair .leader__portrait img { object-position: 32% 50%; }   /* landscape photo: keeps his face centred */
+/* Studio cut-out on white: multiply melts the white into the frame colour,
+   so the portrait sits on the same pale blue as the Chair's panel. */
+.leader--trustee .leader__portrait { background: var(--color-pale-blue); }
+.leader--trustee .leader__portrait img {
+  object-position: 50% 20%;
+  mix-blend-mode: multiply;
+}
+.leader--programmes .leader__portrait img { object-position: 50% 8%; }
+
+.leader__quote { margin: 0; }
+.leader__quote p {
+  margin: 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-size: 1.3125rem;                 /* 21px */
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+
+.leader__name {
+  margin: var(--space-5) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-primary);
+  font-size: 1.0625rem;                 /* 17px */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.3;
+}
+
+.leader__designation {
+  margin: var(--space-1) 0 0;
+  color: var(--text-link);
+  font-size: 0.75rem;                   /* 12px */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;            /* visual only */
+}
+
+.leader__mission {
+  margin: var(--space-3) 0 0;
+  color: var(--text-body);
+  font-size: 0.9375rem;                 /* 15px */
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+@media (min-width: 960px) {
+  /* The Chair */
+  .lead__feature {
+    --lead-rise: var(--space-9);        /* how far the portrait rises above the panel */
+    position: relative;
+    margin-top: var(--space-9);
+  }
+  .lead__feature::before {
+    content: "";
+    position: absolute;
+    left: 18%;
+    right: 0;
+    top: var(--lead-rise);
+    bottom: 0;
+    border-radius: var(--frame-radius);
+    background: var(--color-pale-blue);
+  }
+
+  .leader--chair {
+    position: relative;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--space-9);
+    align-items: center;
+  }
+  .leader--chair .leader__portrait {
+    aspect-ratio: auto;
+    height: 600px;
+  }
+  .leader--chair .leader__body {
+    padding: var(--lead-rise) var(--space-9) 0 0;
+  }
+  .leader--chair .leader__quote p {
+    font-size: 2.125rem;                /* 34px */
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+  }
+  .leader--chair .leader__name {
+    margin-top: var(--space-7);
+    font-size: 1.25rem;                 /* 20px */
+  }
+  .leader--chair .leader__mission {
+    max-width: 46ch;
+    font-size: 1.0625rem;               /* 17px */
+  }
+
+  /* Trustee and Head of Programmes */
+  .lead__pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-9);
+    margin-top: var(--space-10);
+  }
+  .lead__pair .leader {
+    grid-template-columns: 15rem minmax(0, 1fr);
+    column-gap: var(--space-6);
+    align-items: end;                   /* text ends on the portrait's bottom edge */
+  }
+  .lead__pair .leader__portrait {
+    aspect-ratio: auto;
+    height: 19.5rem;                    /* 312px */
+  }
+}
+
+/* 18. Section 10: Reports and resources ----------------------------------- */
+/* A shelf of publication covers. The annual report is the large cover; the
+   other six sit beside it in two rows. Surfaces say what a thing is:
+   brand solids for reports, Soft Sage for the case study, white "paper"
+   for research and policy, Charcoal with a play marker for the film.
+   Document covers have a folded corner. Filtered: the one matching cover
+   becomes a full-width banner. */
+
+.res {
+  /* Section 9 ends with 120px; 40px here keeps the ~160px section rhythm. */
+  padding-block: var(--space-7) var(--space-12);
+}
+
+.res__head {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.res__title {
+  margin: var(--space-5) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--section-title-size);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.res__intro {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--text-body);
+  font-size: 1.125rem;                  /* 18px */
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.res__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-7);
+}
+
+.res__shelf {
+  display: grid;
+  gap: var(--space-5);
+  margin: var(--space-7) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.res__item[hidden] { display: none; }
+
+/* Cover -------------------------------------------------------------------- */
+.rcover {
+  --cover-bg: var(--color-white);
+  --cover-ink: var(--text-heading);
+  --cover-label: var(--text-link);
+  --cover-fold: rgb(24 61 91 / 0.16);
+  --cover-edge: transparent;
+  --fold: 30px;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 15rem;
+  padding: var(--space-5);
+  color: var(--cover-ink);
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+.rcover:hover,
+.rcover:focus-within { transform: translateY(-4px); }
+
+/* The sheet: the cover's surface, with its top-right corner cut away */
+.rcover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--frame-radius);
+  background: var(--cover-bg);
+  box-shadow: inset 0 0 0 1px var(--cover-edge);
+  clip-path: polygon(0 0, calc(100% - var(--fold)) 0, 100% var(--fold), 100% 100%, 0 100%);
+}
+/* The fold: the cut corner turned over */
+.rcover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  width: var(--fold);
+  height: var(--fold);
+  border-bottom-left-radius: 6px;
+  background: var(--cover-fold);
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.rcover--navy  { --cover-bg: var(--color-navy); --cover-ink: var(--color-white); --cover-label: var(--accent-secondary); --cover-fold: rgb(255 255 255 / 0.26); }
+.rcover--blue  { --cover-bg: var(--aaf-blue);   --cover-ink: var(--color-white); --cover-label: var(--color-white);      --cover-fold: rgb(255 255 255 / 0.3); }
+.rcover--sage  { --cover-bg: var(--color-sage); }
+.rcover--pale  { --cover-bg: var(--color-pale-blue); }
+.rcover--paper { --cover-bg: var(--color-white); --cover-edge: var(--border-color); }
+/* A film is not a document: no folded corner, a play marker instead */
+.rcover--film  { --cover-bg: var(--color-charcoal); --cover-ink: var(--color-white); --cover-label: var(--accent-secondary); }
+.rcover--film::before { clip-path: none; }
+.rcover--film::after  { content: none; }
+
+.rcover__type {
+  margin: 0;
+  padding-right: var(--space-7);        /* clear of the fold / play marker */
+  color: var(--cover-label);
+  font-size: 0.75rem;                   /* 12px */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;            /* visual only */
+}
+
+.rcover__title {
+  margin: var(--space-3) 0 var(--space-5);
+  color: inherit;
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: 1.3125rem;                 /* 21px */
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+.rcover__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin: auto 0 0;
+}
+
+.rcover__date {
+  font-size: 0.875rem;                  /* 14px */
+  font-weight: var(--font-weight-medium);
+  opacity: 0.86;
+}
+
+/* Action: a small pill. Its ::after stretches over the cover, so the whole
+   cover is one target. */
+.rcover__action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  color: inherit;
+  font-size: 0.8125rem;                 /* 13px */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard);
+}
+.rcover__action::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--frame-radius);
+}
+.rcover:hover .rcover__action {
+  border-color: var(--cover-ink);
+  background: var(--cover-ink);
+  color: var(--cover-bg);
+}
+.rcover__action:focus-visible { outline: none; }
+.rcover__action:focus-visible::after {
+  outline: var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.rcover__play {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-5);
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background: var(--mat);
+  color: var(--text-heading);
+}
+.rcover__play svg { fill: currentColor; margin-left: 2px; }
+
+/* Sunflower line motif on the lead cover (symbols defined in Section 4) */
+.rcover__motif {
+  display: none;
+  position: absolute;
+  right: var(--space-5);
+  bottom: 5.5rem;
+  z-index: -1;
+  width: 190px;
+  fill: none;
+  stroke: rgb(255 255 255 / 0.2);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+@media (min-width: 960px) {
+  .res__head {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    column-gap: var(--space-9);
+    align-items: end;
+  }
+  .res__intro { justify-self: end; }
+
+  .res__shelf {
+    grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 17rem;              /* 272px */
+  }
+  .res__item--lead { grid-row: span 2; }
+
+  .res__item--lead .rcover { --fold: 44px; padding: var(--space-7); }
+  .res__item--lead .rcover__title {
+    margin-top: var(--space-4);
+    max-width: 9ch;
+    font-size: 2.75rem;                 /* 44px */
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+  }
+  .res__item--lead .rcover__motif { display: block; }
+
+  /* Filtered: one full-width banner cover */
+  .res.is-filtered .res__shelf {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: auto;
+  }
+  .res.is-filtered .res__item { grid-row: auto; }
+  .res.is-filtered .rcover {
+    --fold: 44px;
+    min-height: 20rem;
+    padding: var(--space-8);
+  }
+  .res.is-filtered .rcover__title {
+    margin-top: var(--space-4);
+    max-width: 22ch;
+    font-size: 2.75rem;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+  }
+  .res.is-filtered .rcover__motif { display: block; right: 12rem; bottom: 0; width: 230px; }   /* clear of the action pill */
+  .res.is-filtered .rcover__play { top: var(--space-8); right: var(--space-8); width: 48px; height: 48px; }
+  .res.is-filtered .rcover__action { padding: 0.6rem 1.1rem; font-size: 0.9375rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .res__shelf.is-entering .res__item:not([hidden]) {
+    animation: story-in 400ms var(--ease-out) both;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rcover:hover,
+  .rcover:focus-within { transform: none; }
+}
+
+/* 19. Section 11: Films and videos ---------------------------------------- */
+/* A screening room: a full-bleed Charcoal band. An expanding reel of three
+   stills on one baseline: one film is open (wide and tall), the other two
+   are collapsed panels; hover or focus opens a film. Each still has a play
+   button and a timecode chip; tag and title sit below. */
+
+.films {
+  margin-top: var(--space-4);           /* Section 10 already ends with 120px */
+  padding-block: var(--space-11) var(--space-12);
+  background: var(--color-charcoal);
+  color: var(--color-white);
+}
+
+.films__title {
+  margin: 0;
+  color: var(--color-white);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--section-title-size);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.films__reel {
+  display: grid;
+  gap: var(--space-8);
+  margin: var(--space-9) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.film article {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.film__still {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--frame-radius);
+  background: rgb(255 255 255 / 0.06);
+}
+.film__still img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 800ms var(--ease-out);
+}
+.film:hover .film__still img { transform: scale(1.04); }
+
+/* Play: the whole still is the button's target; the disc is the visible control */
+.film__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-heading);
+  cursor: pointer;
+}
+.film__play-disc {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-pill);
+  background: var(--mat);
+  transition: transform var(--duration-base) var(--ease-standard),
+              background-color var(--duration-base) var(--ease-standard);
+}
+.film__play-disc svg { fill: currentColor; margin-left: 3px; }
+.film__play:hover .film__play-disc { transform: scale(1.08); background: var(--color-white); }
+.film__play:focus-visible { outline: none; }
+.film__play:focus-visible .film__play-disc {
+  outline: 2px solid var(--mat);
+  outline-offset: 4px;
+}
+
+/* Timecode chip (solid, no overlay on the footage) */
+.film__time {
+  position: absolute;
+  left: var(--space-4);
+  bottom: var(--space-4);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: var(--mat);
+  color: var(--text-heading);
+  font-size: 0.8125rem;                 /* 13px */
+  font-weight: var(--font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+/* "Not available yet" note, shown when a film has no source */
+.film__status {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 48px);
+  transform: translate(-50%, 6px);
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-navy);
+  color: var(--color-white);
+  font-size: 0.8125rem;
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-standard),
+              transform var(--duration-base) var(--ease-standard);
+}
+.film__status:empty { display: none; }
+.film__status.is-shown { opacity: 1; transform: translate(-50%, 0); }
+
+.film__tag {
+  margin: var(--space-5) 0 0;
+  color: var(--accent-secondary);       /* AAF Green on Charcoal: 6:1 */
+  font-size: 0.75rem;                   /* 12px */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;            /* visual only */
+}
+
+.film__title {
+  margin: var(--space-2) 0 0;
+  color: var(--color-white);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: 1.5rem;                    /* 24px */
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+/* Crops */
+.film--lead .film__still img   { object-position: 0% 50%; }    /* the girl stands right of the play button */
+.film--taco .film__still img   { object-position: 40% 70%; }   /* boy and puppy */
+.film--sports .film__still img { object-position: 70% 30%; }   /* nearer athlete */
+
+@media (min-width: 960px) {
+  /* Expanding reel. One film is open (wide and tall), the other two are
+     collapsed panels. By default the first film is open; hovering a film,
+     or tabbing into it, opens it instead. Widths and heights transition.
+     Gutters are padding inside each item (no grid gap), so moving the
+     pointer from one film to the next never passes over empty space. */
+  .films__reel {
+    --open: minmax(0, 7fr);
+    --shut: minmax(0, 2.85fr);
+    grid-template-columns: var(--open) var(--shut) var(--shut);
+    column-gap: 0;
+    align-items: end;
+    /* Fixed reel height = tallest still + tag + fixed title block, so the
+       section never changes height, even mid-transition when both resizing
+       stills are briefly shorter than 440px. Only the cards resize. */
+    height: calc(440px + var(--space-5) + 0.75rem * 1.3 + var(--space-2) + 5.5rem);
+    transition: grid-template-columns 600ms var(--ease-out);
+  }
+  .films__reel:has(.film:nth-child(2):is(:hover, :focus-within)) {
+    grid-template-columns: var(--shut) var(--open) var(--shut);
+  }
+  .films__reel:has(.film:nth-child(3):is(:hover, :focus-within)) {
+    grid-template-columns: var(--shut) var(--shut) var(--open);
+  }
+  /* Equal half-gutters on every item, cancelled at the outer edges, so all
+     collapsed panels are the same width and the reel stays flush. */
+  .films__reel { margin-inline: calc(var(--space-7) / -2); }
+  .film { padding-inline: calc(var(--space-7) / 2); }
+
+  .film__still {
+    aspect-ratio: auto;
+    height: 360px;                      /* collapsed */
+    transition: height 600ms var(--ease-out);
+  }
+  .film__still img { transition: transform 800ms var(--ease-out), object-position 600ms var(--ease-out); }
+  .film__title { transition: font-size 400ms var(--ease-out); }
+  .film__play-disc { transition: transform var(--duration-base) var(--ease-standard),
+                                 background-color var(--duration-base) var(--ease-standard),
+                                 width 400ms var(--ease-out), height 400ms var(--ease-out); }
+
+  /* Open state: the hovered/focused film, or the first one when none is */
+  .films__reel:not(:has(.film:is(:hover, :focus-within))) .film:first-child .film__still,
+  .film:is(:hover, :focus-within) .film__still { height: 440px; }
+
+  .films__reel:not(:has(.film:is(:hover, :focus-within))) .film:first-child .film__title,
+  .film:is(:hover, :focus-within) .film__title { font-size: 2.125rem; line-height: 1.15; }   /* 34px */
+
+  .films__reel:not(:has(.film:is(:hover, :focus-within))) .film:first-child .film__play-disc,
+  .film:is(:hover, :focus-within) .film__play-disc { width: 84px; height: 84px; }
+
+  .films__reel:not(:has(.film:is(:hover, :focus-within))) .film:first-child .film__status,
+  .film:is(:hover, :focus-within) .film__status { top: calc(50% + 58px); }
+
+  /* Crops per state. Nand Ghar: collapsed keeps the girl in the narrow
+     panel; open shows the whole scene with her clear of the play button. */
+  .film--lead .film__still img { object-position: 88% 50%; }
+  .films__reel:not(:has(.film:is(:hover, :focus-within))) .film--lead .film__still img,
+  .film--lead:is(:hover, :focus-within) .film__still img { object-position: 0% 50%; }
+
+  .film__tag { margin-top: var(--space-5); }
+  /* One fixed height for every title block (three lines of a collapsed
+     title, two of an open one), so titles rewrapping as columns resize
+     never move the stills or the section. */
+  .film article > .film__title {
+    height: 5.5rem;                     /* 88px */
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 960px) and (prefers-reduced-motion: reduce) {
+  .films__reel,
+  .film__still,
+  .film__still img,
+  .film__title,
+  .film__play-disc { transition: none; }
+}
+
+/* Player dialog (used only once a film has a real data-video-src) */
+.film-dialog {
+  width: min(1100px, 92vw);
+  padding: 0;
+  border: 0;
+  border-radius: var(--frame-radius);
+  background: #000;
+}
+.film-dialog::backdrop { background: rgb(24 61 91 / 0.85); }
+.film-dialog video { display: block; width: 100%; }
+.film-dialog__close {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+}
+
+/* 20. Section 12: News and press ------------------------------------------ */
+/* A magazine opener: the featured photograph runs wide on the right and a
+   white text panel overlaps its left edge. Below, four dated items in a
+   two-column dateline (rows aligned), each led by a large day numeral. A small
+   marker separates the four news types. No rules or cards. */
+
+.news {
+  padding-block: var(--space-11) var(--space-12);
+}
+
+.news__title {
+  margin: var(--space-5) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--section-title-size);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+/* Type label with marker: Press release (blue dot), Event (green dot),
+   Media coverage (navy ring), Announcement (blue ring) */
+.ntype {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  color: var(--text-heading);
+  font-size: 0.75rem;                   /* 12px */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;            /* visual only */
+}
+.ntype::before {
+  content: "";
+  flex: none;
+  box-sizing: border-box;
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-pill);
+}
+.ntype--press::before    { background: var(--aaf-blue); }
+.ntype--event::before    { background: var(--accent-secondary); }
+.ntype--media::before    { border: 2px solid var(--color-navy); }
+.ntype--announce::before { border: 2px solid var(--aaf-blue); }
+
+/* Featured */
+.nfeature {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+.nfeature__media {
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--frame-radius);
+  background: var(--surface-sage);
+}
+.nfeature__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 55%;
+}
+
+.nfeature__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  color: var(--text-body);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+}
+.nfeature__title {
+  margin: var(--space-4) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: 2.125rem;                  /* 34px */
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.nfeature__summary {
+  margin: var(--space-4) 0 0;
+  color: var(--text-body);
+  font-size: 1.0625rem;                 /* 17px */
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+/* Dateline */
+.news__list {
+  display: grid;
+  gap: var(--space-8);
+  margin: var(--space-10) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.nitem article {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  column-gap: var(--space-5);
+  align-items: start;
+}
+.nitem__date {
+  grid-row: 1 / span 3;
+  margin: 0;
+  padding-top: 0.15rem;                 /* numeral cap height level with the type label */
+}
+.nitem__date time {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;                  /* month centred under the day number */
+  text-align: center;
+}
+.nitem__day {
+  color: var(--aaf-blue);
+  font-family: var(--font-editorial);
+  font-size: 4rem;                      /* 64px */
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.nitem__month {
+  margin-top: var(--space-2);
+  color: var(--text-body);
+  font-size: 0.8125rem;
+  font-weight: var(--font-weight-semibold);
+}
+.nitem .ntype { padding-top: 0.35rem; }
+.nitem__head {
+  margin: var(--space-3) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: 1.375rem;                  /* 22px */
+  line-height: 1.3;
+  text-wrap: balance;
+}
+.nitem__pub {
+  grid-column: 2;
+  margin: var(--space-2) 0 0;
+  color: var(--text-body);
+  font-family: var(--font-editorial);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+@media (min-width: 960px) {
+  /* Photograph on columns 5 to 12; the panel overlaps it from the left */
+  .nfeature {
+    position: relative;
+    display: block;
+    height: 520px;
+    margin-top: var(--space-9);
+  }
+  .nfeature__media {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 70%;
+    aspect-ratio: auto;
+  }
+  .nfeature__panel {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 41%;
+    padding: var(--space-8);
+    border-radius: var(--frame-radius);
+    background: var(--color-white);
+    transform: translateY(-50%);
+  }
+
+  /* Two-column dateline; both columns start on the same lines */
+  .news__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-10);
+    row-gap: var(--space-9);
+  }
+}
+
+/* 21. Section 13: Collaboration ------------------------------------------- */
+/* Shared circles: five overlapping circles in a ring, one per partner type.
+   Each circle's fill multiplies with its neighbours, so the colour deepens
+   where they overlap and is darkest at the centre where all five meet, marked
+   by an AAF Green dot. Each circle's text sits in its own outer part.
+   The invitation and a large CTA sit on the left. */
+
+.collab {
+  /* Section 12 ends with 120px; 40px here keeps the ~160px section rhythm. */
+  padding-block: var(--space-7) var(--space-12);
+}
+
+.collab__grid {
+  display: grid;
+  gap: var(--space-9);
+}
+
+.collab__title {
+  margin: var(--space-5) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--section-title-size);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.collab__body {
+  margin: var(--space-5) 0 0;
+  max-width: 40ch;
+  color: var(--text-body);
+  font-size: 1.1875rem;                 /* 19px */
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.collab__cta {
+  min-height: 60px;
+  margin-top: var(--space-7);
+  padding: 0 var(--space-7);
+  font-size: 1.0625rem;                 /* 17px */
+}
+
+.collab__contact {
+  margin: var(--space-5) 0 0;
+  color: var(--text-heading);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-medium);
+}
+.collab__contact span { margin-inline: var(--space-2); color: var(--accent-secondary); font-weight: var(--font-weight-bold); }
+
+.collab__circles {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.partner__num {
+  display: block;
+  color: var(--aaf-blue);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+}
+.partner__name {
+  margin: var(--space-1) 0 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  font-size: 1.25rem;                   /* 20px */
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.partner__desc {
+  margin: var(--space-2) 0 0;
+  color: var(--text-body);
+  font-size: 0.875rem;                  /* 14px */
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* Stacked (below 960px, not yet designed): a plain list */
+.partner + .partner { margin-top: var(--space-6); }
+
+@media (min-width: 960px) {
+  .collab__grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--space-9);
+    align-items: center;
+  }
+
+  .collab__circles {
+    --d: 350px;                         /* circle diameter */
+    --cy: 310px;                        /* ring centre, from the top */
+    position: relative;
+    isolation: isolate;
+    height: 620px;
+  }
+  /* The point where all five overlap */
+  .collab__circles::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: var(--cy);
+    z-index: 2;
+    width: 14px;
+    height: 14px;
+    border-radius: var(--radius-pill);
+    background: var(--accent-secondary);
+    transform: translate(-50%, -50%);
+  }
+
+  .partner {
+    position: absolute;
+    left: calc(50% + var(--x) - var(--d) / 2);
+    top: calc(var(--cy) + var(--y) - var(--d) / 2);
+    width: var(--d);
+    height: var(--d);
+    margin: 0;
+  }
+  .partner + .partner { margin-top: 0; }
+
+  /* The circle */
+  .partner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-pill);
+    background: var(--fill);
+    mix-blend-mode: multiply;
+    transition: background-color var(--duration-base) var(--ease-standard);
+  }
+  .partner:hover::before { background: var(--fill-hover); }
+
+  /* The text: one block, exactly centred 50px outward from the circle's
+     centre and narrow enough that every line stays inside the circle
+     (checked: farthest text corner ≤ circle radius). Above every circle. */
+  .partner__text {
+    position: absolute;
+    left: calc(var(--d) / 2 + var(--tx));
+    top: calc(var(--d) / 2 + var(--ty));
+    z-index: 1;
+    width: 10rem;                       /* 160px */
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+  .partner__name { font-size: 1.1875rem; }   /* 19px */
+  .partner__desc { font-size: 0.875rem; line-height: 1.45; }    /* 14px */
+
+  /* Ring of five: centres on a 135px radius (top, then clockwise) */
+  .partner--1 { --x: 0px; --y: -135px; --tx: 0px; --ty: -50px; --fill: #e1ecf6; --fill-hover: #d3e3f2; }
+  .partner--2 { --x: 128px; --y: -42px; --tx: 48px; --ty: -15px; --fill: #e3efd7; --fill-hover: #d6e8c6; }
+  .partner--3 { --x: 79px; --y: 109px; --tx: 29px; --ty: 40px; --fill: #e8eef4; --fill-hover: #dbe4ee; }
+  .partner--4 { --x: -79px; --y: 109px; --tx: -29px; --ty: 40px; --fill: #edf1e4; --fill-hover: #e2e9d3; }
+  .partner--5 { --x: -128px; --y: -42px; --tx: -48px; --ty: -15px; --fill: #dde8f3; --fill-hover: #cfdeee; }
+}
+
+/* 22. Footer: "The closing page" ------------------------------------------ */
+/* A pale-blue sheet with rounded top corners rises out of the page. It is
+   light on purpose: both original full-colour logos sit on it unmodified.
+   The strapline is set large as the page's closing line, with contact and
+   social on the right; the navigation sits below in four columns. The
+   five Collaboration circles return as a faint outline emblem. A thin Deep
+   Navy strip holds copyright and legal links. */
+
+.site-footer { margin-top: 0; }
+
+.footer__sheet {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-block: var(--space-11) var(--space-10);
+  border-radius: 40px 40px 0 0;
+  background: var(--color-pale-blue);
+  color: var(--text-heading);
+}
+
+/* Emblem: the Collaboration ring in outline, cropped by the sheet's edge */
+.footer__emblem {
+  position: absolute;
+  right: -120px;
+  bottom: -250px;
+  z-index: -1;
+  width: 520px;
+  fill: none;
+  stroke: rgb(24 61 91 / 0.14);
+  stroke-width: 1.4;
+  pointer-events: none;
+}
+.footer__emblem .footer__emblem-dot {
+  fill: var(--accent-secondary);
+  stroke: none;
+}
+
+.footer__grid {
+  display: grid;
+  gap: var(--space-8);
+}
+
+/* Brand */
+.footer__logo {
+  display: inline-block;
+  border-radius: var(--radius-sm);
+}
+.footer__logo img { display: block; width: 168px; height: auto; }
+
+.footer__name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-7) 0 0;
+  color: var(--text-link);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-label);
+  line-height: 1;
+  text-transform: uppercase;            /* visual only */
+}
+.footer__name::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-secondary);
+}
+
+.footer__statement {
+  margin: var(--space-4) 0 0;
+  max-width: 24ch;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-size: 2.5rem;                    /* 40px */
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* Shared small label (Contact, and the four navigation groups) */
+.footer__label {
+  margin: 0;
+  color: var(--text-link);
+  font-size: 0.75rem;                   /* 12px */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  text-transform: uppercase;            /* visual only */
+}
+
+/* Contact */
+.footer__address {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  font-style: normal;
+  font-size: 1.0625rem;                 /* 17px */
+  line-height: 1.5;
+}
+
+.footer__social {
+  display: flex;
+  gap: var(--space-3);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.footer__social-link {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgb(24 61 91 / 0.28);
+  border-radius: var(--radius-pill);
+  color: var(--text-heading);
+  transition: background-color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard);
+}
+.footer__social-link svg { fill: currentColor; }
+.footer__social-link:hover {
+  border-color: var(--color-navy);
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+/* Navigation: four columns, label above a vertical list */
+.footer__nav {
+  display: grid;
+  gap: var(--space-7);
+}
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.footer__link {
+  color: var(--text-heading);
+  font-size: 1.0625rem;                 /* 17px */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 5px;
+  transition: color var(--duration-fast) var(--ease-standard),
+              text-decoration-color var(--duration-fast) var(--ease-standard);
+}
+.footer__link:hover {
+  color: var(--aaf-blue);
+  text-decoration-color: currentColor;
+}
+
+/* Association */
+.footer__assoc {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin: 0;
+  color: var(--text-body);
+  font-size: 0.9375rem;                 /* 15px */
+  font-weight: var(--font-weight-medium);
+}
+.footer__assoc img { display: block; width: 104px; height: auto; }
+
+/* Strip */
+.footer__strip {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+.footer__strip-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-6);
+  padding-block: var(--space-5);
+}
+.footer__copy {
+  margin: 0;
+  font-size: 0.875rem;
+  color: rgb(255 255 255 / 0.86);
+}
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.footer__legal-link {
+  color: var(--color-white);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: text-decoration-color var(--duration-fast) var(--ease-standard);
+}
+.footer__legal-link:hover { text-decoration-color: var(--accent-secondary); }
+/* The blue focus ring disappears on navy: use the mat colour here */
+.footer__strip a:focus-visible {
+  outline: 2px solid var(--mat);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (min-width: 960px) {
+  /* Flush to both edges of the container: the left column starts on the
+     left edge; the right column (Contact above, Get Involved below) has a
+     fixed width equal to the social row (4 × 44px + 3 × 12px = 212px), so
+     its content ends exactly on the right edge. */
+  .footer__grid {
+    --footer-side: 13.25rem;            /* 212px */
+    grid-template-columns: minmax(0, 1fr) var(--footer-side);
+    grid-template-areas:
+      "brand contact"
+      "nav   nav"
+      "assoc assoc";
+    column-gap: var(--space-10);
+    row-gap: var(--space-9);
+  }
+  .footer__brand   { grid-area: brand; }
+  .footer__contact { grid-area: contact; padding-top: 6.6rem; }   /* level with the statement */
+  .footer__nav     { grid-area: nav; }
+  .footer__assoc   { grid-area: assoc; }
+
+  /* Four columns across the full width; Get Involved shares the right
+     column with Contact, so both start and end on the same lines. */
+  .footer__nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) var(--footer-side);
+    column-gap: var(--space-10);
+    padding-top: var(--space-2);
+  }
+  .footer__social { justify-content: space-between; }
+}

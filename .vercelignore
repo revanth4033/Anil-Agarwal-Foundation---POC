@@ -1,0 +1,12 @@
+# Only the website is deployed: src/ (page, styles, script) and assets/.
+# Project documents, references and explorations stay in git but are not published.
+.DS_Store
+*.pdf
+/AAF_*.md
+/AAF_*.txt
+/README.md
+/references
+/src/README.md
+/src/explorations
+/assets/images/CREDITS.md
+/assets/nand-ghar-hero.mov

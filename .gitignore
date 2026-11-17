@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Source film master (192 MB): over GitHub's 100 MB file limit and not used
+# by the page. The site plays the compressed assets/videos/nand-ghar-hero.mp4.
+assets/nand-ghar-hero.mov
+
+# Vercel / tooling
+.vercel
+node_modules/

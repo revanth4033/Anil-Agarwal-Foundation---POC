@@ -1,0 +1,62 @@
+/* ==========================================================================
+   AAF Who We Are: shared section styles (both variations)
+   Loads after: assets/brand/brand-tokens.css → ../hero/hero.css (both unmodified)
+   Desktop exploration only (target 1440 × 900). No mobile/tablet work yet.
+   ========================================================================== */
+
+.wwa {
+  /* Same formula as the hero's --panel-w: the line where the hero's text
+     panel ends and its video continues (x = 570 at 1440). Variation A
+     hangs its statement column on this line. */
+  --rail: clamp(430px, 34vw, 500px);
+
+  /* Hero ends with 64px bottom padding; 96px here gives ~160px between the
+     hero's bottom edge and this section: a clear pause, still one page. */
+  padding-block: var(--space-11) var(--space-12);
+}
+
+/* Section label: the hero's film-link motif (green dot + AAF Blue Manrope),
+   so the first new element on the page already belongs to the hero. */
+.wwa__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  color: var(--text-link);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-label);
+  line-height: 1;
+  text-transform: uppercase;            /* visual only; source text stays "Who we are" */
+}
+.wwa__label::before {
+  content: "";
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-secondary); /* AAF Green: decorative marker only */
+}
+
+.wwa__title {
+  margin: 0;
+  color: var(--text-heading);
+  font-family: var(--font-editorial);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--tracking-heading);
+  text-wrap: balance;
+}
+
+.wwa__purpose {
+  margin: 0;
+  color: var(--text-heading);
+  font-weight: var(--font-weight-medium);
+  text-wrap: pretty;
+}
+
+.wwa__body {
+  margin: 0;
+  color: var(--text-body);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
