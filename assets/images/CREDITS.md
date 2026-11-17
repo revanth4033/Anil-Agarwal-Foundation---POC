@@ -50,7 +50,7 @@ The wireframe gives no image brief for these four. The stories themselves are st
 |---|---|---|---|
 | `leadership/vedanta-anil-agarwal-founders-journey.jpg` | Profile 1, Anil Agarwal (Chair slot) | Official: https://www.vedantalimited.com/img/founders_journey/founder-img.jpg (Founder's Journey page) | Real photo, 1160×657; confirm usage with the client |
 | `leadership/vedanta-priya-agarwal-hebbar-taco.jpg` | Profile 2, Priya Agarwal Hebbar (Trustee slot) | Official: https://www.vedantalimited.com/img/social-impact/taco/priya.jpg (TACO page) | Real photo, 481×502 studio cut-out; confirm usage with the client |
-| `leadership/temp-head-of-programmes-pexels-40071214.jpg` | Profile 3, sample profile "Kavita Nair" | Pexels, Ravinder Ravi: https://www.pexels.com/photo/smiling-woman-in-traditional-attire-outdoors-40071214/ | **Temporary** stock photo; not an AAF leader |
+| `leadership/temp-head-of-programmes-pexels-8837809.jpg` | Profile 3, sample profile "Kavita Nair" | Pexels, Yan Krukov (named in the file's metadata): https://www.pexels.com/photo/portrait-of-a-businesswoman-with-her-hand-on-her-chin-8837809/ | **Temporary** stock photo, downloaded 17 Nov 2026; not an AAF leader |
 
 Higher-resolution originals of the two official photos would be sharper, especially in the 600px Chair slot.
 

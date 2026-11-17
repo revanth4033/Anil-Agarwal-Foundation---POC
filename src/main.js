@@ -302,7 +302,7 @@
       // Hold the final width (measured in the loaded web font) so nothing
       // beside the figure moves while it counts.
       el.style.display = 'inline-block';
-      el.style.minWidth = el.getBoundingClientRect().width + 'px';
+      el.style.minWidth = el.offsetWidth + 'px';   // layout width (unaffected by the page scale)
       var start = null, dur = 1600;
       function step(t) {
         if (start === null) start = t;

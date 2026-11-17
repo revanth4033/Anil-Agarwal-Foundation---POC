@@ -11,13 +11,33 @@ The whole homepage is one page. Each new section is added to `index.html` below 
 ## View
 From the project root, run `python3 -m http.server 8765`, then open http://127.0.0.1:8765/src/index.html
 
+**Heading colour:** every heading and card title on a light surface uses a soft near-black, `--heading-ink: #1d1d1f`, defined in `styles.css` block 99. Headings on dark surfaces stay white. The brand tokens are unchanged.
+
+**Laptop scale:** the page is designed on a 16-inch laptop screen (about 1728 × 1000 visible). On smaller laptop screens the whole page scales down in proportion (`zoom` on `html`, set by `--z` in `styles.css` block 1a), so each section looks the way it does on the 16-inch screen and the layout never changes. Steps: 1 at 16 inches, 0.92, 0.86 at 14 inches, 0.8 at 13 inches (1440 × 790), 0.75 at 1280 wide or in short windows. This applies only from 1100px wide; tablet and mobile are untouched. Any size set in viewport-height units must be divided by `--z` (see the hero).
+
+**Vertical rhythm:** one spacing system for every section, set as tokens at the top of `styles.css`. Related items sit close, and each step out to a less related item adds space:
+- 12px from eyebrow to heading (`--gap-eyebrow`)
+- 20px from heading to its supporting text (`--gap-intro`)
+- 40px from the heading block to the section content (`--gap-content`)
+- 120px between sections on the same surface (`--section-pad` 64 + `--section-lead` 56)
+- 80px inside a coloured band and after one (`--band-pad`)
+
+Section headings are 40px. Body text is 16px.
+
 ## Sections so far
 0. **Header:** a floating pill. It is sticky with a 16px gap above, centred at content width, with a white fill (slightly translucent with a backdrop blur), a hairline edge and a soft shadow. The links are centred and Contact / Collaborate is a filled pill. Below 1100px the links collapse into a rounded card under the pill. In-page anchors use `scroll-margin-top` so they land below it.
-1. **Hero:** approved. The Nand Ghar film loop is `assets/videos/`.
+1. **Hero (full video banner):**
+   - The Nand Ghar film fills the banner edge to edge (full viewport height, 640 to 920px) and runs up behind the floating header.
+   - The headline, lead and actions sit on the footage at the lower left.
+   - Four figures run below them across the left half of the banner: 400,000+ Children, 10,000+ Centres, 16 States, ₹5,000 cr Five-year plan. Fine vertical white lines divide them (requested in the design review).
+   - A navy gradient from the bottom and the left keeps the white text legible. The film loop is in `assets/videos/`.
+   - ⚠ The four figures were supplied in the design review (17 Nov 2026). Confirm the numbers and their reporting period with AAF before launch.
 2. **Who we are:**
    - The film still is on the left. The eyebrow, headline, purpose and description are stacked on the right.
    - The image takes the text column's height, so both columns share a top and a bottom edge.
    - The image is `assets/images/who-we-are-film-still.jpg`, a still at 13.9 s from the same official Nand Ghar film as the hero.
+
+**Shared band (Sections 2 and 3):** "Who we are" and the Giving Pledge sit together on one full-width Pale Blue band, like the Soft Sage band of Section 6, so the page alternates between plain and banded stretches.
 
 3. **Anil Agarwal’s Giving Pledge ("The Power of Giving"):**
    - A display "75%" sits with the headline and body beside it, and a panoramic Nand Ghar image strip runs below.
@@ -34,7 +54,9 @@ From the project root, run `python3 -m http.server 8765`, then open http://127.0
    - **Second tier:** Sports, Healthcare, Culture, and Education and Livelihood form an editorial index. The four rows share one image stage; the row you hover, tap or tab into shows its photograph (`initProgrammeIndex` in `main.js`).
    - ⚠ All six `1 Lakh` figures are unconfirmed wireframe placeholders (`data-provisional="true"`).
    - ⚠ Five photos are temporary stock (`data-temp-image`); see `assets/images/CREDITS.md`.
-   - ⚠ Kept as supplied and flagged for review: the TACO labels (`children reached` beside the figure, `animals treated` beside Explore) and the spelling `Atheletes`.
+   - Each featured card carries its area of work as a chip on the photo's top-left corner (Women and Child Development, Animal Welfare). The description runs the full width of the image.
+   - TACO's figure reads "1 Lakh animals treated" (corrected in the design review; the wireframe showed "children reached").
+   - ⚠ Kept as supplied and flagged for review: the spelling `Atheletes`.
    - ⚠ The Explore and View-all links have no destinations yet (`href="#"`).
 6. **People behind every number:**
    - A Soft Sage band with four tabs (`initTabs` in `main.js`; arrow keys, Home and End work).
@@ -52,14 +74,14 @@ From the project root, run `python3 -m http.server 8765`, then open http://127.0
      - sage: two medium boxes (522,731 · 327,888)
      - white: one large box (1,699,665)
      - pale blue: the widest box (13,316,860)
-   - The number sits on top with its line below, and the number size steps up with the box.
+   - The number sits on top with its line below. Every figure is the same size (Lora 28px).
    - **Sunflower motif, scaled to the figure:** the Nand Ghar sunflower line drawing from Section 4 grows from each wider tile's bottom edge. Medium tiles get half-open flowers, the large tile blooms, and children a full wall in bloom. The small tiles stay plain. It is decorative only (`aria-hidden`) and reuses Section 4's SVG symbols.
-   - Numbers are set in Lora (36 to 64px); descriptions are regular weight with no bold.
+   - Descriptions are regular weight with no bold.
    - **Count-up:** figures count up once when first in view (`initCountUp`). This is skipped under reduced motion.
    - ⚠ **Children:** supplied as 13,316,860, but the Vedanta page shows 13,316,861. The reporting period also needs confirming.
    - The heading changed to "Overall Impact." as supplied; the content map still has the old heading and five indicators.
 8. **Stories of change:**
-   - **All:** the featured story leads on the left; the four supporting stories run down the right as a list. "Watch" stories carry a small play marker.
+   - **All:** the featured story is one image card on the left. Its chip ("Featured · Nand Ghar · Read · 6 min") sits top-left, and the title (one line), quote, attribution and link sit on the photo at the bottom over a dark gradient. The card stretches to the height of the three supporting stories on the right, so both columns match. The fourth story (Healthcare) appears under its own filter. "Watch" stories carry a small play marker. Programme filters keep the image-and-text split.
    - **Filters:** seven single-select chips (`initStoryFilters` in `main.js`). A programme filter shows only that programme's stories, each as a wide image-and-text split.
    - **Culture programme:** the wireframe supplies no story, so its filter shows a "Story pending" panel. That wording is set in `main.js` and is not approved copy.
    - ⚠ Story titles, quotes and the attribution are the wireframe's placeholders, shown without square brackets. No stories, names or quotes are invented.
@@ -92,8 +114,6 @@ From the project root, run `python3 -m http.server 8765`, then open http://127.0
    - The featured photograph runs wide on the right, with a white text panel overlapping its left edge.
    - Four dated items follow in a two-column dateline, with both columns aligned row by row. Type markers: press release (blue dot), event (green dot), media coverage (navy ring), announcement (blue ring).
    - ⚠ Every date, headline and the featured summary is **sample content**; none was published.
-   - ⚠ "The Indian Express" is a real newspaper attached to a sample headline. Replace it before launch.
-   - The publication sits on its own line instead of after an em dash.
    - There are no links, CTA or filter, as in the wireframe.
 13. **Collaboration:**
    - The five partner types are five overlapping circles in a ring (`mix-blend-mode: multiply`). The colour deepens where they overlap, and an AAF Green dot marks the centre where all five meet.
@@ -120,6 +140,6 @@ Square brackets were removed from placeholder text at the project team's request
 - `data-provisional="true"`: unconfirmed figures, including the six `1 Lakh` programme figures.
 - `data-temp-image`: temporary stock photographs.
 
-Desktop (1440) is the current focus. Below 960px the sections simply stack and haven't been designed yet.
+Desktop is the current focus (designed at 1440 to 1728 wide; smaller laptops scale down, see "Laptop scale"). Below 960px the sections simply stack and haven't been designed yet.
 
 `src/explorations/` holds the earlier standalone explorations, kept for reference. The homepage doesn't use them.
