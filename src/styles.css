@@ -3336,3 +3336,57 @@ main section[id] { scroll-margin-top: 7rem; }
 .collab__title, .partner__name {
   color: var(--heading-ink);
 }
+
+/* 23. Motion layer -------------------------------------------------------- */
+/* Driven by initMotion() in main.js, which adds .has-motion to <html> only
+   when motion is allowed (not under reduced motion, and only with JS). The
+   rules below are the "before" states; main.js plays each element in once
+   with the Web Animations API and marks it .is-revealed. */
+
+/* Lenis (smooth wheel scrolling): the library's required base rules */
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* Waiting to reveal */
+.has-motion [data-reveal="up"]:not(.is-revealed),
+.has-motion [data-reveal="media"]:not(.is-revealed),
+.has-motion [data-reveal="group"]:not(.is-revealed) > * { opacity: 0; }
+
+/* Heading words rise out of a mask. The padding keeps descenders and the
+   Lora italics' overhang inside the mask; the negative margin gives the
+   space back so line height and wrapping are unchanged. */
+.w {
+  display: inline-block;
+  overflow: clip;
+  padding: 0 0.06em 0.14em;
+  margin: 0 -0.06em -0.14em;
+  vertical-align: top;
+}
+.w__i { display: inline-block; }
+.has-motion [data-reveal="words"]:not(.is-revealed) .w__i { translate: 0 110%; }
+
+/* Parallax photographs are drawn slightly larger, so their drift never
+   shows an edge. */
+.has-motion .is-parallax { scale: 1.14; will-change: translate; }
+.has-motion .hero__media,
+.has-motion .hero__content { will-change: translate; }
+
+/* Sunflower line drawings sway from the stem */
+.has-motion .pp-sun,
+.has-motion .istat__sun { transform-origin: 50% 100%; }
+
+/* Header pill: tucks away while scrolling down, back on the way up or on focus */
+.site-header__inner {
+  transition: translate 600ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow var(--duration-base) var(--ease-standard);
+}
+.site-header.is-tucked .site-header__inner { translate: 0 calc(-100% - var(--space-6)); }
+.site-header.is-tucked:focus-within .site-header__inner { translate: none; }
+
+@media print {
+  .has-motion [data-reveal] ,
+  .has-motion [data-reveal] > * { opacity: 1 !important; }
+  .has-motion .w__i { translate: none !important; }
+}

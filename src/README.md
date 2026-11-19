@@ -133,6 +133,24 @@ Section headings are 40px. Body text is 16px.
    - The copyright year sits in one `<span data-year>`.
    - Content comes from the project team's footer brief. That brief supersedes the content map's §14 link groups, social list (X → Facebook) and legal labels.
 
+## Motion and scrolling
+
+Everything lives in `initMotion()` (`main.js`) and block 23 of `styles.css`. It is all switched off under reduced motion: the page then scrolls natively and nothing is hidden.
+
+- **Smooth scrolling:** Lenis 1.3.26 (jsDelivr, in `<head>`) eases mouse-wheel scrolling (`lerp: 0.085`). Touch scrolling stays native. In-page links glide to their section and land below the header. If the CDN fails, everything else still runs.
+- **Reveals (once, on first view):**
+  - Section headings rise word by word out of a mask.
+  - Eyebrows and text fade up.
+  - Card groups stagger in, 90ms apart.
+  - Photographs fade in and settle from a 12% zoom.
+- **Scroll-linked:**
+  - Large photographs drift (parallax, ±5%, drawn at 114%).
+  - The hero film drifts and the hero text fades as you scroll away.
+  - The sunflower drawings sway ±3° from the stem.
+- **Header:** the pill tucks away while scrolling down and comes back when you scroll up or tab into it.
+
+To tune or remove an effect, edit the `REVEAL` lists or the `update()` function in `initMotion()`.
+
 ## Placeholders still on the page
 Square brackets were removed from placeholder text at the project team's request, so placeholders now look like real copy. Find them in `index.html` by attribute:
 - `data-placeholder="true"`: wireframe placeholder sentences, titles, quotes and names.

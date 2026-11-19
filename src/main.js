@@ -1,4 +1,5 @@
-/* AAF Homepage: minimal progressive enhancement. No dependencies.
+/* AAF Homepage: progressive enhancement. One optional dependency: Lenis
+   (smooth wheel scrolling, CDN, see <head>); everything works without it.
    - Mobile navigation disclosure
    - Hero video: ambient muted loop; autoplays unless reduced motion (poster stays),
      pauses when off-screen, placeholder mode when no footage is present.
@@ -8,7 +9,8 @@
    - Resources: single-select type filter; sample actions that go nowhere yet
    - Films: play buttons, ready for real video sources
    - Impact: figures count up once when first in view
-   Structured as small init functions so a future GSAP/ScrollTrigger layer can sit alongside. */
+   - Motion: smooth scroll, scroll reveals, parallax, tucking header (initMotion)
+   Structured as small init functions. */
 
 (function () {
   'use strict';
@@ -325,6 +327,221 @@
     Array.prototype.forEach.call(els, function (el) { io.observe(el); });
   }
 
+  /* ---------- Motion layer: smooth scroll, reveals, parallax ---------- */
+  // One layer for every scroll effect, so it can be tuned or switched off in
+  // one place. Skipped entirely under reduced motion: the page then scrolls
+  // natively and every element is simply visible.
+  //   - Smooth (eased) wheel scrolling via Lenis, loaded from the CDN in <head>.
+  //     Touch scrolling stays native. Without Lenis the rest still runs.
+  //   - Reveals: [data-reveal] = up (fade and rise), words (heading words rise
+  //     out of a mask), media (fade, photo settles from a slight zoom),
+  //     group (children stagger in). Played once, the first time in view.
+  //   - Parallax on large photographs, a scroll drift on the hero film,
+  //     a slight sway on the sunflower line drawings.
+  //   - The header pill tucks away while scrolling down and returns on the
+  //     way up, or whenever it holds focus.
+  // Reveals use the Web Animations API with the individual translate / scale
+  // properties, so they never fight the CSS hover transforms on cards.
+  function initMotion() {
+    var root = document.documentElement;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window) || !Element.prototype.animate) return;
+
+    var EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';      // expo out: quick start, long settle
+    function all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
+    function zoom() { return parseFloat(getComputedStyle(root).zoom) || 1; }   // the laptop scale (block 1a)
+    function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
+
+    root.classList.add('has-motion');
+
+    /* 1. Smooth scrolling */
+    var lenis = null;
+    if (typeof window.Lenis === 'function') {
+      lenis = new window.Lenis({ lerp: 0.085, smoothWheel: true, wheelMultiplier: 1 });
+      var nav = document.querySelector('[data-nav]');
+      if (nav) nav.setAttribute('data-lenis-prevent', '');      // the mobile menu scrolls on its own
+      requestAnimationFrame(function raf(t) { lenis.raf(t); requestAnimationFrame(raf); });
+    }
+
+    // In-page links glide to their section, landing below the floating header.
+    document.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var link = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+      if (!link || link.classList.contains('skip-link')) return;
+      var id = link.getAttribute('href').slice(1);
+      var target = id && document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      var margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+      var y = window.scrollY + target.getBoundingClientRect().top - margin * zoom();
+      if (lenis) lenis.scrollTo(y, { duration: 1.4 });
+      else window.scrollTo({ top: y, behavior: 'smooth' });
+      if (history.pushState) history.pushState(null, '', '#' + id);
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    });
+
+    /* 2. Reveals */
+    var REVEAL = {
+      words: 'main h2',
+      up: [
+        'main .eyebrow', '.wwa__purpose', '.wwa__body', '.gp-b__figure', '.gp__body',
+        '.prog__all', '.people__tabs', '.people__panel', '.stories__all', '.stories__filters',
+        '.story--featured', '.res__intro', '.res__filters', '.lead__feature .leader__body',
+        '.nfeature', '.collab__body', '.collab__cta', '.collab__contact'
+      ].join(','),
+      media: '.wwa__media, .gp-b__media, .irow__photo, .lead__feature .leader__portrait',
+      group: [
+        '.pp__steps', '.prog__featured', '.prog__rows', '.irow__stats', '.stories__list',
+        '.lead__pair', '.res__shelf', '.films__reel', '.news__list', '.collab__circles',
+        '.footer__grid'
+      ].join(',')
+    };
+
+    Object.keys(REVEAL).forEach(function (type) {
+      all(REVEAL[type]).forEach(function (el) {
+        if (!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal', type);
+      });
+    });
+
+    // Headings: each word sits in a clipping mask and rises into place.
+    all('[data-reveal="words"]').forEach(function (h) {
+      var words = h.textContent.trim().split(/\s+/);
+      h.textContent = '';
+      words.forEach(function (word, i) {
+        var mask = document.createElement('span');
+        var inner = document.createElement('span');
+        mask.className = 'w';
+        inner.className = 'w__i';
+        inner.textContent = word;
+        mask.appendChild(inner);
+        h.appendChild(mask);
+        if (i < words.length - 1) h.appendChild(document.createTextNode(' '));
+      });
+    });
+
+    function restScale(img) {
+      var s = getComputedStyle(img).scale;
+      return s && s !== 'none' ? parseFloat(s) : 1;
+    }
+    function settle(img, delay) {
+      var rest = restScale(img);
+      img.animate([{ scale: String(rest * 1.12) }, { scale: String(rest) }],
+        { duration: 1600, delay: delay, easing: EASE, fill: 'backwards' });
+    }
+    function rise(el, delay, distance) {
+      el.animate([{ opacity: 0, translate: '0 ' + (distance || 32) + 'px' }, { opacity: 1, translate: '0 0' }],
+        { duration: 1000, delay: delay, easing: EASE, fill: 'backwards' });
+    }
+    function visible(el) { return el.getClientRects().length > 0; }
+
+    function play(el, delay) {
+      var type = el.getAttribute('data-reveal');
+      if (type === 'words') {
+        all('.w__i', el).forEach(function (w, i) {
+          w.animate([{ translate: '0 110%' }, { translate: '0 0' }],
+            { duration: 1100, delay: delay + i * 45, easing: EASE, fill: 'backwards' });
+        });
+      } else if (type === 'media') {
+        el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, delay: delay, easing: 'ease-out', fill: 'backwards' });
+        all('img', el).forEach(function (img) { settle(img, delay); });
+      } else if (type === 'group') {
+        Array.prototype.filter.call(el.children, visible).forEach(function (child, i) {
+          var d = delay + i * 90;
+          rise(child, d, 40);
+          all('img', child).forEach(function (img) { settle(img, d); });
+        });
+      } else {
+        rise(el, delay);
+      }
+      el.classList.add('is-revealed');
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      var entering = entries.filter(function (e) { return e.isIntersecting; }).map(function (e) { return e.target; });
+      entering.sort(function (a, b) { return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1; });
+      entering.forEach(function (el, i) { io.unobserve(el); play(el, i * 90); });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    all('[data-reveal]').forEach(function (el) { io.observe(el); });
+
+    // Anything hidden when its section arrives (other tabs, filtered-out
+    // cards) is marked revealed straight away, so it is visible when shown.
+    var sweep = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        sweep.unobserve(e.target);
+        all('[data-reveal]:not(.is-revealed)', e.target).forEach(function (el) {
+          if (!visible(el)) { io.unobserve(el); el.classList.add('is-revealed'); }
+        });
+      });
+    });
+    all('main > section, .site-footer').forEach(function (s) { sweep.observe(s); });
+
+    /* 3. Scroll-linked effects: parallax, hero drift, sunflower sway */
+    var parallax = all('.wwa__media img, .gp-b__media img, .people__media img, .story--featured .story__media img, ' +
+                       '.lead__feature .leader__portrait img, .nfeature__media img');
+    parallax.forEach(function (img) { img.classList.add('is-parallax'); });
+    var sway = all('.pp-sun, .istat__sun');
+    var hero = document.querySelector('.hero');
+    var heroMedia = hero && hero.querySelector('.hero__media');
+    var heroContent = hero && hero.querySelector('.hero__content');
+    var header = document.querySelector('[data-header]');
+    var menuToggle = document.querySelector('[data-menu-toggle]');
+    var lastY = window.scrollY;
+    var ticking = false;
+
+    // -1 when the element's centre is at the top of the viewport, 1 at the bottom.
+    function progress(el, vh) {
+      var r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return null;
+      return clamp(((r.top + r.height / 2) - vh / 2) / (vh / 2 + r.height / 2), -1, 1);
+    }
+
+    function update() {
+      ticking = false;
+      var vh = window.innerHeight;
+      var y = window.scrollY;
+      var z = zoom();
+
+      parallax.forEach(function (img) {
+        var p = progress(img.parentElement, vh);
+        if (p !== null) img.style.translate = '0 ' + (p * -5).toFixed(2) + '%';
+      });
+      sway.forEach(function (svg) {
+        var p = progress(svg, vh);
+        if (p !== null) svg.style.rotate = (p * 3).toFixed(2) + 'deg';
+      });
+
+      if (hero && heroMedia && heroContent) {
+        var h = hero.offsetHeight * z;
+        if (y < h) {
+          var t = y / h;
+          heroMedia.style.translate = '0 ' + (y * 0.35 / z).toFixed(1) + 'px';
+          heroMedia.style.scale = String((1 + t * 0.06).toFixed(4));
+          heroContent.style.translate = '0 ' + (y * 0.15 / z).toFixed(1) + 'px';
+          heroContent.style.opacity = String(clamp(1 - (t - 0.15) * 1.5, 0, 1).toFixed(3));
+        }
+      }
+
+      if (header) {
+        var dy = y - lastY;
+        if (Math.abs(dy) > 6) {
+          var menuOpen = menuToggle && menuToggle.getAttribute('aria-expanded') === 'true';
+          header.classList.toggle('is-tucked', dy > 0 && y > vh * 0.6 && !menuOpen);
+          lastY = y;
+        }
+        if (y < 10) header.classList.remove('is-tucked');
+      }
+    }
+
+    function requestUpdate() {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    update();
+  }
+
   initMenu();
   initHeroVideo();
   initProgrammeIndex();
@@ -334,4 +551,5 @@
   initPendingLinks();
   initFilms();
   initCountUp();
+  initMotion();
 })();
