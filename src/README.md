@@ -52,11 +52,11 @@ Section headings are 40px. Body text is 16px.
 5. **Our programmes / Areas of work:**
    - **Featured tier:** Nand Ghar and TACO are large image-led cards (7 : 5). The impact figure sits on a tab cut into the photo's lower-right corner.
    - **Second tier:** Sports, Healthcare, Culture, and Education and Livelihood form an editorial index. The four rows share one image stage; the row you hover, tap or tab into shows its photograph (`initProgrammeIndex` in `main.js`).
-   - ⚠ All six `1 Lakh` figures are unconfirmed wireframe placeholders (`data-provisional="true"`).
+   - Featured card figures are confirmed (19 Nov 2026): Nand Ghar **4 Lakh children impacted**, TACO **60,000 animals treated**.
+   - **Second tier (19 Nov 2026, from the project team):** Vedanta Sports (180+ medals won), BALCO Medical Centre (45,000 patients treated; specialist cancer care), and Vedanta Foundation under Education and Livelihood (20,000+ skilled annually).
+   - ⚠ Culture's `1 Lakh` is still an unconfirmed wireframe placeholder (`data-provisional="true"`).
    - ⚠ Five photos are temporary stock (`data-temp-image`); see `assets/images/CREDITS.md`.
    - Each featured card carries its area of work as a chip on the photo's top-left corner (Women and Child Development, Animal Welfare). The description runs the full width of the image.
-   - TACO's figure reads "1 Lakh animals treated" (corrected in the design review; the wireframe showed "children reached").
-   - ⚠ Kept as supplied and flagged for review: the spelling `Atheletes`.
    - ⚠ The Explore and View-all links have no destinations yet (`href="#"`).
 6. **People behind every number:**
    - A Soft Sage band with four tabs (`initTabs` in `main.js`; arrow keys, Home and End work).
@@ -137,7 +137,7 @@ Section headings are 40px. Body text is 16px.
 Square brackets were removed from placeholder text at the project team's request, so placeholders now look like real copy. Find them in `index.html` by attribute:
 - `data-placeholder="true"`: wireframe placeholder sentences, titles, quotes and names.
 - `data-dummy="true"`: invented stand-in numbers and sample content (Section 6 reach figures and testimonial, and the sample content in Sections 8 to 13).
-- `data-provisional="true"`: unconfirmed figures, including the six `1 Lakh` programme figures.
+- `data-provisional="true"`: unconfirmed figures, including the Culture programme's `1 Lakh` figure.
 - `data-temp-image`: temporary stock photographs.
 
 Desktop is the current focus (designed at 1440 to 1728 wide; smaller laptops scale down, see "Laptop scale"). Below 960px the sections simply stack and haven't been designed yet.

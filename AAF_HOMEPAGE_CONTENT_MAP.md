@@ -162,8 +162,8 @@ Each card has the same fields:
 |---|---|
 | Category label | `Women and Child Development` |
 | Programme name | `Nand Ghar` |
-| Impact figure | `1 Lakh` ⚠️ |
-| Impact label | `children reached` |
+| Impact figure | `4 Lakh` ✅ confirmed 19 Nov 2026 |
+| Impact label | `children impacted` |
 | Description | `Modern anganwadi centres that nurture young children and bring women into community life.` |
 | Goal | `Goal: Strong foundations for every child, every day.` |
 | CTA | `Explore →` |
@@ -175,9 +175,8 @@ Each card has the same fields:
 |---|---|
 | Category label | `Animal Welfare` |
 | Programme name | `TACO` |
-| Impact figure | `1 Lakh` ⚠️ |
-| Impact label (beside the figure) | `children reached` ⚠️ |
-| Second label (beside the CTA) | `animals treated` ⚠️ |
+| Impact figure | `60,000` ✅ confirmed 19 Nov 2026 |
+| Impact label | `animals treated` ✅ |
 | Description | `Rescue, treatment and care for animals, with communities as partners.` |
 | Goal | `Goal: A kinder shared environment for people and animals.` |
 | CTA | `Explore →` |
