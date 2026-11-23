@@ -49,22 +49,8 @@ Section headings are 40px. Body text is 16px.
    - Each step's text sits where the smaller plane leaves room, so the steps climb up and to the right.
    - The numbers grow with their planes: 56, then 80, then 112px.
 
-5. **Our programmes / Areas of work:**
-   - **Featured tier:** Nand Ghar and TACO are large image-led cards (7 : 5). The impact figure sits on a tab cut into the photo's lower-right corner.
-   - **Second tier:** Sports, Healthcare, Culture, and Education and Livelihood form an editorial index. The four rows share one image stage; the row you hover, tap or tab into shows its photograph (`initProgrammeIndex` in `main.js`).
-   - Featured card figures are confirmed (19 Nov 2026): Nand Ghar **4 Lakh children impacted**, TACO **60,000 animals treated**.
-   - **Second tier (19 Nov 2026, from the project team):** Vedanta Sports (180+ medals won), BALCO Medical Centre (45,000 patients treated; specialist cancer care), and Vedanta Foundation under Education and Livelihood (20,000+ skilled annually).
-   - ⚠ Culture's `1 Lakh` is still an unconfirmed wireframe placeholder (`data-provisional="true"`).
-   - ⚠ Five photos are temporary stock (`data-temp-image`); see `assets/images/CREDITS.md`.
-   - Each featured card carries its area of work as a chip on the photo's top-left corner (Women and Child Development, Animal Welfare). The description runs the full width of the image.
-   - ⚠ The Explore and View-all links have no destinations yet (`href="#"`).
-6. **People behind every number:**
-   - A Soft Sage band with four tabs (`initTabs` in `main.js`; arrow keys, Home and End work).
-   - **Young children** is the only panel the wireframe supplies. Its sentences, quote and name are the wireframe's own placeholders, shown without square brackets.
-   - ⚠ The testimonial (quote, "Sunita Devi, Rampur, Rajasthan") is a **dummy** written for design review (`data-dummy="true"`). It is not a real parent. Replace it with an approved, consented testimonial before launch.
-   - ⚠ The reach figures (15 States, 120 Districts, 2,500 Communities) are **dummy data** added for design review (`data-dummy="true"`). The wireframe shows `XX`. Replace them with real figures before launch.
-   - The other three tabs show a "Content pending" state. Nothing is invented for them.
-   - The testimonial attribution is shown without its leading dash, in line with the no-em-dash rule for the page.
+5. **Our programmes:** rebuilt after the client review as five equal cards; see "Section 5: Our programmes (rebuilt)" below.
+6. **People behind every number:** redesigned after review as a scroll-turned wheel of photo cards; see "Section 6: People (redesigned)" below.
 
 7. **Overall Impact. ("Stepped tiles"):**
    - **Real figures**, supplied by the project team on 17 Nov 2026. They match the "Impact Created" block on vedantalimited.com.
@@ -80,13 +66,7 @@ Section headings are 40px. Body text is 16px.
    - **Count-up:** figures count up once when first in view (`initCountUp`). This is skipped under reduced motion.
    - ⚠ **Children:** supplied as 13,316,860, but the Vedanta page shows 13,316,861. The reporting period also needs confirming.
    - The heading changed to "Overall Impact." as supplied; the content map still has the old heading and five indicators.
-8. **Stories of change:**
-   - **All:** the featured story is one image card on the left. Its chip ("Featured · Nand Ghar · Read · 6 min") sits top-left, and the title (one line), quote, attribution and link sit on the photo at the bottom over a dark gradient. The card stretches to the height of the three supporting stories on the right, so both columns match. The fourth story (Healthcare) appears under its own filter. "Watch" stories carry a small play marker. Programme filters keep the image-and-text split.
-   - **Filters:** seven single-select chips (`initStoryFilters` in `main.js`). A programme filter shows only that programme's stories, each as a wide image-and-text split.
-   - **Culture programme:** the wireframe supplies no story, so its filter shows a "Story pending" panel. That wording is set in `main.js` and is not approved copy.
-   - ⚠ Story titles, quotes and the attribution are the wireframe's placeholders, shown without square brackets. No stories, names or quotes are invented.
-   - ⚠ The four supporting images are temporary stock; see `assets/images/CREDITS.md`. The featured image is an authentic Nand Ghar film still.
-   - ⚠ "All stories", "Read the full story" and the story links have no destinations yet (`href="#"`).
+8. **Stories of change (merged with Films and videos):** see "Section 8: Stories of change (merged)" below.
 
 9. **Leadership that gives with intent:**
    - A magazine spread. The Chair leads: a tall portrait rises above a pale-blue panel that carries the quote at display size. The Trustee and Head of Programmes follow as a pair of smaller portrait-and-text profiles.
@@ -104,12 +84,7 @@ Section headings are 40px. Body text is 16px.
    - ⚠ No files or film exist yet. Each action is `href="#"` with `data-pending-link`, which `main.js` stops from navigating. Remove the attribute when the real link is added.
    - The year in the annual report title uses a hyphen (`2025-26`), and the description uses a comma where the wireframe has an em dash.
 
-11. **Films and videos:**
-   - A full-bleed Charcoal "screening room" with an expanding reel: one film is open (wide and tall), the other two are collapsed panels on the same baseline. Nand Ghar is open by default; hovering or tabbing into a film opens it (CSS `:has()`, no JavaScript; transitions off under reduced motion).
-   - Each still has a play button and a timecode chip; the tag and title sit below.
-   - ⚠ The titles are **sample content** (`data-dummy="true"`). The durations are the wireframe's.
-   - ⚠ No film files exist yet. Pressing play shows "Film not available yet" (review wording, set in `main.js`).
-   - To connect a film, set `data-video-src` on its `<article>`. It then opens in a native `<dialog>` player (`initFilms`). This was tested.
+11. **Films and videos:** merged into Stories of change after review (the three films are "Watch" stories there). The footer link now goes to `#stories`.
 12. **News and press:**
    - The featured photograph runs wide on the right, with a white text panel overlapping its left edge.
    - Four dated items follow in a two-column dateline, with both columns aligned row by row. Type markers: press release (blue dot), event (green dot), media coverage (navy ring), announcement (blue ring).
@@ -132,6 +107,181 @@ Section headings are 40px. Body text is 16px.
    - ⚠ The contact details are **sample placeholders** (`data-dummy="true"`), shown as plain text.
    - The copyright year sits in one `<span data-year>`.
    - Content comes from the project team's footer brief. That brief supersedes the content map's §14 link groups, social list (X → Facebook) and legal labels.
+
+## Theme: light and dark bands
+
+The client liked the clean, elegant look but wanted some deep, muted shades for depth, in the manner of the Gates and Rockefeller Foundation sites (review, 21 Nov 2026).
+
+**Which sections are dark.** A second pass (senior review, 23 Nov 2026) found the page still read as light pastel: only three bands were dark, the first of them five sections down, and the light sections were tinted pale blue and sage. Now about half the page is dark, light and dark alternate, and no two flat dark bands touch:
+
+| Section | Ground |
+|---|---|
+| Hero | dark (film) |
+| Part of the Vedanta Group | white |
+| **Who we are + Giving Pledge** | **Deep Navy, one band, with a faint AAF Blue glow behind the 75%** |
+| Turning purpose into progress | white |
+| Our programmes | Warm Off-white |
+| **People** | **Deep Navy, with a faint AAF Blue glow behind the cards** |
+| Where we work | white; the country is drawn in pale blue, the lit states in AAF Blue |
+| **Overall Impact** | **deeper navy; the tiles become translucent panels that brighten row by row, and the widest row is AAF Blue** |
+| Stories | white |
+| **Leadership** | **Deep Navy; the Chair's panel is a soft lighter plane** |
+| Resources | white |
+| News | Warm Off-white |
+| **Collaboration** | **Deep Navy; the circles become soft blue and green light that brightens where they overlap** |
+| Footer | stays light (the AAF logo's blue lettering needs a light ground), on a navy base so its rounded top flows out of Collaboration |
+
+**Light sections.** No pale blue or sage bands any more: white, or the brand's Warm Off-white (#F7F8F4) for a quiet change of surface. Pale blue stays only as small accents (chips, hovers, the map, the Programme report cover). Headings on light surfaces use Deep Navy (`--heading-ink`), so light and dark bands share one ink.
+
+**Colours.** Only brand colours are used: `--dark-navy` (#183d5b, the palette's Deep Navy) and `--dark-deep` (#12304a, one step deeper). On dark:
+- text is white or soft white (`--on-dark`, `--on-dark-soft`);
+- eyebrows and labels use `--on-dark-accent` (#9cc4e6, AAF Blue lifted, 7.4:1 on Deep Navy);
+- buttons turn white;
+- focus rings turn white.
+
+**Code.** The tokens are in block 1 of `styles.css` and the rules in block 24 (kept last, so it overrides the light defaults).
+
+## Section 1b: Part of the Vedanta Group
+
+This section was added after the client review and sits between the hero and Who we are. It covers only the relationship with Vedanta, with no programmes, since those have their own section.
+
+**Layout.** One band in two halves:
+- **The Group** (warm): Vedanta logo, "A leading global producer of metals, critical minerals and technology." and its operating regions.
+- **The Foundation** (white): AAF logo, the published vision and the ₹5,000 crore commitment.
+
+A round knot holding a sunflower sits on the seam. The bottom lines of the two halves align across the seam.
+
+**Copy sources.** The copy comes from vedantalimited.com and is marked `data-provisional`. Confirm with the client:
+- the relationship wording;
+- that the ₹5,000 crore figure is current.
+
+Code: block 9b in `styles.css`. Code comments keep the original wireframe section numbers, so this one is "1b".
+
+## Section 6b: Where we work (map)
+
+This section was added after the client review, between People and Overall Impact, on a pale-blue band.
+
+**Layout.**
+- **Left:** a map of India. Every state is soft white, and the eight states with a named initiative are AAF Blue. Each lit state carries round AAF Blue pins: house (Nand Ghar), plus (Healthcare), paw (Animal welfare), trophy (Sports academy).
+- **Right:** the eyebrow and heading, then four figures. The two columns are equal and centred on one line, and the figure rows line up with the heading's left edge:
+  - 10,000+ Nand Ghar centres;
+  - 170-bed BALCO Medical Centre;
+  - 3 states with animal welfare shelters;
+  - 3 states with sports academies.
+
+**Interaction** (`initMap()` in `main.js`).
+- Hovering or focusing a figure keeps only that initiative's states and pins lit. Clicking holds the choice; clicking again releases it.
+- Hovering a lit state or its pin shows a small label with the state and its initiatives.
+
+**Small screens:** the heading comes first, then the map, then the figures.
+
+**Map data.** "States/Admin2" by DataMeet India (https://github.com/datameet/maps), CC BY 4.0, following the Survey of India outline including Jammu & Kashmir and Ladakh.
+- I converted and simplified it to an inline SVG of about 80 KB, keeping all 36 states and union territories, including the island groups.
+- The licence requires a credit. It sits as a small line in the footer strip, next to the copyright, rather than under the map (moved at review).
+- The conversion script is not in the repo. Regenerate the SVG from the shapefile if the boundaries ever need updating.
+
+**Still to confirm:**
+- **States and figures:** the data comes from the Foundation's presentation slide (20 Nov 2026) and is marked `data-provisional`.
+- **"16 states":** the slide names only six Nand Ghar states, so only those six are lit. The full list is needed.
+- **Heading:** "Across India, for a brighter tomorrow." is the slide's own line. Confirm it is approved copy.
+- **Map depiction:** the client's legal team should confirm it before launch.
+
+## Section 8: Stories of change (merged)
+
+Stories and Films and videos are now one section. It sits where Stories was, on the light background.
+
+**Layout.**
+- **Featured, left:** BALCO Medical Centre (chosen at review), a read story with wireframe placeholders. The photo is temporary stock.
+- **List, right:** three supporting stories show in the default view: TACO (watch), Vedanta Sports (read) and Nand Ghar (watch). Two more appear under the filters: Vedanta Sports (watch) and Vedanta Foundation (read).
+- **Films:** the three former films are "Watch" stories with a play marker. Their sample titles are kept (`data-dummy`), and no film files exist yet.
+
+**Filters** (`initStoryFilters` in `main.js`). Both work together:
+- programme chips, in the Programmes order;
+- a small All / Read / Watch switch on the right.
+
+Any filter shows the matching stories as wide rows. A combination with no story shows a pending note.
+
+**Removed:**
+- the Films section, its CSS (old block 19) and the film player script;
+- the Culture chip;
+- the old chip names. "Sports programme", "Healthcare programme" and "Education and Livelihood" are now "Vedanta Sports", "BALCO Medical Centre" and "Vedanta Foundation".
+
+## Section 5: Our programmes (rebuilt)
+
+The section is now a row of five expanding photo cards, in this order: TACO, Vedanta Sports, Nand Ghar, BALCO Medical Centre, Vedanta Foundation. TACO starts open.
+
+**Open and closed cards.**
+- One card is open, taking 4.6 times the width of each slim card (at 1440px, 520px against 113px). It shows:
+  - the area chip and an arrow badge across the top;
+  - the name (32px) at the foot;
+  - the content-map description;
+  - the impact figure (28px) and its label.
+- The other cards stay slim and show the name only (20px), over the photo with a navy fade at the foot.
+
+**Interaction.** Hovering or tabbing to a card opens it, and it stays open after the pointer leaves. The width eases over 0.7s, and the extra text fades in once the card has room. TACO starts open, including without JS. Code: `initProgrammes()` in `main.js`.
+
+**Small screens.** Below 960px the cards stack, all open.
+
+**Figures:**
+- 4 Lakh children impacted;
+- 60,000 animals treated;
+- 180+ medals won;
+- 45,000 patients treated;
+- 20,000+ skilled annually.
+
+**Still to confirm:**
+- Culture is not shown. It can return as a sixth card.
+- The "Goal" lines are not shown.
+- Four of the photos are temporary stock.
+
+## Section 6: People (redesigned)
+
+The layout is simpler and has one interaction, modelled on the "real strength of change" section of the Adani Foundation homepage.
+
+**How it works on desktop** (960px and wider, with motion allowed):
+- The section holds in place, centred in the window, while you scroll through it, about 0.9 screen per turn. The stage is only as tall as its content, so the band keeps normal spacing above and below.
+- Four photo cards turn through three positions: large in the centre, small and faded at the top left (the previous group), and small at the bottom right (the next group).
+- Cards ride a slight arc as they pass the centre.
+- The two soft circles behind the cards each hold a faint sunflower head (no stem). The two flowers turn slowly in opposite directions as the wheel turns.
+- Each group rests in the centre for a moment.
+- On the left, the centre group's story fades out and the next fades in: name, challenge, change and reach figures, centred beside the cards.
+- Clicking a side card brings it to the centre. The cards grow with the window height, from 420px to 560px tall.
+- Quotes and the step links were removed at review (21 Nov 2026).
+
+**Fallback:** below 960px, under reduced motion, or without JS, each group is a plain photo-and-story row.
+
+**Content.**
+- **Young children:** the wireframe's placeholder sentences, plus **dummy** reach figures (15 / 120 / 2,500), marked `data-dummy`. Replace them before launch.
+- The other three groups use the wireframe's placeholder sentences and sample reach figures (`data-dummy`), because no content was supplied for them.
+- Photos: Young children is a Nand Ghar film still. The other three groups use temporary Pexels photos.
+
+Code: `initPeople()` in `main.js`, block 14 in `styles.css`.
+
+## Hero: initiative slides
+
+The hero rotates through five initiatives, in this order by review (23 Nov 2026): TACO (01, where it opens), Vedanta Sports (02), Nand Ghar (03, the only real film), BALCO Medical Centre (04) and Vedanta Foundation (05).
+
+**The rail.** A rail along the bottom names all five:
+- The active slide's AAF Green line fills while it plays: 10s for the film, 7s for the others. The next slide then crossfades in.
+- Clicking a name jumps to that slide.
+- There is no pause button (removed at review).
+
+**Footage.**
+- Only Nand Ghar (03) has real footage today. Its button carries `data-film`; the video stays paused (`data-off`) until its slide comes round.
+- TACO opens the hero, so its still loads with the page (`src`, not `data-src`) and is shown from the start.
+- The other four slides show the programme stand-in stills (Pexels, `data-temp-image`, `data-provisional="film to come"`) with a slow drift.
+- Each film will replace its still in development.
+
+**Behaviour rules.**
+- Rotation holds while keyboard focus is in the rail.
+- Rotation holds while the hero is off-screen.
+- Under reduced motion it never rotates on its own.
+
+**Copy per slide** (supplied by the project team, 23 Nov 2026). Each slide has its own headline, body, two buttons and four figures, in a `.hero__pane[data-pane]` matching the rail button's `data-slide`. All five panels share one grid cell, so the banner keeps the tallest one's height; they crossfade with the slide and the text rises in again. Inactive panels are `inert` and `aria-hidden`. Figure labels always take two lines and the four figure columns have a fixed width, so the figures and their dividers stay on the same line as the slides change. The page's h1 is the Foundation's name (visually hidden), because the visible headline changes; each slide's headline is an h2. Rotation also holds while keyboard focus is on a slide's buttons.
+
+**Open point.** The figures and the button destinations are to be confirmed by the client; the buttons have no destinations yet (`href="#"`).
+
+Code: `initHeroSlides()` in `main.js`, block 8b in `styles.css`.
 
 ## Motion and scrolling
 
