@@ -1,0 +1,147 @@
+/* Colour experiment (branch experiment/colours only, never on main).
+   Loaded after styles.css, so everything here overrides the current theme
+   without editing it. To adopt: fold these rules into styles.css block 24.
+   To drop: delete the branch.
+   Brand tokens (assets/brand/brand-tokens.css) stay untouched.
+
+   The idea (23 Nov 2026): the dark bands were all navy. Bring in the logo's
+   green as a second deep ground, plus two warm accents.
+     Deep green  #1F7A34  second dark ground: People and Leadership
+     Amber       #FFB81C  main accent: buttons on dark, rail line, labels
+                          on navy, sunflowers (deep navy text on it: 8.9:1)
+     Orange      #F7941D  small accent: dots and markers, button hover
+   Dark bands now alternate navy and green:
+     Who we are + Pledge NAVY · People GREEN · Impact DEEP NAVY (tiles green on hover) ·
+     Leadership GREEN · Collaboration NAVY
+   Contrast: white on #1F7A34 is 5.4:1, so text on green is white or 92%
+   white (78% white would fall under 4.5:1); amber text is used on navy
+   only (it is 3.1:1 on green, so on green it is a dot or line, not text). */
+
+:root {
+  --x-green: #1f7a34;
+  --x-green-deep: #18602a;              /* the green one step deeper, for depth in gradients */
+  --x-amber: #ffb81c;
+  --x-orange: #f7941d;
+  --x-on-green: rgb(255 255 255 / 0.92);
+  --x-ink-on-amber: #0e2638;            /* Deep Navy taken darker, for text on amber/orange */
+}
+
+/* ---------------------------------------------------------------- */
+/* Amber buttons: header CTA, hero, Collaboration                     */
+/* Deep Navy (#183D5B) on amber measured 6.5:1 but read soft on the    */
+/* bright fill, and fell to 4.9:1 on the orange hover. The darker ink  */
+/* gives 8.9:1 on amber and 6.8:1 on orange, and the label goes bold.  */
+/* ---------------------------------------------------------------- */
+.site-header__cta.btn--primary,
+:is(.hero__actions, .collab) .btn--primary {
+  background: var(--x-amber);
+  color: var(--x-ink-on-amber);
+  font-weight: var(--font-weight-bold);
+}
+.site-header__cta.btn--primary:hover,
+:is(.hero__actions, .collab) .btn--primary:hover {
+  background: var(--x-orange);
+  color: var(--x-ink-on-amber);
+}
+.site-header__cta.btn--primary:focus-visible { outline-color: var(--dark-navy); }
+
+/* ---------------------------------------------------------------- */
+/* Accents: dots and markers                                          */
+/* ---------------------------------------------------------------- */
+.eyebrow::before,
+.pg__chip::before,
+.story--featured .story__tag::before,
+.footer__name::before,
+.ntype--event::before { background: var(--x-orange); }
+
+/* On dark grounds the dot turns amber */
+:is(.wwa, .gp, .people, .impact, .lead, .collab) .eyebrow::before { background: var(--x-amber); }
+
+/* Eyebrows on navy: amber text (6.5:1). On green: white, with the amber dot. */
+:is(.wwa, .gp, .impact, .collab) .eyebrow { color: var(--x-amber); }
+:is(.people, .lead) .eyebrow { color: var(--color-white); }
+
+/* ---------------------------------------------------------------- */
+/* Hero                                                               */
+/* ---------------------------------------------------------------- */
+.hslide__bar { background: var(--x-amber); }
+.hslide[aria-current="true"] .hslide__num { color: var(--x-amber); }
+
+/* ---------------------------------------------------------------- */
+/* Turning purpose into progress: sunflowers bloom in amber           */
+/* ---------------------------------------------------------------- */
+.pp__step--1 .pp__num { color: var(--x-amber); }
+@media (min-width: 960px) {
+  /* Kept as texture, not illustration (softened 23 Nov 2026) */
+  .pp-sun--1 { color: rgb(255 184 28 / 0.26); }
+  .pp-sun--2 { color: rgb(247 148 29 / 0.3); }
+  .pp-sun--3 { color: rgb(255 184 28 / 0.3); }
+}
+
+/* ---------------------------------------------------------------- */
+/* People: deep green                                                 */
+/* ---------------------------------------------------------------- */
+.people {
+  background:
+    radial-gradient(60rem 40rem at 78% 45%, rgb(117 192 68 / 0.22), rgb(117 192 68 / 0) 70%),
+    linear-gradient(180deg, var(--x-green) 0%, var(--x-green-deep) 100%);
+  color: var(--x-on-green);
+}
+.people .aud__count { color: rgb(255 255 255 / 0.8); }
+.people .aud__label { color: var(--color-white); }
+.people .aud__text,
+.people .aud__unit { color: var(--x-on-green); }
+.people .aud__num { color: var(--x-amber); }        /* large figures: 3:1 is enough for large text */
+.people .people__circle { background: rgb(255 255 255 / 0.06); }
+.people .people__sun { stroke: rgb(255 184 28 / 0.45); }
+
+/* ---------------------------------------------------------------- */
+/* Overall Impact: deep navy; every tile turns green on hover        */
+/* ---------------------------------------------------------------- */
+/* The widest row continues the tint steps of the rows above
+   (0.05, 0.07, 0.09) instead of standing out in green. */
+.impact .irow--blue { --tile: rgb(255 255 255 / 0.11); }
+.impact .istat {
+  transition: background-color var(--duration-base) var(--ease-standard);
+}
+.impact .istat__desc { transition: color var(--duration-base) var(--ease-standard); }
+@media (hover: hover) {
+  .impact .istat:hover { background-color: var(--x-green); }
+  .impact .istat:hover .istat__desc { color: var(--x-on-green); }   /* 78% white would fall under 4.5:1 on green */
+}
+@media (min-width: 960px) {
+  .impact .istat__sun,
+  .impact .irow--blue .istat__sun { stroke: rgb(255 184 28 / 0.14); }   /* texture, not illustration */
+  .impact .istat:hover .istat__sun { stroke: rgb(255 184 28 / 0.16); }
+}
+
+/* ---------------------------------------------------------------- */
+/* Leadership: deep green                                             */
+/* ---------------------------------------------------------------- */
+.lead {
+  background:
+    radial-gradient(50rem 32rem at 85% 20%, rgb(117 192 68 / 0.18), rgb(117 192 68 / 0) 70%),
+    var(--x-green);
+  color: var(--x-on-green);
+}
+.lead .leader__designation { color: var(--color-white); }   /* small label: amber would be 3.1:1 on green */
+.lead .leader__mission { color: var(--x-on-green); }
+@media (min-width: 960px) {
+  .lead .lead__feature::before { background: rgb(0 0 0 / 0.12); }
+}
+
+/* ---------------------------------------------------------------- */
+/* Reports: labels on the dark covers                                 */
+/* ---------------------------------------------------------------- */
+.rcover--navy,
+.rcover--film { --cover-label: var(--x-amber); }
+
+/* ---------------------------------------------------------------- */
+/* Collaboration: navy, amber button, warm circles                    */
+/* ---------------------------------------------------------------- */
+.collab__contact span { color: var(--x-amber); }
+/* The circles keep their soft blue and green light (amber turned muddy
+   where it overlapped the blue); only the meeting point turns amber. */
+@media (min-width: 960px) {
+  .collab__circles::after { background: var(--x-amber); }
+}
