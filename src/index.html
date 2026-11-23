@@ -370,10 +370,10 @@
          Rebuilt after the client review as a row of expanding photo cards:
          one card is wide and shows everything (area chip, name, line,
          impact figure); the others are narrow and show only the name. The
-         card you hover or tab to widens (main.js initProgrammes); TACO
-         starts open. Each card is a link.
-         Order (from review): TACO, Vedanta Sports, Nand Ghar, BALCO
-         Medical Centre, Vedanta Foundation; TACO starts open. Descriptions verbatim from the
+         card you hover or tab to widens (main.js initProgrammes); Vedanta
+         Sports starts open. Each card is a link.
+         Order (review, 23 Nov 2026): Vedanta Sports, TACO, Nand Ghar, BALCO
+         Medical Centre, Vedanta Foundation; Vedanta Sports starts open. Descriptions verbatim from the
          content map §5 (the "Goal" lines are left out of the cards).
          Figures: Nand Ghar and TACO confirmed by the UX designer; Sports,
          BALCO and Vedanta Foundation supplied by the project team
@@ -397,19 +397,6 @@
         <div class="prog__panel">
           <ul class="prog__list" role="list">
             <li class="pg is-active">
-              <a class="pg__link" href="#" aria-labelledby="prog-taco">
-                <span class="pg__media">
-                  <img src="../assets/images/programmes/temp-taco-pexels-7469274.jpg" width="1600" height="1067" loading="lazy" decoding="async" data-temp-image="pexels" alt="A veterinarian and two volunteers examining a dog on a clinic table.">
-                  <span class="pg__chip">Animal Welfare</span>
-                  <span class="pg__go" aria-hidden="true">→</span>
-                </span>
-                <span class="pg__name" id="prog-taco">TACO</span>
-                <span class="pg__desc">Rescue, treatment and care for animals, with communities as partners.</span>
-                <!-- Figure: Confirmed by the UX designer, 19 Nov 2026. -->
-                <span class="pg__impact"><span class="pg__figure">60,000</span> <span class="pg__label">animals treated</span></span>
-              </a>
-            </li>
-            <li class="pg">
               <a class="pg__link" href="#" aria-labelledby="prog-sports">
                 <span class="pg__media">
                   <img src="../assets/images/programmes/temp-sports-pexels-1375152.jpg" width="1600" height="1067" loading="lazy" decoding="async" data-temp-image="pexels" alt="A young footballer striking the ball during a training session, with a teammate in a bib behind him.">
@@ -420,6 +407,19 @@
                 <span class="pg__desc">Coaching and opportunity for young athletes who would otherwise go unseen.</span>
                 <!-- Figure: Supplied by the project team, 19 Nov 2026. -->
                 <span class="pg__impact"><span class="pg__figure">180+</span> <span class="pg__label">medals won</span></span>
+              </a>
+            </li>
+            <li class="pg">
+              <a class="pg__link" href="#" aria-labelledby="prog-taco">
+                <span class="pg__media">
+                  <img src="../assets/images/programmes/temp-taco-pexels-7469274.jpg" width="1600" height="1067" loading="lazy" decoding="async" data-temp-image="pexels" alt="A veterinarian and two volunteers examining a dog on a clinic table.">
+                  <span class="pg__chip">Animal Welfare</span>
+                  <span class="pg__go" aria-hidden="true">→</span>
+                </span>
+                <span class="pg__name" id="prog-taco">TACO</span>
+                <span class="pg__desc">Rescue, treatment and care for animals, with communities as partners.</span>
+                <!-- Figure: Confirmed by the UX designer, 19 Nov 2026. -->
+                <span class="pg__impact"><span class="pg__figure">60,000</span> <span class="pg__label">animals treated</span></span>
               </a>
             </li>
             <li class="pg">
@@ -811,8 +811,8 @@
         <div class="stories__controls">
           <div class="stories__filters" role="group" aria-label="Filter stories by programme">
             <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
-            <button class="chip" type="button" data-filter="taco" aria-pressed="false">TACO</button>
             <button class="chip" type="button" data-filter="sports" aria-pressed="false">Vedanta Sports</button>
+            <button class="chip" type="button" data-filter="taco" aria-pressed="false">TACO</button>
             <button class="chip" type="button" data-filter="nand-ghar" aria-pressed="false">Nand Ghar</button>
             <button class="chip" type="button" data-filter="balco" aria-pressed="false">BALCO Medical Centre</button>
             <button class="chip" type="button" data-filter="foundation" aria-pressed="false">Vedanta Foundation</button>

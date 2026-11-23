@@ -265,7 +265,7 @@
   /* ---------- Programmes: expanding cards ---------- */
   // The card you point at or tab into opens (takes the wide share of the row);
   // it stays open after the pointer leaves, until another card is chosen.
-  // Without JS the first card (TACO) stays open.
+  // Without JS the first card (Vedanta Sports) stays open.
   function initProgrammes() {
     var cards = Array.prototype.slice.call(document.querySelectorAll('.prog__list .pg'));
     if (cards.length < 2) return;

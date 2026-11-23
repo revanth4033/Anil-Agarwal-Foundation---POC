@@ -208,7 +208,7 @@ Any filter shows the matching stories as wide rows. A combination with no story 
 
 ## Section 5: Our programmes (rebuilt)
 
-The section is now a row of five expanding photo cards, in this order: TACO, Vedanta Sports, Nand Ghar, BALCO Medical Centre, Vedanta Foundation. TACO starts open.
+The section is now a row of five expanding photo cards, in this order (review, 23 Nov 2026): Vedanta Sports, TACO, Nand Ghar, BALCO Medical Centre, Vedanta Foundation. Vedanta Sports starts open.
 
 **Open and closed cards.**
 - One card is open, taking 4.6 times the width of each slim card (at 1440px, 520px against 113px). It shows:
@@ -218,7 +218,7 @@ The section is now a row of five expanding photo cards, in this order: TACO, Ved
   - the impact figure (28px) and its label.
 - The other cards stay slim and show the name only (20px), over the photo with a navy fade at the foot.
 
-**Interaction.** Hovering or tabbing to a card opens it, and it stays open after the pointer leaves. The width eases over 0.7s, and the extra text fades in once the card has room. TACO starts open, including without JS. Code: `initProgrammes()` in `main.js`.
+**Interaction.** Hovering or tabbing to a card opens it, and it stays open after the pointer leaves. The width eases over 0.7s, and the extra text fades in once the card has room. Vedanta Sports starts open, including without JS. Code: `initProgrammes()` in `main.js`.
 
 **Small screens.** Below 960px the cards stack, all open.
 
